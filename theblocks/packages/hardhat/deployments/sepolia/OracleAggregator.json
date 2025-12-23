@@ -1,0 +1,1732 @@
+{
+  "address": "0x4205e920770412d94b90f58fc295c80a8D264d81",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "AccessControlBadConfirmation",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "neededRole",
+          "type": "bytes32"
+        }
+      ],
+      "name": "AccessControlUnauthorizedAccount",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ReentrancyGuardReentrantCall",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "pairId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "CircuitBreakerReset",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "pairId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "expectedRate",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "actualRate",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "deviation",
+          "type": "uint256"
+        }
+      ],
+      "name": "CircuitBreakerTripped",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "oracle",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "weight",
+          "type": "uint256"
+        }
+      ],
+      "name": "OracleAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "pairId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "base",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "quote",
+          "type": "string"
+        }
+      ],
+      "name": "PairAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "pairId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "oracle",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "rate",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "PriceUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "previousAdminRole",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "newAdminRole",
+          "type": "bytes32"
+        }
+      ],
+      "name": "RoleAdminChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "RoleGranted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "RoleRevoked",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "DEFAULT_ADMIN_ROLE",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "ORACLE_ADMIN",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "PRICE_UPDATER",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "activeOracles",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "activePairs",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "oracle",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "weight",
+          "type": "uint256"
+        }
+      ],
+      "name": "addOracle",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "base",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "quote",
+          "type": "string"
+        }
+      ],
+      "name": "addPair",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "pairId",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "pairIds",
+          "type": "bytes32[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "rates",
+          "type": "uint256[]"
+        },
+        {
+          "internalType": "uint256[]",
+          "name": "confidences",
+          "type": "uint256[]"
+        }
+      ],
+      "name": "batchUpdatePrices",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "circuitBreakerTriggers",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "pairId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "inverse",
+          "type": "bool"
+        }
+      ],
+      "name": "convert",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "convertedAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "rateUsed",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "oracle",
+          "type": "address"
+        }
+      ],
+      "name": "deactivateOracle",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "defaultMaxDeviation",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "defaultTwapPeriod",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getAllPairs",
+      "outputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "",
+          "type": "bytes32[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getOracleStats",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "updates",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "queries",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "circuitBreakers",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "oracleCount",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "pairId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getPairInfo",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "base",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "quote",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "currentRate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "lastUpdate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "circuitBreakerTripped",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "pairId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getRate",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "spotRate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "twapRate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "confidence",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bool",
+              "name": "isStale",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "circuitBreakerActive",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct OracleAggregator.RateResponse",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "base",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "quote",
+          "type": "string"
+        }
+      ],
+      "name": "getRateBySymbols",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "spotRate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "twapRate",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "confidence",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bool",
+              "name": "isStale",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "circuitBreakerActive",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct OracleAggregator.RateResponse",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getRoleAdmin",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "grantRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "hasRole",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "minOracleCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "oraclePrices",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "rate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "confidence",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isActive",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "oracleSources",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "oracle",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "weight",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isActive",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "lastUpdate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalUpdates",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "pairs",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "base",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "quote",
+          "type": "string"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "pairId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bool",
+          "name": "isActive",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "currentRate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "lastUpdate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "twapPeriod",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxDeviation",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "circuitBreakerTripped",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "callerConfirmation",
+          "type": "address"
+        }
+      ],
+      "name": "renounceRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "pairId",
+          "type": "bytes32"
+        }
+      ],
+      "name": "resetCircuitBreaker",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "revokeRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "pairId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "maxDeviation",
+          "type": "uint256"
+        }
+      ],
+      "name": "setMaxDeviation",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "count",
+          "type": "uint256"
+        }
+      ],
+      "name": "setMinOracleCount",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "threshold",
+          "type": "uint256"
+        }
+      ],
+      "name": "setStalenessThreshold",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "pairId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "period",
+          "type": "uint256"
+        }
+      ],
+      "name": "setTwapPeriod",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "stalenessThreshold",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalPriceUpdates",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalQueries",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "oracle",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "weight",
+          "type": "uint256"
+        }
+      ],
+      "name": "updateOracleWeight",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "pairId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "rate",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "confidence",
+          "type": "uint256"
+        }
+      ],
+      "name": "updatePrice",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x9b7a3121fcf964861be2ec0e0cd65a5c229721efeb32fd199e0cb39c04af1734",
+  "receipt": {
+    "to": null,
+    "from": "0x74dDa086DefBFE113E387e70f0304631972525E5",
+    "contractAddress": "0x4205e920770412d94b90f58fc295c80a8D264d81",
+    "transactionIndex": 36,
+    "gasUsed": "3368021",
+    "logsBloom": "0x00040004009000040000000000000000000000000080000000000000000080000000000000000000010000000000000000000000004000000000000000000002000480000000000000000000000000000000000000020000000000200000000000000000020000000001080080000800000000000000000000000000000000000000000080000400000000000000000000000000000061000004000000400000001420000000000000000000600000000000800000000000809000000200000000000000000000000000000000000000000000000000000100000080000020000000000000000000000001000080000000000000000000000000000000000000",
+    "blockHash": "0x70389e05fa73475f8ee18c77602aeffe1621e349e00dab858368b99977569b29",
+    "transactionHash": "0x9b7a3121fcf964861be2ec0e0cd65a5c229721efeb32fd199e0cb39c04af1734",
+    "logs": [
+      {
+        "transactionIndex": 36,
+        "blockNumber": 9894040,
+        "transactionHash": "0x9b7a3121fcf964861be2ec0e0cd65a5c229721efeb32fd199e0cb39c04af1734",
+        "address": "0x4205e920770412d94b90f58fc295c80a8D264d81",
+        "topics": [
+          "0x2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x00000000000000000000000074dda086defbfe113e387e70f0304631972525e5",
+          "0x00000000000000000000000074dda086defbfe113e387e70f0304631972525e5"
+        ],
+        "data": "0x",
+        "logIndex": 115,
+        "blockHash": "0x70389e05fa73475f8ee18c77602aeffe1621e349e00dab858368b99977569b29"
+      },
+      {
+        "transactionIndex": 36,
+        "blockNumber": 9894040,
+        "transactionHash": "0x9b7a3121fcf964861be2ec0e0cd65a5c229721efeb32fd199e0cb39c04af1734",
+        "address": "0x4205e920770412d94b90f58fc295c80a8D264d81",
+        "topics": [
+          "0x2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d",
+          "0xa8d944a5277d6a203f114d020d26918a390f167b089a46be4fca9da716d23783",
+          "0x00000000000000000000000074dda086defbfe113e387e70f0304631972525e5",
+          "0x00000000000000000000000074dda086defbfe113e387e70f0304631972525e5"
+        ],
+        "data": "0x",
+        "logIndex": 116,
+        "blockHash": "0x70389e05fa73475f8ee18c77602aeffe1621e349e00dab858368b99977569b29"
+      },
+      {
+        "transactionIndex": 36,
+        "blockNumber": 9894040,
+        "transactionHash": "0x9b7a3121fcf964861be2ec0e0cd65a5c229721efeb32fd199e0cb39c04af1734",
+        "address": "0x4205e920770412d94b90f58fc295c80a8D264d81",
+        "topics": [
+          "0x2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d",
+          "0x74b366a297145849fa9687e16ecad1e3a60cf84f6c2256ae73e20a9f76669804",
+          "0x00000000000000000000000074dda086defbfe113e387e70f0304631972525e5",
+          "0x00000000000000000000000074dda086defbfe113e387e70f0304631972525e5"
+        ],
+        "data": "0x",
+        "logIndex": 117,
+        "blockHash": "0x70389e05fa73475f8ee18c77602aeffe1621e349e00dab858368b99977569b29"
+      },
+      {
+        "transactionIndex": 36,
+        "blockNumber": 9894040,
+        "transactionHash": "0x9b7a3121fcf964861be2ec0e0cd65a5c229721efeb32fd199e0cb39c04af1734",
+        "address": "0x4205e920770412d94b90f58fc295c80a8D264d81",
+        "topics": [
+          "0xd51c61275c67b8136eb01d574e9d5cf85e714f01613056745a3c8bc4a0440d30",
+          "0x2a0b14fa3b4c377f4ee26c46ba073224db2652a4c1b90ffc01b649db461c2c38"
+        ],
+        "data": "0x000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000003555344000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000034555520000000000000000000000000000000000000000000000000000000000",
+        "logIndex": 118,
+        "blockHash": "0x70389e05fa73475f8ee18c77602aeffe1621e349e00dab858368b99977569b29"
+      },
+      {
+        "transactionIndex": 36,
+        "blockNumber": 9894040,
+        "transactionHash": "0x9b7a3121fcf964861be2ec0e0cd65a5c229721efeb32fd199e0cb39c04af1734",
+        "address": "0x4205e920770412d94b90f58fc295c80a8D264d81",
+        "topics": [
+          "0xd51c61275c67b8136eb01d574e9d5cf85e714f01613056745a3c8bc4a0440d30",
+          "0x881ce35a123c3875df4e6b83b3efbdd694b3ae9c7523fe5d96ca517d56485a82"
+        ],
+        "data": "0x000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000003555344000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000034742500000000000000000000000000000000000000000000000000000000000",
+        "logIndex": 119,
+        "blockHash": "0x70389e05fa73475f8ee18c77602aeffe1621e349e00dab858368b99977569b29"
+      },
+      {
+        "transactionIndex": 36,
+        "blockNumber": 9894040,
+        "transactionHash": "0x9b7a3121fcf964861be2ec0e0cd65a5c229721efeb32fd199e0cb39c04af1734",
+        "address": "0x4205e920770412d94b90f58fc295c80a8D264d81",
+        "topics": [
+          "0xd51c61275c67b8136eb01d574e9d5cf85e714f01613056745a3c8bc4a0440d30",
+          "0x35b8bafff3570683af968b8d36b91b1a19465141d9712425e9f76c68ff8cb152"
+        ],
+        "data": "0x000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000003555344000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000034a50590000000000000000000000000000000000000000000000000000000000",
+        "logIndex": 120,
+        "blockHash": "0x70389e05fa73475f8ee18c77602aeffe1621e349e00dab858368b99977569b29"
+      },
+      {
+        "transactionIndex": 36,
+        "blockNumber": 9894040,
+        "transactionHash": "0x9b7a3121fcf964861be2ec0e0cd65a5c229721efeb32fd199e0cb39c04af1734",
+        "address": "0x4205e920770412d94b90f58fc295c80a8D264d81",
+        "topics": [
+          "0xd51c61275c67b8136eb01d574e9d5cf85e714f01613056745a3c8bc4a0440d30",
+          "0x05cb22cc522deb19e2aaadedc72aa6a033b3fadfca05b8bfed47597de075fb2c"
+        ],
+        "data": "0x000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000003455552000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000034742500000000000000000000000000000000000000000000000000000000000",
+        "logIndex": 121,
+        "blockHash": "0x70389e05fa73475f8ee18c77602aeffe1621e349e00dab858368b99977569b29"
+      },
+      {
+        "transactionIndex": 36,
+        "blockNumber": 9894040,
+        "transactionHash": "0x9b7a3121fcf964861be2ec0e0cd65a5c229721efeb32fd199e0cb39c04af1734",
+        "address": "0x4205e920770412d94b90f58fc295c80a8D264d81",
+        "topics": [
+          "0xd51c61275c67b8136eb01d574e9d5cf85e714f01613056745a3c8bc4a0440d30",
+          "0xa4838c776d28af364cf58ac1c411e18aacf998b160934e31674ed5adce6214bd"
+        ],
+        "data": "0x000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000003555344000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000045553444300000000000000000000000000000000000000000000000000000000",
+        "logIndex": 122,
+        "blockHash": "0x70389e05fa73475f8ee18c77602aeffe1621e349e00dab858368b99977569b29"
+      },
+      {
+        "transactionIndex": 36,
+        "blockNumber": 9894040,
+        "transactionHash": "0x9b7a3121fcf964861be2ec0e0cd65a5c229721efeb32fd199e0cb39c04af1734",
+        "address": "0x4205e920770412d94b90f58fc295c80a8D264d81",
+        "topics": [
+          "0xd51c61275c67b8136eb01d574e9d5cf85e714f01613056745a3c8bc4a0440d30",
+          "0xff045db5aa51733b790e5eef701778d287a567d86bea892e8d32d8f7c5809655"
+        ],
+        "data": "0x000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000003555344000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000045553445400000000000000000000000000000000000000000000000000000000",
+        "logIndex": 123,
+        "blockHash": "0x70389e05fa73475f8ee18c77602aeffe1621e349e00dab858368b99977569b29"
+      },
+      {
+        "transactionIndex": 36,
+        "blockNumber": 9894040,
+        "transactionHash": "0x9b7a3121fcf964861be2ec0e0cd65a5c229721efeb32fd199e0cb39c04af1734",
+        "address": "0x4205e920770412d94b90f58fc295c80a8D264d81",
+        "topics": [
+          "0xd51c61275c67b8136eb01d574e9d5cf85e714f01613056745a3c8bc4a0440d30",
+          "0x0b43555ace6b39aae1b894097d0a9fc17f504c62fea598fa206cc6f5088e6e45"
+        ],
+        "data": "0x000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000003455448000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000035553440000000000000000000000000000000000000000000000000000000000",
+        "logIndex": 124,
+        "blockHash": "0x70389e05fa73475f8ee18c77602aeffe1621e349e00dab858368b99977569b29"
+      }
+    ],
+    "blockNumber": 9894040,
+    "cumulativeGasUsed": "13245112",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "c67737e51f0b406cca842b1a124d52ef",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"AccessControlBadConfirmation\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"neededRole\",\"type\":\"bytes32\"}],\"name\":\"AccessControlUnauthorizedAccount\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ReentrancyGuardReentrantCall\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"pairId\",\"type\":\"bytes32\"}],\"name\":\"CircuitBreakerReset\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"pairId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"expectedRate\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"actualRate\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"deviation\",\"type\":\"uint256\"}],\"name\":\"CircuitBreakerTripped\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"oracle\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"weight\",\"type\":\"uint256\"}],\"name\":\"OracleAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"pairId\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"base\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"quote\",\"type\":\"string\"}],\"name\":\"PairAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"pairId\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"oracle\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"rate\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"PriceUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"previousAdminRole\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newAdminRole\",\"type\":\"bytes32\"}],\"name\":\"RoleAdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleGranted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleRevoked\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"DEFAULT_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"ORACLE_ADMIN\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"PRICE_UPDATER\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"activeOracles\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"activePairs\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"oracle\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"weight\",\"type\":\"uint256\"}],\"name\":\"addOracle\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"base\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"quote\",\"type\":\"string\"}],\"name\":\"addPair\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"pairId\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"pairIds\",\"type\":\"bytes32[]\"},{\"internalType\":\"uint256[]\",\"name\":\"rates\",\"type\":\"uint256[]\"},{\"internalType\":\"uint256[]\",\"name\":\"confidences\",\"type\":\"uint256[]\"}],\"name\":\"batchUpdatePrices\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"circuitBreakerTriggers\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"pairId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"inverse\",\"type\":\"bool\"}],\"name\":\"convert\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"convertedAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"rateUsed\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"oracle\",\"type\":\"address\"}],\"name\":\"deactivateOracle\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"defaultMaxDeviation\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"defaultTwapPeriod\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAllPairs\",\"outputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"\",\"type\":\"bytes32[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getOracleStats\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"updates\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"queries\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"circuitBreakers\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"oracleCount\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"pairId\",\"type\":\"bytes32\"}],\"name\":\"getPairInfo\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"base\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"quote\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"currentRate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lastUpdate\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"circuitBreakerTripped\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"pairId\",\"type\":\"bytes32\"}],\"name\":\"getRate\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"spotRate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"twapRate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"confidence\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isStale\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"circuitBreakerActive\",\"type\":\"bool\"}],\"internalType\":\"struct OracleAggregator.RateResponse\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"base\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"quote\",\"type\":\"string\"}],\"name\":\"getRateBySymbols\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"spotRate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"twapRate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"confidence\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isStale\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"circuitBreakerActive\",\"type\":\"bool\"}],\"internalType\":\"struct OracleAggregator.RateResponse\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleAdmin\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"grantRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"hasRole\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"minOracleCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"oraclePrices\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"rate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"confidence\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isActive\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"oracleSources\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"oracle\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"weight\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isActive\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"lastUpdate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalUpdates\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"pairs\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"base\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"quote\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"pairId\",\"type\":\"bytes32\"},{\"internalType\":\"bool\",\"name\":\"isActive\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"currentRate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lastUpdate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"twapPeriod\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"maxDeviation\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"circuitBreakerTripped\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"callerConfirmation\",\"type\":\"address\"}],\"name\":\"renounceRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"pairId\",\"type\":\"bytes32\"}],\"name\":\"resetCircuitBreaker\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"revokeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"pairId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"maxDeviation\",\"type\":\"uint256\"}],\"name\":\"setMaxDeviation\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"count\",\"type\":\"uint256\"}],\"name\":\"setMinOracleCount\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"threshold\",\"type\":\"uint256\"}],\"name\":\"setStalenessThreshold\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"pairId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"period\",\"type\":\"uint256\"}],\"name\":\"setTwapPeriod\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"stalenessThreshold\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalPriceUpdates\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalQueries\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"oracle\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"weight\",\"type\":\"uint256\"}],\"name\":\"updateOracleWeight\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"pairId\",\"type\":\"bytes32\"},{\"internalType\":\"uint256\",\"name\":\"rate\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"confidence\",\"type\":\"uint256\"}],\"name\":\"updatePrice\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Aggregates rates from multiple oracles for institutional-grade accuracy  KEY FEATURES: - Multi-oracle price feeds with weighted averages - Time-weighted average price (TWAP) calculation - Circuit breakers for extreme volatility - Staleness detection and fallback - Rate caching for gas optimization\",\"errors\":{\"AccessControlBadConfirmation()\":[{\"details\":\"The caller of a function is not the expected one. NOTE: Don't confuse with {AccessControlUnauthorizedAccount}.\"}],\"AccessControlUnauthorizedAccount(address,bytes32)\":[{\"details\":\"The `account` is missing a role.\"}],\"ReentrancyGuardReentrantCall()\":[{\"details\":\"Unauthorized reentrant call.\"}]},\"events\":{\"RoleAdminChanged(bytes32,bytes32,bytes32)\":{\"details\":\"Emitted when `newAdminRole` is set as ``role``'s admin role, replacing `previousAdminRole` `DEFAULT_ADMIN_ROLE` is the starting admin for all roles, despite {RoleAdminChanged} not being emitted signaling this.\"},\"RoleGranted(bytes32,address,address)\":{\"details\":\"Emitted when `account` is granted `role`. `sender` is the account that originated the contract call, an admin role bearer except when using {AccessControl-_setupRole}.\"},\"RoleRevoked(bytes32,address,address)\":{\"details\":\"Emitted when `account` is revoked `role`. `sender` is the account that originated the contract call:   - if using `revokeRole`, it is the admin role bearer   - if using `renounceRole`, it is the role bearer (i.e. `account`)\"}},\"kind\":\"dev\",\"methods\":{\"getRoleAdmin(bytes32)\":{\"details\":\"Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.\"},\"grantRole(bytes32,address)\":{\"details\":\"Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleGranted} event.\"},\"hasRole(bytes32,address)\":{\"details\":\"Returns `true` if `account` has been granted `role`.\"},\"renounceRole(bytes32,address)\":{\"details\":\"Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `callerConfirmation`. May emit a {RoleRevoked} event.\"},\"revokeRole(bytes32,address)\":{\"details\":\"Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleRevoked} event.\"},\"supportsInterface(bytes4)\":{\"details\":\"See {IERC165-supportsInterface}.\"}},\"title\":\"OracleAggregator\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"batchUpdatePrices(bytes32[],uint256[],uint256[])\":{\"notice\":\"Batch update multiple prices\"},\"convert(bytes32,uint256,bool)\":{\"notice\":\"Convert amount between currencies\"},\"getRate(bytes32)\":{\"notice\":\"Get current rate for a currency pair\"},\"getRateBySymbols(string,string)\":{\"notice\":\"Get rate for base/quote strings\"},\"updatePrice(bytes32,uint256,uint256)\":{\"notice\":\"Update price for a currency pair\"}},\"notice\":\"Multi-source FX rate aggregation with TWAP and circuit breakers\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/OracleAggregator.sol\":\"OracleAggregator\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[],\"viaIR\":true},\"sources\":{\"@openzeppelin/contracts/access/AccessControl.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (access/AccessControl.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {IAccessControl} from \\\"./IAccessControl.sol\\\";\\nimport {Context} from \\\"../utils/Context.sol\\\";\\nimport {ERC165} from \\\"../utils/introspection/ERC165.sol\\\";\\n\\n/**\\n * @dev Contract module that allows children to implement role-based access\\n * control mechanisms. This is a lightweight version that doesn't allow enumerating role\\n * members except through off-chain means by accessing the contract event logs. Some\\n * applications may benefit from on-chain enumerability, for those cases see\\n * {AccessControlEnumerable}.\\n *\\n * Roles are referred to by their `bytes32` identifier. These should be exposed\\n * in the external API and be unique. The best way to achieve this is by\\n * using `public constant` hash digests:\\n *\\n * ```solidity\\n * bytes32 public constant MY_ROLE = keccak256(\\\"MY_ROLE\\\");\\n * ```\\n *\\n * Roles can be used to represent a set of permissions. To restrict access to a\\n * function call, use {hasRole}:\\n *\\n * ```solidity\\n * function foo() public {\\n *     require(hasRole(MY_ROLE, msg.sender));\\n *     ...\\n * }\\n * ```\\n *\\n * Roles can be granted and revoked dynamically via the {grantRole} and\\n * {revokeRole} functions. Each role has an associated admin role, and only\\n * accounts that have a role's admin role can call {grantRole} and {revokeRole}.\\n *\\n * By default, the admin role for all roles is `DEFAULT_ADMIN_ROLE`, which means\\n * that only accounts with this role will be able to grant or revoke other\\n * roles. More complex role relationships can be created by using\\n * {_setRoleAdmin}.\\n *\\n * WARNING: The `DEFAULT_ADMIN_ROLE` is also its own admin: it has permission to\\n * grant and revoke this role. Extra precautions should be taken to secure\\n * accounts that have been granted it. We recommend using {AccessControlDefaultAdminRules}\\n * to enforce additional security measures for this role.\\n */\\nabstract contract AccessControl is Context, IAccessControl, ERC165 {\\n    struct RoleData {\\n        mapping(address account => bool) hasRole;\\n        bytes32 adminRole;\\n    }\\n\\n    mapping(bytes32 role => RoleData) private _roles;\\n\\n    bytes32 public constant DEFAULT_ADMIN_ROLE = 0x00;\\n\\n    /**\\n     * @dev Modifier that checks that an account has a specific role. Reverts\\n     * with an {AccessControlUnauthorizedAccount} error including the required role.\\n     */\\n    modifier onlyRole(bytes32 role) {\\n        _checkRole(role);\\n        _;\\n    }\\n\\n    /**\\n     * @dev See {IERC165-supportsInterface}.\\n     */\\n    function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {\\n        return interfaceId == type(IAccessControl).interfaceId || super.supportsInterface(interfaceId);\\n    }\\n\\n    /**\\n     * @dev Returns `true` if `account` has been granted `role`.\\n     */\\n    function hasRole(bytes32 role, address account) public view virtual returns (bool) {\\n        return _roles[role].hasRole[account];\\n    }\\n\\n    /**\\n     * @dev Reverts with an {AccessControlUnauthorizedAccount} error if `_msgSender()`\\n     * is missing `role`. Overriding this function changes the behavior of the {onlyRole} modifier.\\n     */\\n    function _checkRole(bytes32 role) internal view virtual {\\n        _checkRole(role, _msgSender());\\n    }\\n\\n    /**\\n     * @dev Reverts with an {AccessControlUnauthorizedAccount} error if `account`\\n     * is missing `role`.\\n     */\\n    function _checkRole(bytes32 role, address account) internal view virtual {\\n        if (!hasRole(role, account)) {\\n            revert AccessControlUnauthorizedAccount(account, role);\\n        }\\n    }\\n\\n    /**\\n     * @dev Returns the admin role that controls `role`. See {grantRole} and\\n     * {revokeRole}.\\n     *\\n     * To change a role's admin, use {_setRoleAdmin}.\\n     */\\n    function getRoleAdmin(bytes32 role) public view virtual returns (bytes32) {\\n        return _roles[role].adminRole;\\n    }\\n\\n    /**\\n     * @dev Grants `role` to `account`.\\n     *\\n     * If `account` had not been already granted `role`, emits a {RoleGranted}\\n     * event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must have ``role``'s admin role.\\n     *\\n     * May emit a {RoleGranted} event.\\n     */\\n    function grantRole(bytes32 role, address account) public virtual onlyRole(getRoleAdmin(role)) {\\n        _grantRole(role, account);\\n    }\\n\\n    /**\\n     * @dev Revokes `role` from `account`.\\n     *\\n     * If `account` had been granted `role`, emits a {RoleRevoked} event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must have ``role``'s admin role.\\n     *\\n     * May emit a {RoleRevoked} event.\\n     */\\n    function revokeRole(bytes32 role, address account) public virtual onlyRole(getRoleAdmin(role)) {\\n        _revokeRole(role, account);\\n    }\\n\\n    /**\\n     * @dev Revokes `role` from the calling account.\\n     *\\n     * Roles are often managed via {grantRole} and {revokeRole}: this function's\\n     * purpose is to provide a mechanism for accounts to lose their privileges\\n     * if they are compromised (such as when a trusted device is misplaced).\\n     *\\n     * If the calling account had been revoked `role`, emits a {RoleRevoked}\\n     * event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must be `callerConfirmation`.\\n     *\\n     * May emit a {RoleRevoked} event.\\n     */\\n    function renounceRole(bytes32 role, address callerConfirmation) public virtual {\\n        if (callerConfirmation != _msgSender()) {\\n            revert AccessControlBadConfirmation();\\n        }\\n\\n        _revokeRole(role, callerConfirmation);\\n    }\\n\\n    /**\\n     * @dev Sets `adminRole` as ``role``'s admin role.\\n     *\\n     * Emits a {RoleAdminChanged} event.\\n     */\\n    function _setRoleAdmin(bytes32 role, bytes32 adminRole) internal virtual {\\n        bytes32 previousAdminRole = getRoleAdmin(role);\\n        _roles[role].adminRole = adminRole;\\n        emit RoleAdminChanged(role, previousAdminRole, adminRole);\\n    }\\n\\n    /**\\n     * @dev Attempts to grant `role` to `account` and returns a boolean indicating if `role` was granted.\\n     *\\n     * Internal function without access restriction.\\n     *\\n     * May emit a {RoleGranted} event.\\n     */\\n    function _grantRole(bytes32 role, address account) internal virtual returns (bool) {\\n        if (!hasRole(role, account)) {\\n            _roles[role].hasRole[account] = true;\\n            emit RoleGranted(role, account, _msgSender());\\n            return true;\\n        } else {\\n            return false;\\n        }\\n    }\\n\\n    /**\\n     * @dev Attempts to revoke `role` to `account` and returns a boolean indicating if `role` was revoked.\\n     *\\n     * Internal function without access restriction.\\n     *\\n     * May emit a {RoleRevoked} event.\\n     */\\n    function _revokeRole(bytes32 role, address account) internal virtual returns (bool) {\\n        if (hasRole(role, account)) {\\n            _roles[role].hasRole[account] = false;\\n            emit RoleRevoked(role, account, _msgSender());\\n            return true;\\n        } else {\\n            return false;\\n        }\\n    }\\n}\\n\",\"keccak256\":\"0xa0e92d42942f4f57c5be50568dac11e9d00c93efcb458026e18d2d9b9b2e7308\",\"license\":\"MIT\"},\"@openzeppelin/contracts/access/IAccessControl.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (access/IAccessControl.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev External interface of AccessControl declared to support ERC165 detection.\\n */\\ninterface IAccessControl {\\n    /**\\n     * @dev The `account` is missing a role.\\n     */\\n    error AccessControlUnauthorizedAccount(address account, bytes32 neededRole);\\n\\n    /**\\n     * @dev The caller of a function is not the expected one.\\n     *\\n     * NOTE: Don't confuse with {AccessControlUnauthorizedAccount}.\\n     */\\n    error AccessControlBadConfirmation();\\n\\n    /**\\n     * @dev Emitted when `newAdminRole` is set as ``role``'s admin role, replacing `previousAdminRole`\\n     *\\n     * `DEFAULT_ADMIN_ROLE` is the starting admin for all roles, despite\\n     * {RoleAdminChanged} not being emitted signaling this.\\n     */\\n    event RoleAdminChanged(bytes32 indexed role, bytes32 indexed previousAdminRole, bytes32 indexed newAdminRole);\\n\\n    /**\\n     * @dev Emitted when `account` is granted `role`.\\n     *\\n     * `sender` is the account that originated the contract call, an admin role\\n     * bearer except when using {AccessControl-_setupRole}.\\n     */\\n    event RoleGranted(bytes32 indexed role, address indexed account, address indexed sender);\\n\\n    /**\\n     * @dev Emitted when `account` is revoked `role`.\\n     *\\n     * `sender` is the account that originated the contract call:\\n     *   - if using `revokeRole`, it is the admin role bearer\\n     *   - if using `renounceRole`, it is the role bearer (i.e. `account`)\\n     */\\n    event RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender);\\n\\n    /**\\n     * @dev Returns `true` if `account` has been granted `role`.\\n     */\\n    function hasRole(bytes32 role, address account) external view returns (bool);\\n\\n    /**\\n     * @dev Returns the admin role that controls `role`. See {grantRole} and\\n     * {revokeRole}.\\n     *\\n     * To change a role's admin, use {AccessControl-_setRoleAdmin}.\\n     */\\n    function getRoleAdmin(bytes32 role) external view returns (bytes32);\\n\\n    /**\\n     * @dev Grants `role` to `account`.\\n     *\\n     * If `account` had not been already granted `role`, emits a {RoleGranted}\\n     * event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must have ``role``'s admin role.\\n     */\\n    function grantRole(bytes32 role, address account) external;\\n\\n    /**\\n     * @dev Revokes `role` from `account`.\\n     *\\n     * If `account` had been granted `role`, emits a {RoleRevoked} event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must have ``role``'s admin role.\\n     */\\n    function revokeRole(bytes32 role, address account) external;\\n\\n    /**\\n     * @dev Revokes `role` from the calling account.\\n     *\\n     * Roles are often managed via {grantRole} and {revokeRole}: this function's\\n     * purpose is to provide a mechanism for accounts to lose their privileges\\n     * if they are compromised (such as when a trusted device is misplaced).\\n     *\\n     * If the calling account had been granted `role`, emits a {RoleRevoked}\\n     * event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must be `callerConfirmation`.\\n     */\\n    function renounceRole(bytes32 role, address callerConfirmation) external;\\n}\\n\",\"keccak256\":\"0xb6b36edd6a2999fd243ff226d6cbf84bd71af2432bbd0dfe19392996a1d9cb41\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Context.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.1) (utils/Context.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Provides information about the current execution context, including the\\n * sender of the transaction and its data. While these are generally available\\n * via msg.sender and msg.data, they should not be accessed in such a direct\\n * manner, since when dealing with meta-transactions the account sending and\\n * paying for execution may not be the actual sender (as far as an application\\n * is concerned).\\n *\\n * This contract is only required for intermediate, library-like contracts.\\n */\\nabstract contract Context {\\n    function _msgSender() internal view virtual returns (address) {\\n        return msg.sender;\\n    }\\n\\n    function _msgData() internal view virtual returns (bytes calldata) {\\n        return msg.data;\\n    }\\n\\n    function _contextSuffixLength() internal view virtual returns (uint256) {\\n        return 0;\\n    }\\n}\\n\",\"keccak256\":\"0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (utils/ReentrancyGuard.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Contract module that helps prevent reentrant calls to a function.\\n *\\n * Inheriting from `ReentrancyGuard` will make the {nonReentrant} modifier\\n * available, which can be applied to functions to make sure there are no nested\\n * (reentrant) calls to them.\\n *\\n * Note that because there is a single `nonReentrant` guard, functions marked as\\n * `nonReentrant` may not call one another. This can be worked around by making\\n * those functions `private`, and then adding `external` `nonReentrant` entry\\n * points to them.\\n *\\n * TIP: If you would like to learn more about reentrancy and alternative ways\\n * to protect against it, check out our blog post\\n * https://blog.openzeppelin.com/reentrancy-after-istanbul/[Reentrancy After Istanbul].\\n */\\nabstract contract ReentrancyGuard {\\n    // Booleans are more expensive than uint256 or any type that takes up a full\\n    // word because each write operation emits an extra SLOAD to first read the\\n    // slot's contents, replace the bits taken up by the boolean, and then write\\n    // back. This is the compiler's defense against contract upgrades and\\n    // pointer aliasing, and it cannot be disabled.\\n\\n    // The values being non-zero value makes deployment a bit more expensive,\\n    // but in exchange the refund on every call to nonReentrant will be lower in\\n    // amount. Since refunds are capped to a percentage of the total\\n    // transaction's gas, it is best to keep them low in cases like this one, to\\n    // increase the likelihood of the full refund coming into effect.\\n    uint256 private constant NOT_ENTERED = 1;\\n    uint256 private constant ENTERED = 2;\\n\\n    uint256 private _status;\\n\\n    /**\\n     * @dev Unauthorized reentrant call.\\n     */\\n    error ReentrancyGuardReentrantCall();\\n\\n    constructor() {\\n        _status = NOT_ENTERED;\\n    }\\n\\n    /**\\n     * @dev Prevents a contract from calling itself, directly or indirectly.\\n     * Calling a `nonReentrant` function from another `nonReentrant`\\n     * function is not supported. It is possible to prevent this from happening\\n     * by making the `nonReentrant` function external, and making it call a\\n     * `private` function that does the actual work.\\n     */\\n    modifier nonReentrant() {\\n        _nonReentrantBefore();\\n        _;\\n        _nonReentrantAfter();\\n    }\\n\\n    function _nonReentrantBefore() private {\\n        // On the first call to nonReentrant, _status will be NOT_ENTERED\\n        if (_status == ENTERED) {\\n            revert ReentrancyGuardReentrantCall();\\n        }\\n\\n        // Any calls to nonReentrant after this point will fail\\n        _status = ENTERED;\\n    }\\n\\n    function _nonReentrantAfter() private {\\n        // By storing the original value once again, a refund is triggered (see\\n        // https://eips.ethereum.org/EIPS/eip-2200)\\n        _status = NOT_ENTERED;\\n    }\\n\\n    /**\\n     * @dev Returns true if the reentrancy guard is currently set to \\\"entered\\\", which indicates there is a\\n     * `nonReentrant` function in the call stack.\\n     */\\n    function _reentrancyGuardEntered() internal view returns (bool) {\\n        return _status == ENTERED;\\n    }\\n}\\n\",\"keccak256\":\"0xf980daa263b661ab8ddee7d4fd833c7da7e7995e2c359ff1f17e67e4112f2236\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/introspection/ERC165.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (utils/introspection/ERC165.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {IERC165} from \\\"./IERC165.sol\\\";\\n\\n/**\\n * @dev Implementation of the {IERC165} interface.\\n *\\n * Contracts that want to implement ERC165 should inherit from this contract and override {supportsInterface} to check\\n * for the additional interface id that will be supported. For example:\\n *\\n * ```solidity\\n * function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {\\n *     return interfaceId == type(MyInterface).interfaceId || super.supportsInterface(interfaceId);\\n * }\\n * ```\\n */\\nabstract contract ERC165 is IERC165 {\\n    /**\\n     * @dev See {IERC165-supportsInterface}.\\n     */\\n    function supportsInterface(bytes4 interfaceId) public view virtual returns (bool) {\\n        return interfaceId == type(IERC165).interfaceId;\\n    }\\n}\\n\",\"keccak256\":\"0x9e8778b14317ba9e256c30a76fd6c32b960af621987f56069e1e819c77c6a133\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/introspection/IERC165.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (utils/introspection/IERC165.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Interface of the ERC165 standard, as defined in the\\n * https://eips.ethereum.org/EIPS/eip-165[EIP].\\n *\\n * Implementers can declare support of contract interfaces, which can then be\\n * queried by others ({ERC165Checker}).\\n *\\n * For an implementation, see {ERC165}.\\n */\\ninterface IERC165 {\\n    /**\\n     * @dev Returns true if this contract implements the interface defined by\\n     * `interfaceId`. See the corresponding\\n     * https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section]\\n     * to learn more about how these ids are created.\\n     *\\n     * This function call must use less than 30 000 gas.\\n     */\\n    function supportsInterface(bytes4 interfaceId) external view returns (bool);\\n}\\n\",\"keccak256\":\"0x4296879f55019b23e135000eb36896057e7101fb7fb859c5ef690cf14643757b\",\"license\":\"MIT\"},\"contracts/OracleAggregator.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.20;\\r\\n\\r\\nimport \\\"@openzeppelin/contracts/access/AccessControl.sol\\\";\\r\\nimport \\\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\\\";\\r\\n\\r\\n/**\\r\\n * @title OracleAggregator\\r\\n * @notice Multi-source FX rate aggregation with TWAP and circuit breakers\\r\\n * @dev Aggregates rates from multiple oracles for institutional-grade accuracy\\r\\n * \\r\\n * KEY FEATURES:\\r\\n * - Multi-oracle price feeds with weighted averages\\r\\n * - Time-weighted average price (TWAP) calculation\\r\\n * - Circuit breakers for extreme volatility\\r\\n * - Staleness detection and fallback\\r\\n * - Rate caching for gas optimization\\r\\n */\\r\\ncontract OracleAggregator is AccessControl, ReentrancyGuard {\\r\\n    bytes32 public constant ORACLE_ADMIN = keccak256(\\\"ORACLE_ADMIN\\\");\\r\\n    bytes32 public constant PRICE_UPDATER = keccak256(\\\"PRICE_UPDATER\\\");\\r\\n\\r\\n    struct PriceData {\\r\\n        uint256 rate;               // Rate scaled to 18 decimals\\r\\n        uint256 timestamp;          // Last update time\\r\\n        uint256 confidence;         // Confidence level 0-100\\r\\n        bool isActive;\\r\\n    }\\r\\n\\r\\n    struct OracleSource {\\r\\n        address oracle;\\r\\n        string name;\\r\\n        uint256 weight;             // Weight in aggregation (sum = 10000)\\r\\n        bool isActive;\\r\\n        uint256 lastUpdate;\\r\\n        uint256 totalUpdates;\\r\\n    }\\r\\n\\r\\n    struct CurrencyPair {\\r\\n        string base;                // e.g., \\\"USD\\\"\\r\\n        string quote;               // e.g., \\\"EUR\\\"\\r\\n        bytes32 pairId;\\r\\n        bool isActive;\\r\\n        \\r\\n        // Current rate\\r\\n        uint256 currentRate;\\r\\n        uint256 lastUpdate;\\r\\n        \\r\\n        // TWAP data\\r\\n        uint256[] rateHistory;\\r\\n        uint256[] timestamps;\\r\\n        uint256 twapPeriod;         // TWAP calculation period\\r\\n        \\r\\n        // Circuit breaker\\r\\n        uint256 maxDeviation;       // Max allowed deviation in bps\\r\\n        bool circuitBreakerTripped;\\r\\n    }\\r\\n\\r\\n    struct RateResponse {\\r\\n        uint256 spotRate;\\r\\n        uint256 twapRate;\\r\\n        uint256 confidence;\\r\\n        uint256 timestamp;\\r\\n        bool isStale;\\r\\n        bool circuitBreakerActive;\\r\\n    }\\r\\n\\r\\n    // State\\r\\n    mapping(bytes32 => CurrencyPair) public pairs;\\r\\n    mapping(bytes32 => mapping(address => PriceData)) public oraclePrices;\\r\\n    mapping(address => OracleSource) public oracleSources;\\r\\n    \\r\\n    bytes32[] public activePairs;\\r\\n    address[] public activeOracles;\\r\\n    \\r\\n    // Settings\\r\\n    uint256 public stalenessThreshold = 1 hours;\\r\\n    uint256 public defaultTwapPeriod = 15 minutes;\\r\\n    uint256 public defaultMaxDeviation = 500; // 5%\\r\\n    uint256 public minOracleCount = 2;\\r\\n\\r\\n    // Statistics\\r\\n    uint256 public totalPriceUpdates;\\r\\n    uint256 public totalQueries;\\r\\n    uint256 public circuitBreakerTriggers;\\r\\n\\r\\n    // Events\\r\\n    event PriceUpdated(\\r\\n        bytes32 indexed pairId,\\r\\n        address indexed oracle,\\r\\n        uint256 rate,\\r\\n        uint256 timestamp\\r\\n    );\\r\\n    \\r\\n    event PairAdded(\\r\\n        bytes32 indexed pairId,\\r\\n        string base,\\r\\n        string quote\\r\\n    );\\r\\n    \\r\\n    event OracleAdded(\\r\\n        address indexed oracle,\\r\\n        string name,\\r\\n        uint256 weight\\r\\n    );\\r\\n    \\r\\n    event CircuitBreakerTripped(\\r\\n        bytes32 indexed pairId,\\r\\n        uint256 expectedRate,\\r\\n        uint256 actualRate,\\r\\n        uint256 deviation\\r\\n    );\\r\\n    \\r\\n    event CircuitBreakerReset(bytes32 indexed pairId);\\r\\n\\r\\n    constructor() {\\r\\n        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);\\r\\n        _grantRole(ORACLE_ADMIN, msg.sender);\\r\\n        _grantRole(PRICE_UPDATER, msg.sender);\\r\\n        \\r\\n        // Initialize common FX pairs\\r\\n        _addPair(\\\"USD\\\", \\\"EUR\\\");\\r\\n        _addPair(\\\"USD\\\", \\\"GBP\\\");\\r\\n        _addPair(\\\"USD\\\", \\\"JPY\\\");\\r\\n        _addPair(\\\"EUR\\\", \\\"GBP\\\");\\r\\n        _addPair(\\\"USD\\\", \\\"USDC\\\");\\r\\n        _addPair(\\\"USD\\\", \\\"USDT\\\");\\r\\n        _addPair(\\\"ETH\\\", \\\"USD\\\");\\r\\n    }\\r\\n\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n    //                         PAIR MANAGEMENT\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n\\r\\n    function addPair(\\r\\n        string calldata base,\\r\\n        string calldata quote\\r\\n    ) external onlyRole(ORACLE_ADMIN) returns (bytes32 pairId) {\\r\\n        return _addPair(base, quote);\\r\\n    }\\r\\n\\r\\n    function _addPair(\\r\\n        string memory base,\\r\\n        string memory quote\\r\\n    ) internal returns (bytes32 pairId) {\\r\\n        pairId = keccak256(abi.encodePacked(base, \\\"/\\\", quote));\\r\\n        require(!pairs[pairId].isActive, \\\"Pair exists\\\");\\r\\n        \\r\\n        CurrencyPair storage pair = pairs[pairId];\\r\\n        pair.base = base;\\r\\n        pair.quote = quote;\\r\\n        pair.pairId = pairId;\\r\\n        pair.isActive = true;\\r\\n        pair.twapPeriod = defaultTwapPeriod;\\r\\n        pair.maxDeviation = defaultMaxDeviation;\\r\\n        \\r\\n        activePairs.push(pairId);\\r\\n        \\r\\n        emit PairAdded(pairId, base, quote);\\r\\n        \\r\\n        return pairId;\\r\\n    }\\r\\n\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n    //                         ORACLE MANAGEMENT\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n\\r\\n    function addOracle(\\r\\n        address oracle,\\r\\n        string calldata name,\\r\\n        uint256 weight\\r\\n    ) external onlyRole(ORACLE_ADMIN) {\\r\\n        require(oracle != address(0), \\\"Invalid oracle\\\");\\r\\n        require(!oracleSources[oracle].isActive, \\\"Oracle exists\\\");\\r\\n        \\r\\n        oracleSources[oracle] = OracleSource({\\r\\n            oracle: oracle,\\r\\n            name: name,\\r\\n            weight: weight,\\r\\n            isActive: true,\\r\\n            lastUpdate: 0,\\r\\n            totalUpdates: 0\\r\\n        });\\r\\n        \\r\\n        activeOracles.push(oracle);\\r\\n        \\r\\n        emit OracleAdded(oracle, name, weight);\\r\\n    }\\r\\n\\r\\n    function updateOracleWeight(\\r\\n        address oracle,\\r\\n        uint256 weight\\r\\n    ) external onlyRole(ORACLE_ADMIN) {\\r\\n        require(oracleSources[oracle].isActive, \\\"Oracle not found\\\");\\r\\n        oracleSources[oracle].weight = weight;\\r\\n    }\\r\\n\\r\\n    function deactivateOracle(address oracle) external onlyRole(ORACLE_ADMIN) {\\r\\n        oracleSources[oracle].isActive = false;\\r\\n    }\\r\\n\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n    //                         PRICE UPDATES\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n\\r\\n    /**\\r\\n     * @notice Update price for a currency pair\\r\\n     */\\r\\n    function updatePrice(\\r\\n        bytes32 pairId,\\r\\n        uint256 rate,\\r\\n        uint256 confidence\\r\\n    ) external onlyRole(PRICE_UPDATER) {\\r\\n        require(pairs[pairId].isActive, \\\"Pair not active\\\");\\r\\n        require(rate > 0, \\\"Invalid rate\\\");\\r\\n        require(confidence <= 100, \\\"Invalid confidence\\\");\\r\\n        \\r\\n        CurrencyPair storage pair = pairs[pairId];\\r\\n        \\r\\n        // Circuit breaker check\\r\\n        if (pair.currentRate > 0) {\\r\\n            uint256 deviation = _calculateDeviation(pair.currentRate, rate);\\r\\n            if (deviation > pair.maxDeviation) {\\r\\n                pair.circuitBreakerTripped = true;\\r\\n                circuitBreakerTriggers++;\\r\\n                emit CircuitBreakerTripped(pairId, pair.currentRate, rate, deviation);\\r\\n                return;\\r\\n            }\\r\\n        }\\r\\n        \\r\\n        // Update oracle-specific price\\r\\n        oraclePrices[pairId][msg.sender] = PriceData({\\r\\n            rate: rate,\\r\\n            timestamp: block.timestamp,\\r\\n            confidence: confidence,\\r\\n            isActive: true\\r\\n        });\\r\\n        \\r\\n        oracleSources[msg.sender].lastUpdate = block.timestamp;\\r\\n        oracleSources[msg.sender].totalUpdates++;\\r\\n        \\r\\n        // Calculate aggregated rate\\r\\n        uint256 aggregatedRate = _calculateAggregatedRate(pairId);\\r\\n        \\r\\n        // Update pair data\\r\\n        pair.currentRate = aggregatedRate;\\r\\n        pair.lastUpdate = block.timestamp;\\r\\n        \\r\\n        // Add to history for TWAP\\r\\n        pair.rateHistory.push(aggregatedRate);\\r\\n        pair.timestamps.push(block.timestamp);\\r\\n        \\r\\n        // Trim history to keep only relevant period\\r\\n        _trimHistory(pair);\\r\\n        \\r\\n        totalPriceUpdates++;\\r\\n        \\r\\n        emit PriceUpdated(pairId, msg.sender, rate, block.timestamp);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @notice Batch update multiple prices\\r\\n     */\\r\\n    function batchUpdatePrices(\\r\\n        bytes32[] calldata pairIds,\\r\\n        uint256[] calldata rates,\\r\\n        uint256[] calldata confidences\\r\\n    ) external onlyRole(PRICE_UPDATER) {\\r\\n        require(pairIds.length == rates.length, \\\"Length mismatch\\\");\\r\\n        require(pairIds.length == confidences.length, \\\"Length mismatch\\\");\\r\\n        \\r\\n        for (uint256 i = 0; i < pairIds.length; i++) {\\r\\n            if (pairs[pairIds[i]].isActive && rates[i] > 0) {\\r\\n                oraclePrices[pairIds[i]][msg.sender] = PriceData({\\r\\n                    rate: rates[i],\\r\\n                    timestamp: block.timestamp,\\r\\n                    confidence: confidences[i],\\r\\n                    isActive: true\\r\\n                });\\r\\n                \\r\\n                pairs[pairIds[i]].currentRate = rates[i];\\r\\n                pairs[pairIds[i]].lastUpdate = block.timestamp;\\r\\n            }\\r\\n        }\\r\\n        \\r\\n        totalPriceUpdates += pairIds.length;\\r\\n    }\\r\\n\\r\\n    function _calculateAggregatedRate(bytes32 pairId) internal view returns (uint256) {\\r\\n        uint256 weightedSum = 0;\\r\\n        uint256 totalWeight = 0;\\r\\n        uint256 validOracles = 0;\\r\\n        \\r\\n        for (uint256 i = 0; i < activeOracles.length; i++) {\\r\\n            address oracle = activeOracles[i];\\r\\n            if (!oracleSources[oracle].isActive) continue;\\r\\n            \\r\\n            PriceData storage price = oraclePrices[pairId][oracle];\\r\\n            if (!price.isActive) continue;\\r\\n            if (block.timestamp - price.timestamp > stalenessThreshold) continue;\\r\\n            \\r\\n            uint256 weight = oracleSources[oracle].weight;\\r\\n            weightedSum += price.rate * weight;\\r\\n            totalWeight += weight;\\r\\n            validOracles++;\\r\\n        }\\r\\n        \\r\\n        if (totalWeight == 0 || validOracles < minOracleCount) {\\r\\n            return pairs[pairId].currentRate; // Fall back to last known rate\\r\\n        }\\r\\n        \\r\\n        return weightedSum / totalWeight;\\r\\n    }\\r\\n\\r\\n    function _calculateDeviation(uint256 oldRate, uint256 newRate) internal pure returns (uint256) {\\r\\n        if (oldRate == 0) return 0;\\r\\n        uint256 diff = oldRate > newRate ? oldRate - newRate : newRate - oldRate;\\r\\n        return (diff * 10000) / oldRate;\\r\\n    }\\r\\n\\r\\n    function _trimHistory(CurrencyPair storage pair) internal {\\r\\n        uint256 cutoff = block.timestamp - pair.twapPeriod;\\r\\n        uint256 i = 0;\\r\\n        \\r\\n        // Find first timestamp within period\\r\\n        while (i < pair.timestamps.length && pair.timestamps[i] < cutoff) {\\r\\n            i++;\\r\\n        }\\r\\n        \\r\\n        if (i > 0 && pair.rateHistory.length > 100) {\\r\\n            // Shift arrays (gas expensive, only do when necessary)\\r\\n            uint256 newLength = pair.rateHistory.length - i;\\r\\n            for (uint256 j = 0; j < newLength; j++) {\\r\\n                pair.rateHistory[j] = pair.rateHistory[j + i];\\r\\n                pair.timestamps[j] = pair.timestamps[j + i];\\r\\n            }\\r\\n            for (uint256 j = 0; j < i; j++) {\\r\\n                pair.rateHistory.pop();\\r\\n                pair.timestamps.pop();\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n    //                         RATE QUERIES\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n\\r\\n    /**\\r\\n     * @notice Get current rate for a currency pair\\r\\n     */\\r\\n    function getRate(bytes32 pairId) external view returns (RateResponse memory) {\\r\\n        return _getRate(pairId);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @notice Get rate for base/quote strings\\r\\n     */\\r\\n    function getRateBySymbols(\\r\\n        string calldata base,\\r\\n        string calldata quote\\r\\n    ) external view returns (RateResponse memory) {\\r\\n        bytes32 pairId = keccak256(abi.encodePacked(base, \\\"/\\\", quote));\\r\\n        return _getRate(pairId);\\r\\n    }\\r\\n\\r\\n    function _getRate(bytes32 pairId) internal view returns (RateResponse memory) {\\r\\n        CurrencyPair storage pair = pairs[pairId];\\r\\n        \\r\\n        bool isStale = block.timestamp - pair.lastUpdate > stalenessThreshold;\\r\\n        uint256 twapRate = _calculateTWAP(pair);\\r\\n        \\r\\n        // Calculate confidence based on oracle agreement\\r\\n        uint256 confidence = _calculateConfidence(pairId);\\r\\n        \\r\\n        return RateResponse({\\r\\n            spotRate: pair.currentRate,\\r\\n            twapRate: twapRate,\\r\\n            confidence: confidence,\\r\\n            timestamp: pair.lastUpdate,\\r\\n            isStale: isStale,\\r\\n            circuitBreakerActive: pair.circuitBreakerTripped\\r\\n        });\\r\\n    }\\r\\n\\r\\n    function _calculateTWAP(CurrencyPair storage pair) internal view returns (uint256) {\\r\\n        if (pair.rateHistory.length == 0) return pair.currentRate;\\r\\n        if (pair.rateHistory.length == 1) return pair.rateHistory[0];\\r\\n        \\r\\n        uint256 cutoff = block.timestamp - pair.twapPeriod;\\r\\n        uint256 weightedSum = 0;\\r\\n        uint256 totalTime = 0;\\r\\n        \\r\\n        for (uint256 i = 0; i < pair.rateHistory.length; i++) {\\r\\n            if (pair.timestamps[i] < cutoff) continue;\\r\\n            \\r\\n            uint256 timeDelta;\\r\\n            if (i == pair.rateHistory.length - 1) {\\r\\n                timeDelta = block.timestamp - pair.timestamps[i];\\r\\n            } else {\\r\\n                timeDelta = pair.timestamps[i + 1] - pair.timestamps[i];\\r\\n            }\\r\\n            \\r\\n            weightedSum += pair.rateHistory[i] * timeDelta;\\r\\n            totalTime += timeDelta;\\r\\n        }\\r\\n        \\r\\n        if (totalTime == 0) return pair.currentRate;\\r\\n        return weightedSum / totalTime;\\r\\n    }\\r\\n\\r\\n    function _calculateConfidence(bytes32 pairId) internal view returns (uint256) {\\r\\n        uint256 validOracles = 0;\\r\\n        uint256 totalConfidence = 0;\\r\\n        \\r\\n        for (uint256 i = 0; i < activeOracles.length; i++) {\\r\\n            PriceData storage price = oraclePrices[pairId][activeOracles[i]];\\r\\n            if (price.isActive && block.timestamp - price.timestamp <= stalenessThreshold) {\\r\\n                validOracles++;\\r\\n                totalConfidence += price.confidence;\\r\\n            }\\r\\n        }\\r\\n        \\r\\n        if (validOracles == 0) return 0;\\r\\n        return totalConfidence / validOracles;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @notice Convert amount between currencies\\r\\n     */\\r\\n    function convert(\\r\\n        bytes32 pairId,\\r\\n        uint256 amount,\\r\\n        bool inverse\\r\\n    ) external view returns (uint256 convertedAmount, uint256 rateUsed) {\\r\\n        totalQueries;\\r\\n        \\r\\n        CurrencyPair storage pair = pairs[pairId];\\r\\n        require(pair.isActive, \\\"Pair not active\\\");\\r\\n        require(!pair.circuitBreakerTripped, \\\"Circuit breaker active\\\");\\r\\n        \\r\\n        rateUsed = pair.currentRate;\\r\\n        \\r\\n        if (inverse) {\\r\\n            // Convert from quote to base\\r\\n            convertedAmount = (amount * 1e18) / rateUsed;\\r\\n        } else {\\r\\n            // Convert from base to quote\\r\\n            convertedAmount = (amount * rateUsed) / 1e18;\\r\\n        }\\r\\n        \\r\\n        return (convertedAmount, rateUsed);\\r\\n    }\\r\\n\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n    //                         CIRCUIT BREAKER\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n\\r\\n    function resetCircuitBreaker(bytes32 pairId) external onlyRole(ORACLE_ADMIN) {\\r\\n        pairs[pairId].circuitBreakerTripped = false;\\r\\n        emit CircuitBreakerReset(pairId);\\r\\n    }\\r\\n\\r\\n    function setMaxDeviation(bytes32 pairId, uint256 maxDeviation) external onlyRole(ORACLE_ADMIN) {\\r\\n        pairs[pairId].maxDeviation = maxDeviation;\\r\\n    }\\r\\n\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n    //                         VIEW FUNCTIONS\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n\\r\\n    function getPairInfo(bytes32 pairId) external view returns (\\r\\n        string memory base,\\r\\n        string memory quote,\\r\\n        uint256 currentRate,\\r\\n        uint256 lastUpdate,\\r\\n        bool circuitBreakerTripped\\r\\n    ) {\\r\\n        CurrencyPair storage pair = pairs[pairId];\\r\\n        return (\\r\\n            pair.base,\\r\\n            pair.quote,\\r\\n            pair.currentRate,\\r\\n            pair.lastUpdate,\\r\\n            pair.circuitBreakerTripped\\r\\n        );\\r\\n    }\\r\\n\\r\\n    function getAllPairs() external view returns (bytes32[] memory) {\\r\\n        return activePairs;\\r\\n    }\\r\\n\\r\\n    function getOracleStats() external view returns (\\r\\n        uint256 updates,\\r\\n        uint256 queries,\\r\\n        uint256 circuitBreakers,\\r\\n        uint256 oracleCount\\r\\n    ) {\\r\\n        return (totalPriceUpdates, totalQueries, circuitBreakerTriggers, activeOracles.length);\\r\\n    }\\r\\n\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n    //                         ADMIN\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n\\r\\n    function setStalenessThreshold(uint256 threshold) external onlyRole(ORACLE_ADMIN) {\\r\\n        stalenessThreshold = threshold;\\r\\n    }\\r\\n\\r\\n    function setMinOracleCount(uint256 count) external onlyRole(ORACLE_ADMIN) {\\r\\n        minOracleCount = count;\\r\\n    }\\r\\n\\r\\n    function setTwapPeriod(bytes32 pairId, uint256 period) external onlyRole(ORACLE_ADMIN) {\\r\\n        pairs[pairId].twapPeriod = period;\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0xca44c9e80397856a253aa317c2eda1b365166ff818be1434eab6dc5bf66ad45f\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60406080815234620002075760018055610e106007556103846008556101f46009556002600a5562000031336200023e565b506200003d33620002be565b50620000493362000360565b50620001f881516200005b816200020c565b600390818152621554d160ea1b6200014660209282848201526200009b875162000085816200020c565b8681526222aaa960e91b92838783015262000449565b50865190620000aa826200020c565b8582528385830152620000d98851620000c3816200020c565b8781526204742560ec1b93848883015262000449565b50620001158851620000eb816200020c565b878152858782015289519062000101826200020c565b888252624a505960e81b8883015262000449565b5087519062000124826200020c565b8682528582015287519162000139836200020c565b8683528583015262000449565b5062000184855162000158816200020c565b84815282848201528651906200016e826200020c565b60048252635553444360e01b8583015262000449565b50620001c2855162000196816200020c565b8481528284820152865190620001ac826200020c565b60048252631554d11560e21b8583015262000449565b50845191620001d1836200020c565b8383526208aa8960eb1b81840152855193620001ed856200020c565b845283015262000449565b50516123599081620008738239f35b600080fd5b604081019081106001600160401b038211176200022857604052565b634e487b7160e01b600052604160045260246000fd5b6001600160a01b031660008181527fad3228b676f7d3cd4284a5443f17f1962b36e491b30a40b2405849e597ba5fb5602052604081205490919060ff16620002ba57818052816020526040822081835260205260408220600160ff19825416179055339160008051602062002bcc8339815191528180a4600190565b5090565b6001600160a01b031660008181527fa0890930f8e0cf05d81d1b41bc7bad4b135bc41ba2d6091cd7730a1d7596d44e60205260408120549091907fa8d944a5277d6a203f114d020d26918a390f167b089a46be4fca9da716d237839060ff166200035b57808352826020526040832082845260205260408320600160ff1982541617905560008051602062002bcc833981519152339380a4600190565b505090565b6001600160a01b031660008181527f8657ba5f3573b26d022d162a7ce5ad3405ffbc39cb2711d22336d53dad2402c460205260408120549091907f74b366a297145849fa9687e16ecad1e3a60cf84f6c2256ae73e20a9f766698049060ff166200035b57808352826020526040832082845260205260408320600160ff1982541617905560008051602062002bcc833981519152339380a4600190565b60005b838110620004115750506000910152565b818101518382015260200162000400565b906020916200043d81518092818552858086019101620003fd565b601f01601f1916010190565b6040805192602090818501948381865162000468818a888b01620003fd565b8101602f60f81b86820152845190620004888260218301898901620003fd565b0103916001928381018252601f19928391011681019760018060401b0391808a10838b11176200022857898852519020976000928984526002875260039160ff838a8720015416620008425750898452600287528784209289518181116200082e578454908782811c9216801562000823575b8a8310146200080f57601f91828111620007c7575b50808a8382116001146200075b5788916200074f575b5060001982871b1c191690881b1785555b8685019288519283116200073b5783548881811c9116801562000730575b8b8210146200071c5790818385949311620006c7575b508a91831160011462000669575086916200065d575b5060001982851b1c191690861b1790555b88600283015581018360ff19825416179055600854600882015560098054910155600554916801000000000000000083101562000649578201806005558210156200063557927fd51c61275c67b8136eb01d574e9d5cf85e714f01613056745a3c8bc4a0440d309492876200062f9383876005849b995220015562000621845195858796875286019062000422565b918483039085015262000422565b0390a290565b634e487b7160e01b81526032600452602490fd5b634e487b7160e01b82526041600452602482fd5b90508701513862000581565b889316908488528a882091885b8c8c838310620006b157505050831162000698575b5050811b01905562000592565b89015160001983871b60f8161c1916905538806200068b565b84015185558b9690940193928301920162000676565b909192508488528a88208380860160051c8201928d871062000712575b9186958c929594930160051c01915b828110620007035750506200056b565b8a81558695508b9101620006f3565b92508192620006e4565b634e487b7160e01b88526022600452602488fd5b90607f169062000555565b634e487b7160e01b87526041600452602487fd5b90508c01513862000526565b8b908e878c95168a8c52838c20938c905b828210620007a557505084116200078c575b505050811b01855562000537565b015160001983891b60f8161c1916905538808e6200077e565b929484849395979892960151815501940192018f90918c959493928f6200076c565b8688528a88208380840160051c8201928d851062000805575b0160051c019089905b828110620007f957505062000510565b898155018990620007e9565b92508192620007e0565b634e487b7160e01b87526022600452602487fd5b91607f1691620004fb565b634e487b7160e01b86526041600452602486fd5b62461bcd60e51b815260048101889052600b60248201526a506169722065786973747360a81b6044820152606490fdfe6080806040526004908136101561001557600080fd5b60003560e01c908163010b7e82146114e15750806301ffc9a71461148c578063120289311461142857806314dfe912146113e757806317ab65a9146113c95780631d3e0abb1461139c5780631f1ad7a314610fcf578063248a9ca314610fa157806326d7867814610f1a57806328119ffa14610ee45780632f2ff15d14610ea557806334c160ee14610e1457806336568abe14610dd05780633ecd7eda14610db05780635fed0c2414610d41578063639433e614610d18578063673e048114610c5d5780636b3e43d2146108f2578063706ea57e1461071e57806384e0b2331461070057806385ba7fc3146106e257806391d1485414610695578063a217fddf14610679578063a39d5d081461064c578063a75879f5146105b9578063a84f6ebb1461059b578063b32b56f914610526578063bab35e6314610508578063c6c035b5146104d1578063c724a933146104a5578063d547741f14610464578063d9a722de14610446578063e12f4dae1461034b578063e1f84a3614610322578063e6271b55146102c7578063ed69c60414610280578063f800ece9146101e75763fb01e7f2146101c357600080fd5b346101e25760203660031901126101e2576101dc6117e0565b35600755005b600080fd5b346101e25760003660031901126101e25760405180600554808352602080930180916005600052846000209060005b8682821061026c57868661022c828803836116e7565b604051928392818401908285525180915260408401929160005b82811061025557505050500390f35b835185528695509381019392810192600101610246565b835485529093019260019283019201610216565b50346101e25760203660031901126101e25761029a61164b565b6102a26117e0565b6001600160a01b0316600090815260209190915260409020600301805460ff19169055005b50346101e25760203660031901126101e257356102e26117e0565b806000526002602052600a60406000200160ff1981541690557f3e5f7de6be8ddca2fd79ac64325c880be7705bfbe277a0191d49bf49b2a357a9600080a2005b346101e25760003660031901126101e25760206040516000805160206122e48339815191528152f35b50346101e25760603660031901126101e257602435906044359081151582036101e25780356000526002602052604060002061038d60ff600383015416611a02565b60ff600a820154166104095781015491156103ec57670de0b6b3a7640000928381029381850414901517156103d757506103c981604093611e32565b905b82519182526020820152f35b601190634e487b7160e01b6000525260246000fd5b50670de0b6b3a764000061040282604094611e1f565b04906103cb565b60405162461bcd60e51b815260208184015260166024820152754369726375697420627265616b65722061637469766560501b6044820152606490fd5b346101e25760003660031901126101e2576020600d54604051908152f35b50346101e25760403660031901126101e2576104a39035610483611635565b9080600052600060205261049e600160406000200154611892565b611947565b005b50346101e25760603660031901126101e2576104a3906104c3611848565b604435906024359035611a8b565b346101e25760003660031901126101e2576080600b54600c54600d5460065491604051938452602084015260408301526060820152f35b346101e25760003660031901126101e2576020600a54604051908152f35b50346101e25760203660031901126101e25761054e61059791610547612012565b5035612044565b6040519182918291909160a08060c08301948051845260208101516020850152604081015160408501526060810151606085015260808101511515608085015201511515910152565b0390f35b346101e25760003660031901126101e2576020600754604051908152f35b50346101e25760403660031901126101e2576105d361164b565b6105db6117e0565b6001600160a01b031660008181526020839052604090206003015460ff161561061557600052602052602435600260406000200155600080f35b60405162461bcd60e51b8152602081840152601060248201526f13dc9858db19481b9bdd08199bdd5b9960821b6044820152606490fd5b346101e25761065a366115d7565b906106636117e0565b6000526002602052600860406000200155600080f35b346101e25760003660031901126101e257602060405160008152f35b50346101e25760403660031901126101e2576106af611635565b9035600052600060205260406000209060018060a01b0316600052602052602060ff604060002054166040519015158152f35b346101e25760003660031901126101e2576020600c54604051908152f35b346101e25760003660031901126101e2576020600854604051908152f35b50346101e2576060806003193601126101e2576001600160401b039180358381116101e25761075090369083016117b0565b9390916024358281116101e25761076a90369083016117b0565b9390926044359081116101e25761078490369084016117b0565b61078f939193611848565b61079a868914611db7565b6107a5818914611db7565b60005b8881106107c0576107bb89600b54611e05565b600b55005b806107cf61080d928b87611df5565b3560005287878b88848d886002966020968888528d60039660ff886040600020015416806108de575b610812575b5050505050505050505050611a40565b6107a8565b6108a597898b6108989461089d996108388c809b610831828d8d611df5565b3598611df5565b359260405196610847886116cc565b87526108698b8289019342855260408a01968752890196600195868952611df5565b3560005285815260406000209033600052526040600020955186555190850155518d84015551151591016118b8565b611df5565b35928a611df5565b3560005282825286604060002001556108bf838d89611df5565b35600052524260056040600020015538808b81848d888e8e8d8f6107fd565b506108ea878585611df5565b3515156107f8565b50346101e25760603660031901126101e25761090c61164b565b6001600160401b03906024358281116101e25761092c90369085016114fc565b9390926109376117e0565b6001600160a01b03831615610c28576001600160a01b03831660009081526020839052604090206003015460ff16610bf4576040516109758161169b565b6001600160a01b038416815261098c3687876119bc565b60208281019182526044356040808501919091526001606085015260006080850181905260a085018190526001600160a01b0388811682529287905220835181546001600160a01b03191692169190911781559051805191938211610bdf576109f86001850154611661565b601f8111610b98575b50602090601f8311600114610b255791806005949260a094600092610b1a575b50508160011b916000199060031b1c19161760018501555b60408101516002850155610a5660608201511515600386016118b8565b608081015184860155015191015560065490600160401b821015610b0557507f64b8475e04b407ae329c2aa989d5ed4125a59cc9d65882dd0de3f35facd37967928492610aab83600160609501600655611573565b81546001600160a01b0384811660039390931b92831b921b19161790556040805181815290810185905293849284840137600082870184015260443560208301526001600160a01b031694601f01601f19168101030190a2005b604190634e487b7160e01b6000525260246000fd5b015190503880610a21565b90601f198316916001860160005260206000209260005b818110610b80575092600192859260a0966005989610610b67575b505050811b016001850155610a39565b015160001960f88460031b161c19169055388080610b57565b92936020600181928786015181550195019301610b3c565b600185016000526020600020601f840160051c810160208510610bd8575b601f830160051c82018110610bcc575050610a01565b60008155600101610bb6565b5080610bb6565b604185634e487b7160e01b6000525260246000fd5b60405162461bcd60e51b8152602081840152600d60248201526c4f7261636c652065786973747360981b6044820152606490fd5b60405162461bcd60e51b8152602081840152600e60248201526d496e76616c6964206f7261636c6560901b6044820152606490fd5b50346101e25760203660031901126101e25780610cdd91356000526002602052604060002090610c8c8261170a565b91610c996001820161170a565b9060028101549260ff60038301541690820154600583015490600884015492610ceb60ff600a600988015497015416966040519a8b9a610120808d528c0190611610565b908a820360208c0152611610565b96604089015215156060880152608087015260a086015260c085015260e084015215156101008301520390f35b346101e25760003660031901126101e25760206040516000805160206123048339815191528152f35b50346101e25760403660031901126101e257610d5b611635565b9035600052600360205260406000209060018060a01b03166000526020526080604060002080549060018101549060ff6003600283015492015416916040519384526020840152604083015215156060820152f35b50346101e25760203660031901126101e257610dca6117e0565b35600a55005b50346101e25760403660031901126101e257610dea611635565b336001600160a01b03821603610e04576104a39135611947565b5060405163334bd91960e11b8152fd5b50346101e25760203660031901126101e2576001600160a01b0380610e3761164b565b166000528160205260406000209081541690610e556001820161170a565b92600282015491600560ff6003830154169282015491015491610e8a604051968796875260c0602088015260c0870190611610565b93604086015215156060850152608084015260a08301520390f35b50346101e25760403660031901126101e2576104a39035610ec4611635565b90806000526000602052610edf600160406000200154611892565b6118c9565b50346101e25760203660031901126101e257356005548110156101e257610f0c6020916115a4565b90546040519160031b1c8152f35b50346101e25760203660031901126101e25780610f7d91356000526002602052604060002090810154600582015460ff600a8401541690610f8b610f696001610f628761170a565b960161170a565b60405196879660a0885260a0880190611610565b908682036020880152611610565b9260408501526060840152151560808301520390f35b50346101e25760203660031901126101e2573560005260006020526020600160406000200154604051908152f35b50346101e257610ff8611000610fe436611529565b9491610ff19391936117e0565b36916119bc565b9236916119bc565b906040519160209384840184845161101b81848a89016115ed565b8101602f60f81b8882015284519061103982602183018b89016115ed565b0103946110506021600197888101845201826116e7565b519020938460005260028652600360ff81604060002001541661136a576000868152600288526040902085519091906001600160401b03808211611355576110988454611661565b918a601f9384811161130d575b5050808b8482116001146112a95760009161129e575b5060001982861b1c191690861b1784555b8484019187519182116112895781908b6110e68554611661565b828111611235575b50508b9082116001146111d4576000916111c9575b5060001982851b1c191690851b1790555b600282018790558101805460ff19168317905560088054908201556009805491015560055491600160401b831015610b055750926111be7fd51c61275c67b8136eb01d574e9d5cf85e714f01613056745a3c8bc4a0440d30938661119b6111848683996111b198016005556115a4565b819391549060031b91821b91600019901b19161790565b9055604051938493604085526040850190611610565b9083820389850152611610565b0390a2604051908152f35b905087015138611103565b60008481528c81208894509190601f198416908e5b8c83831061121f575050508311611207575b5050811b019055611114565b89015160001983871b60f8161c1916905538806111fb565b84015185558a969094019392830192018e6111e9565b909192508460005282826000209181860160051c8301938610611280575b9185948a9294930160051c01915b82811061127157508d91506110ee565b60008155859450899101611261565b92508192611253565b604187634e487b7160e01b6000525260246000fd5b9050890151386110bb565b60008781528d81208994509190601f198416908f8e5b8383106112f45750505083116112dc575b5050811b0184556110cc565b8b015160001983881b60f8161c1916905538806112d0565b84015185558b969094019392830192908101908e6112bf565b8660005284826000209181850160051c830193851061134c575b0160051c019087905b82811061134057508c91506110a5565b60008155018790611330565b92508192611327565b604186634e487b7160e01b6000525260246000fd5b60405162461bcd60e51b8152808401889052600b60248201526a506169722065786973747360a81b6044820152606490fd5b346101e2576113aa366115d7565b906113b36117e0565b6000526002602052600960406000200155600080f35b346101e25760003660031901126101e2576020600b54604051908152f35b50346101e25760203660031901126101e257356006548110156101e25761140f602091611573565b905460405160039290921b1c6001600160a01b03168152f35b346101e25761059761054e602161148461144136611529565b80949395929161144f612012565b506040519583879460208601998a37840191602f60f81b602084015285830137016000838201520360018101845201826116e7565b519020612044565b50346101e25760203660031901126101e2573563ffffffff60e01b81168091036101e257602090637965db0b60e01b81149081156114d0575b506040519015158152f35b6301ffc9a760e01b149050386114c5565b346101e25760003660031901126101e2576020906009548152f35b9181601f840112156101e2578235916001600160401b0383116101e257602083818601950101116101e257565b60406003198201126101e2576001600160401b03916004358381116101e25782611555916004016114fc565b939093926024359182116101e25761156f916004016114fc565b9091565b60065481101561158e57600660005260206000200190600090565b634e487b7160e01b600052603260045260246000fd5b60055481101561158e57600560005260206000200190600090565b805482101561158e5760005260206000200190600090565b60409060031901126101e2576004359060243590565b60005b8381106116005750506000910152565b81810151838201526020016115f0565b90602091611629815180928185528580860191016115ed565b601f01601f1916010190565b602435906001600160a01b03821682036101e257565b600435906001600160a01b03821682036101e257565b90600182811c92168015611691575b602083101461167b57565b634e487b7160e01b600052602260045260246000fd5b91607f1691611670565b60c081019081106001600160401b038211176116b657604052565b634e487b7160e01b600052604160045260246000fd5b608081019081106001600160401b038211176116b657604052565b601f909101601f19168101906001600160401b038211908210176116b657604052565b906040519182600082549261171e84611661565b90818452600194858116908160001461178d575060011461174a575b5050611748925003836116e7565b565b9093915060005260209081600020936000915b8183106117755750506117489350820101388061173a565b8554888401850152948501948794509183019161175d565b91505061174894506020925060ff191682840152151560051b820101388061173a565b9181601f840112156101e2578235916001600160401b0383116101e2576020808501948460051b0101116101e257565b3360009081527fa0890930f8e0cf05d81d1b41bc7bad4b135bc41ba2d6091cd7730a1d7596d44e60205260409020546000805160206123048339815191529060ff161561182a5750565b6044906040519063e2517d3f60e01b82523360048301526024820152fd5b3360009081527f8657ba5f3573b26d022d162a7ce5ad3405ffbc39cb2711d22336d53dad2402c460205260409020546000805160206122e48339815191529060ff161561182a5750565b80600052600060205260406000203360005260205260ff604060002054161561182a5750565b9060ff801983541691151516179055565b9060009180835282602052604083209160018060a01b03169182845260205260ff6040842054161560001461194257808352826020526040832082845260205260408320600160ff198254161790557f2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d339380a4600190565b505090565b9060009180835282602052604083209160018060a01b03169182845260205260ff6040842054166000146119425780835282602052604083208284526020526040832060ff1981541690557ff6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b339380a4600190565b9192916001600160401b0382116116b657604051916119e5601f8201601f1916602001846116e7565b8294818452818301116101e2578281602093846000960137010152565b15611a0957565b60405162461bcd60e51b815260206004820152600f60248201526e50616972206e6f742061637469766560881b6044820152606490fd5b6000198114611a4f5760010190565b634e487b7160e01b600052601160045260246000fd5b805490600160401b8210156116b65781611184916001611a87940181556115bf565b9055565b909160009082825260209060028252600392604093611ab160ff82878520015416611a02565b8615611d845760648311611d4b578582526002845284822091600483019182548981611cd9575b5050611b2e8751611ae8816116cc565b8a815282888201974289528a830190815260608301906001998a83528d8852838c528c88203389528c528c882094518555518a85015551600284015551151591016118b8565b60048652600587832042600482015501611b488154611a40565b9055611b5388611e52565b809355426005850155611b6a600685019384611a65565b611b8660086007860195611b7e4288611a65565b015442611e12565b948295818654905b611c98575b50505084151580611c8d575b611be9575b5050505050907f5a1833b5adb1618f2d95fe545abee68b6271db26e539276445b522418049a9c591611bd7600b54611a40565b600b55815194855242908501523393a3565b611bf4858454611e12565b90825b828110611c2f575050505b838110611c0f5780611ba4565b611c2a90611c1c83611fd2565b611c2584611fd2565b611a40565b611c02565b80611c46611c4089611c8894611e05565b876115bf565b905490841b1c611c5961118483896115bf565b9055611c6e611c688983611e05565b886115bf565b905490841b1c611c81611184838a6115bf565b9055611a40565b611bf7565b506064835411611b9f565b90919681811080611cc1575b15611cbb57611cb290611a40565b96919082611b8e565b96611b93565b5082611ccd82896115bf565b905490861b1c10611ca4565b611ce291611f83565b60098501548111611cf35789611ad8565b94505050957f753aa275cb6e3ac503d45417ab9611ba2ffe583d5ce37f46d5d5dfc4d1eaec629596600a6060969301600160ff19825416179055611d38600d54611a40565b600d5554938251948552840152820152a2565b845162461bcd60e51b8152600481018590526012602482015271496e76616c696420636f6e666964656e636560701b6044820152606490fd5b845162461bcd60e51b815260048101859052600c60248201526b496e76616c6964207261746560a01b6044820152606490fd5b15611dbe57565b60405162461bcd60e51b815260206004820152600f60248201526e098cadccee8d040dad2e6dac2e8c6d608b1b6044820152606490fd5b919081101561158e5760051b0190565b91908201809211611a4f57565b91908203918211611a4f57565b81810292918115918404141715611a4f57565b8115611e3c570490565b634e487b7160e01b600052601260045260246000fd5b60008080816006546007545b818310611ea6575050508215908115611e9a575b50611e8457611e819250611e32565b90565b5050600052600260205260046040600020015490565b9050600a541138611e72565b9091929493611eb484611573565b9190549160039260018060a01b0391841b1c16806000526004602081815260ff9260409380878660002001541615611f71578c6000528683528460002082600052835284600020968701541615611f605786611f14600188015442611e12565b11611f605793611f416002611f4d95611f599895611f4795611f5399600052526000200154809454611e1f565b90611e05565b97611e05565b96611a40565b93611a40565b9190611e5e565b50505050949593611f599150611a40565b5050505050949593611f599150611a40565b908115611fcb578181811115611fbc5790611f9d91611e12565b905b61271091828102928184041490151715611a4f57611e8191611e32565b611fc591611e12565b90611f9f565b5050600090565b8054908115611ffc5760001991820191611fec83836115bf565b909182549160031b1b1916905555565b634e487b7160e01b600052603160045260246000fd5b6040519061201f8261169b565b8160a06000918281528260208201528260408201528260608201528260808201520152565b61204c612012565b50806000526002602052604060002090600582015461206b8142611e12565b600754109061208261207c856120bd565b9361222d565b60ff600a600487015496015416936040519561209d8761169b565b86526020860152604085015260608401526080830152151560a082015290565b6006810180549081156121145760019182811461221d57916120e3600885015442611e12565b9260009283948493600019840190848211905b85871061211d5750505050505050811561211457611e819250611e32565b50506004015490565b90919293949597968460078b016121348b826115bf565b929054600393841b1c10612210576000856121fc579188918c938885146000146121ae575093611f4184936121979361218d61218561217961219d996121a39b6115bf565b905490841b1c42611e12565b9687936115bf565b9054911b1c611e1f565b99611e05565b98611a40565b9594939291906120f6565b9193869193500190818d116121fc57506121a393611f418a61219d958f95612185816121f0896121e46121979a61218d966115bf565b905490871b1c926115bf565b905490851b1c90611e12565b634e487b7160e01b81526011600452602490fd5b505096976121a390611a40565b5091505060005260206000205490565b600080918190600654915b828110612251575050508015611fcb57611e8191611e32565b81600052600360ff6020828152604090816000209061226f86611573565b905490861b1c6001600160a01b03166000908152919052209182015416806122ca575b6122a6575b506122a190611a40565b612238565b936122a1919560026122ba6122c393611a40565b96015490611e05565b9490612297565b506122d9600182015442611e12565b600754101561229256fe74b366a297145849fa9687e16ecad1e3a60cf84f6c2256ae73e20a9f76669804a8d944a5277d6a203f114d020d26918a390f167b089a46be4fca9da716d23783a2646970667358221220caa41563ae9118bdf6d9413b50c32c60e5e116148da48dce6a1d4692912e322f64736f6c634300081400332f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d",
+  "deployedBytecode": "0x6080806040526004908136101561001557600080fd5b60003560e01c908163010b7e82146114e15750806301ffc9a71461148c578063120289311461142857806314dfe912146113e757806317ab65a9146113c95780631d3e0abb1461139c5780631f1ad7a314610fcf578063248a9ca314610fa157806326d7867814610f1a57806328119ffa14610ee45780632f2ff15d14610ea557806334c160ee14610e1457806336568abe14610dd05780633ecd7eda14610db05780635fed0c2414610d41578063639433e614610d18578063673e048114610c5d5780636b3e43d2146108f2578063706ea57e1461071e57806384e0b2331461070057806385ba7fc3146106e257806391d1485414610695578063a217fddf14610679578063a39d5d081461064c578063a75879f5146105b9578063a84f6ebb1461059b578063b32b56f914610526578063bab35e6314610508578063c6c035b5146104d1578063c724a933146104a5578063d547741f14610464578063d9a722de14610446578063e12f4dae1461034b578063e1f84a3614610322578063e6271b55146102c7578063ed69c60414610280578063f800ece9146101e75763fb01e7f2146101c357600080fd5b346101e25760203660031901126101e2576101dc6117e0565b35600755005b600080fd5b346101e25760003660031901126101e25760405180600554808352602080930180916005600052846000209060005b8682821061026c57868661022c828803836116e7565b604051928392818401908285525180915260408401929160005b82811061025557505050500390f35b835185528695509381019392810192600101610246565b835485529093019260019283019201610216565b50346101e25760203660031901126101e25761029a61164b565b6102a26117e0565b6001600160a01b0316600090815260209190915260409020600301805460ff19169055005b50346101e25760203660031901126101e257356102e26117e0565b806000526002602052600a60406000200160ff1981541690557f3e5f7de6be8ddca2fd79ac64325c880be7705bfbe277a0191d49bf49b2a357a9600080a2005b346101e25760003660031901126101e25760206040516000805160206122e48339815191528152f35b50346101e25760603660031901126101e257602435906044359081151582036101e25780356000526002602052604060002061038d60ff600383015416611a02565b60ff600a820154166104095781015491156103ec57670de0b6b3a7640000928381029381850414901517156103d757506103c981604093611e32565b905b82519182526020820152f35b601190634e487b7160e01b6000525260246000fd5b50670de0b6b3a764000061040282604094611e1f565b04906103cb565b60405162461bcd60e51b815260208184015260166024820152754369726375697420627265616b65722061637469766560501b6044820152606490fd5b346101e25760003660031901126101e2576020600d54604051908152f35b50346101e25760403660031901126101e2576104a39035610483611635565b9080600052600060205261049e600160406000200154611892565b611947565b005b50346101e25760603660031901126101e2576104a3906104c3611848565b604435906024359035611a8b565b346101e25760003660031901126101e2576080600b54600c54600d5460065491604051938452602084015260408301526060820152f35b346101e25760003660031901126101e2576020600a54604051908152f35b50346101e25760203660031901126101e25761054e61059791610547612012565b5035612044565b6040519182918291909160a08060c08301948051845260208101516020850152604081015160408501526060810151606085015260808101511515608085015201511515910152565b0390f35b346101e25760003660031901126101e2576020600754604051908152f35b50346101e25760403660031901126101e2576105d361164b565b6105db6117e0565b6001600160a01b031660008181526020839052604090206003015460ff161561061557600052602052602435600260406000200155600080f35b60405162461bcd60e51b8152602081840152601060248201526f13dc9858db19481b9bdd08199bdd5b9960821b6044820152606490fd5b346101e25761065a366115d7565b906106636117e0565b6000526002602052600860406000200155600080f35b346101e25760003660031901126101e257602060405160008152f35b50346101e25760403660031901126101e2576106af611635565b9035600052600060205260406000209060018060a01b0316600052602052602060ff604060002054166040519015158152f35b346101e25760003660031901126101e2576020600c54604051908152f35b346101e25760003660031901126101e2576020600854604051908152f35b50346101e2576060806003193601126101e2576001600160401b039180358381116101e25761075090369083016117b0565b9390916024358281116101e25761076a90369083016117b0565b9390926044359081116101e25761078490369084016117b0565b61078f939193611848565b61079a868914611db7565b6107a5818914611db7565b60005b8881106107c0576107bb89600b54611e05565b600b55005b806107cf61080d928b87611df5565b3560005287878b88848d886002966020968888528d60039660ff886040600020015416806108de575b610812575b5050505050505050505050611a40565b6107a8565b6108a597898b6108989461089d996108388c809b610831828d8d611df5565b3598611df5565b359260405196610847886116cc565b87526108698b8289019342855260408a01968752890196600195868952611df5565b3560005285815260406000209033600052526040600020955186555190850155518d84015551151591016118b8565b611df5565b35928a611df5565b3560005282825286604060002001556108bf838d89611df5565b35600052524260056040600020015538808b81848d888e8e8d8f6107fd565b506108ea878585611df5565b3515156107f8565b50346101e25760603660031901126101e25761090c61164b565b6001600160401b03906024358281116101e25761092c90369085016114fc565b9390926109376117e0565b6001600160a01b03831615610c28576001600160a01b03831660009081526020839052604090206003015460ff16610bf4576040516109758161169b565b6001600160a01b038416815261098c3687876119bc565b60208281019182526044356040808501919091526001606085015260006080850181905260a085018190526001600160a01b0388811682529287905220835181546001600160a01b03191692169190911781559051805191938211610bdf576109f86001850154611661565b601f8111610b98575b50602090601f8311600114610b255791806005949260a094600092610b1a575b50508160011b916000199060031b1c19161760018501555b60408101516002850155610a5660608201511515600386016118b8565b608081015184860155015191015560065490600160401b821015610b0557507f64b8475e04b407ae329c2aa989d5ed4125a59cc9d65882dd0de3f35facd37967928492610aab83600160609501600655611573565b81546001600160a01b0384811660039390931b92831b921b19161790556040805181815290810185905293849284840137600082870184015260443560208301526001600160a01b031694601f01601f19168101030190a2005b604190634e487b7160e01b6000525260246000fd5b015190503880610a21565b90601f198316916001860160005260206000209260005b818110610b80575092600192859260a0966005989610610b67575b505050811b016001850155610a39565b015160001960f88460031b161c19169055388080610b57565b92936020600181928786015181550195019301610b3c565b600185016000526020600020601f840160051c810160208510610bd8575b601f830160051c82018110610bcc575050610a01565b60008155600101610bb6565b5080610bb6565b604185634e487b7160e01b6000525260246000fd5b60405162461bcd60e51b8152602081840152600d60248201526c4f7261636c652065786973747360981b6044820152606490fd5b60405162461bcd60e51b8152602081840152600e60248201526d496e76616c6964206f7261636c6560901b6044820152606490fd5b50346101e25760203660031901126101e25780610cdd91356000526002602052604060002090610c8c8261170a565b91610c996001820161170a565b9060028101549260ff60038301541690820154600583015490600884015492610ceb60ff600a600988015497015416966040519a8b9a610120808d528c0190611610565b908a820360208c0152611610565b96604089015215156060880152608087015260a086015260c085015260e084015215156101008301520390f35b346101e25760003660031901126101e25760206040516000805160206123048339815191528152f35b50346101e25760403660031901126101e257610d5b611635565b9035600052600360205260406000209060018060a01b03166000526020526080604060002080549060018101549060ff6003600283015492015416916040519384526020840152604083015215156060820152f35b50346101e25760203660031901126101e257610dca6117e0565b35600a55005b50346101e25760403660031901126101e257610dea611635565b336001600160a01b03821603610e04576104a39135611947565b5060405163334bd91960e11b8152fd5b50346101e25760203660031901126101e2576001600160a01b0380610e3761164b565b166000528160205260406000209081541690610e556001820161170a565b92600282015491600560ff6003830154169282015491015491610e8a604051968796875260c0602088015260c0870190611610565b93604086015215156060850152608084015260a08301520390f35b50346101e25760403660031901126101e2576104a39035610ec4611635565b90806000526000602052610edf600160406000200154611892565b6118c9565b50346101e25760203660031901126101e257356005548110156101e257610f0c6020916115a4565b90546040519160031b1c8152f35b50346101e25760203660031901126101e25780610f7d91356000526002602052604060002090810154600582015460ff600a8401541690610f8b610f696001610f628761170a565b960161170a565b60405196879660a0885260a0880190611610565b908682036020880152611610565b9260408501526060840152151560808301520390f35b50346101e25760203660031901126101e2573560005260006020526020600160406000200154604051908152f35b50346101e257610ff8611000610fe436611529565b9491610ff19391936117e0565b36916119bc565b9236916119bc565b906040519160209384840184845161101b81848a89016115ed565b8101602f60f81b8882015284519061103982602183018b89016115ed565b0103946110506021600197888101845201826116e7565b519020938460005260028652600360ff81604060002001541661136a576000868152600288526040902085519091906001600160401b03808211611355576110988454611661565b918a601f9384811161130d575b5050808b8482116001146112a95760009161129e575b5060001982861b1c191690861b1784555b8484019187519182116112895781908b6110e68554611661565b828111611235575b50508b9082116001146111d4576000916111c9575b5060001982851b1c191690851b1790555b600282018790558101805460ff19168317905560088054908201556009805491015560055491600160401b831015610b055750926111be7fd51c61275c67b8136eb01d574e9d5cf85e714f01613056745a3c8bc4a0440d30938661119b6111848683996111b198016005556115a4565b819391549060031b91821b91600019901b19161790565b9055604051938493604085526040850190611610565b9083820389850152611610565b0390a2604051908152f35b905087015138611103565b60008481528c81208894509190601f198416908e5b8c83831061121f575050508311611207575b5050811b019055611114565b89015160001983871b60f8161c1916905538806111fb565b84015185558a969094019392830192018e6111e9565b909192508460005282826000209181860160051c8301938610611280575b9185948a9294930160051c01915b82811061127157508d91506110ee565b60008155859450899101611261565b92508192611253565b604187634e487b7160e01b6000525260246000fd5b9050890151386110bb565b60008781528d81208994509190601f198416908f8e5b8383106112f45750505083116112dc575b5050811b0184556110cc565b8b015160001983881b60f8161c1916905538806112d0565b84015185558b969094019392830192908101908e6112bf565b8660005284826000209181850160051c830193851061134c575b0160051c019087905b82811061134057508c91506110a5565b60008155018790611330565b92508192611327565b604186634e487b7160e01b6000525260246000fd5b60405162461bcd60e51b8152808401889052600b60248201526a506169722065786973747360a81b6044820152606490fd5b346101e2576113aa366115d7565b906113b36117e0565b6000526002602052600960406000200155600080f35b346101e25760003660031901126101e2576020600b54604051908152f35b50346101e25760203660031901126101e257356006548110156101e25761140f602091611573565b905460405160039290921b1c6001600160a01b03168152f35b346101e25761059761054e602161148461144136611529565b80949395929161144f612012565b506040519583879460208601998a37840191602f60f81b602084015285830137016000838201520360018101845201826116e7565b519020612044565b50346101e25760203660031901126101e2573563ffffffff60e01b81168091036101e257602090637965db0b60e01b81149081156114d0575b506040519015158152f35b6301ffc9a760e01b149050386114c5565b346101e25760003660031901126101e2576020906009548152f35b9181601f840112156101e2578235916001600160401b0383116101e257602083818601950101116101e257565b60406003198201126101e2576001600160401b03916004358381116101e25782611555916004016114fc565b939093926024359182116101e25761156f916004016114fc565b9091565b60065481101561158e57600660005260206000200190600090565b634e487b7160e01b600052603260045260246000fd5b60055481101561158e57600560005260206000200190600090565b805482101561158e5760005260206000200190600090565b60409060031901126101e2576004359060243590565b60005b8381106116005750506000910152565b81810151838201526020016115f0565b90602091611629815180928185528580860191016115ed565b601f01601f1916010190565b602435906001600160a01b03821682036101e257565b600435906001600160a01b03821682036101e257565b90600182811c92168015611691575b602083101461167b57565b634e487b7160e01b600052602260045260246000fd5b91607f1691611670565b60c081019081106001600160401b038211176116b657604052565b634e487b7160e01b600052604160045260246000fd5b608081019081106001600160401b038211176116b657604052565b601f909101601f19168101906001600160401b038211908210176116b657604052565b906040519182600082549261171e84611661565b90818452600194858116908160001461178d575060011461174a575b5050611748925003836116e7565b565b9093915060005260209081600020936000915b8183106117755750506117489350820101388061173a565b8554888401850152948501948794509183019161175d565b91505061174894506020925060ff191682840152151560051b820101388061173a565b9181601f840112156101e2578235916001600160401b0383116101e2576020808501948460051b0101116101e257565b3360009081527fa0890930f8e0cf05d81d1b41bc7bad4b135bc41ba2d6091cd7730a1d7596d44e60205260409020546000805160206123048339815191529060ff161561182a5750565b6044906040519063e2517d3f60e01b82523360048301526024820152fd5b3360009081527f8657ba5f3573b26d022d162a7ce5ad3405ffbc39cb2711d22336d53dad2402c460205260409020546000805160206122e48339815191529060ff161561182a5750565b80600052600060205260406000203360005260205260ff604060002054161561182a5750565b9060ff801983541691151516179055565b9060009180835282602052604083209160018060a01b03169182845260205260ff6040842054161560001461194257808352826020526040832082845260205260408320600160ff198254161790557f2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d339380a4600190565b505090565b9060009180835282602052604083209160018060a01b03169182845260205260ff6040842054166000146119425780835282602052604083208284526020526040832060ff1981541690557ff6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b339380a4600190565b9192916001600160401b0382116116b657604051916119e5601f8201601f1916602001846116e7565b8294818452818301116101e2578281602093846000960137010152565b15611a0957565b60405162461bcd60e51b815260206004820152600f60248201526e50616972206e6f742061637469766560881b6044820152606490fd5b6000198114611a4f5760010190565b634e487b7160e01b600052601160045260246000fd5b805490600160401b8210156116b65781611184916001611a87940181556115bf565b9055565b909160009082825260209060028252600392604093611ab160ff82878520015416611a02565b8615611d845760648311611d4b578582526002845284822091600483019182548981611cd9575b5050611b2e8751611ae8816116cc565b8a815282888201974289528a830190815260608301906001998a83528d8852838c528c88203389528c528c882094518555518a85015551600284015551151591016118b8565b60048652600587832042600482015501611b488154611a40565b9055611b5388611e52565b809355426005850155611b6a600685019384611a65565b611b8660086007860195611b7e4288611a65565b015442611e12565b948295818654905b611c98575b50505084151580611c8d575b611be9575b5050505050907f5a1833b5adb1618f2d95fe545abee68b6271db26e539276445b522418049a9c591611bd7600b54611a40565b600b55815194855242908501523393a3565b611bf4858454611e12565b90825b828110611c2f575050505b838110611c0f5780611ba4565b611c2a90611c1c83611fd2565b611c2584611fd2565b611a40565b611c02565b80611c46611c4089611c8894611e05565b876115bf565b905490841b1c611c5961118483896115bf565b9055611c6e611c688983611e05565b886115bf565b905490841b1c611c81611184838a6115bf565b9055611a40565b611bf7565b506064835411611b9f565b90919681811080611cc1575b15611cbb57611cb290611a40565b96919082611b8e565b96611b93565b5082611ccd82896115bf565b905490861b1c10611ca4565b611ce291611f83565b60098501548111611cf35789611ad8565b94505050957f753aa275cb6e3ac503d45417ab9611ba2ffe583d5ce37f46d5d5dfc4d1eaec629596600a6060969301600160ff19825416179055611d38600d54611a40565b600d5554938251948552840152820152a2565b845162461bcd60e51b8152600481018590526012602482015271496e76616c696420636f6e666964656e636560701b6044820152606490fd5b845162461bcd60e51b815260048101859052600c60248201526b496e76616c6964207261746560a01b6044820152606490fd5b15611dbe57565b60405162461bcd60e51b815260206004820152600f60248201526e098cadccee8d040dad2e6dac2e8c6d608b1b6044820152606490fd5b919081101561158e5760051b0190565b91908201809211611a4f57565b91908203918211611a4f57565b81810292918115918404141715611a4f57565b8115611e3c570490565b634e487b7160e01b600052601260045260246000fd5b60008080816006546007545b818310611ea6575050508215908115611e9a575b50611e8457611e819250611e32565b90565b5050600052600260205260046040600020015490565b9050600a541138611e72565b9091929493611eb484611573565b9190549160039260018060a01b0391841b1c16806000526004602081815260ff9260409380878660002001541615611f71578c6000528683528460002082600052835284600020968701541615611f605786611f14600188015442611e12565b11611f605793611f416002611f4d95611f599895611f4795611f5399600052526000200154809454611e1f565b90611e05565b97611e05565b96611a40565b93611a40565b9190611e5e565b50505050949593611f599150611a40565b5050505050949593611f599150611a40565b908115611fcb578181811115611fbc5790611f9d91611e12565b905b61271091828102928184041490151715611a4f57611e8191611e32565b611fc591611e12565b90611f9f565b5050600090565b8054908115611ffc5760001991820191611fec83836115bf565b909182549160031b1b1916905555565b634e487b7160e01b600052603160045260246000fd5b6040519061201f8261169b565b8160a06000918281528260208201528260408201528260608201528260808201520152565b61204c612012565b50806000526002602052604060002090600582015461206b8142611e12565b600754109061208261207c856120bd565b9361222d565b60ff600a600487015496015416936040519561209d8761169b565b86526020860152604085015260608401526080830152151560a082015290565b6006810180549081156121145760019182811461221d57916120e3600885015442611e12565b9260009283948493600019840190848211905b85871061211d5750505050505050811561211457611e819250611e32565b50506004015490565b90919293949597968460078b016121348b826115bf565b929054600393841b1c10612210576000856121fc579188918c938885146000146121ae575093611f4184936121979361218d61218561217961219d996121a39b6115bf565b905490841b1c42611e12565b9687936115bf565b9054911b1c611e1f565b99611e05565b98611a40565b9594939291906120f6565b9193869193500190818d116121fc57506121a393611f418a61219d958f95612185816121f0896121e46121979a61218d966115bf565b905490871b1c926115bf565b905490851b1c90611e12565b634e487b7160e01b81526011600452602490fd5b505096976121a390611a40565b5091505060005260206000205490565b600080918190600654915b828110612251575050508015611fcb57611e8191611e32565b81600052600360ff6020828152604090816000209061226f86611573565b905490861b1c6001600160a01b03166000908152919052209182015416806122ca575b6122a6575b506122a190611a40565b612238565b936122a1919560026122ba6122c393611a40565b96015490611e05565b9490612297565b506122d9600182015442611e12565b600754101561229256fe74b366a297145849fa9687e16ecad1e3a60cf84f6c2256ae73e20a9f76669804a8d944a5277d6a203f114d020d26918a390f167b089a46be4fca9da716d23783a2646970667358221220caa41563ae9118bdf6d9413b50c32c60e5e116148da48dce6a1d4692912e322f64736f6c63430008140033",
+  "devdoc": {
+    "details": "Aggregates rates from multiple oracles for institutional-grade accuracy  KEY FEATURES: - Multi-oracle price feeds with weighted averages - Time-weighted average price (TWAP) calculation - Circuit breakers for extreme volatility - Staleness detection and fallback - Rate caching for gas optimization",
+    "errors": {
+      "AccessControlBadConfirmation()": [
+        {
+          "details": "The caller of a function is not the expected one. NOTE: Don't confuse with {AccessControlUnauthorizedAccount}."
+        }
+      ],
+      "AccessControlUnauthorizedAccount(address,bytes32)": [
+        {
+          "details": "The `account` is missing a role."
+        }
+      ],
+      "ReentrancyGuardReentrantCall()": [
+        {
+          "details": "Unauthorized reentrant call."
+        }
+      ]
+    },
+    "events": {
+      "RoleAdminChanged(bytes32,bytes32,bytes32)": {
+        "details": "Emitted when `newAdminRole` is set as ``role``'s admin role, replacing `previousAdminRole` `DEFAULT_ADMIN_ROLE` is the starting admin for all roles, despite {RoleAdminChanged} not being emitted signaling this."
+      },
+      "RoleGranted(bytes32,address,address)": {
+        "details": "Emitted when `account` is granted `role`. `sender` is the account that originated the contract call, an admin role bearer except when using {AccessControl-_setupRole}."
+      },
+      "RoleRevoked(bytes32,address,address)": {
+        "details": "Emitted when `account` is revoked `role`. `sender` is the account that originated the contract call:   - if using `revokeRole`, it is the admin role bearer   - if using `renounceRole`, it is the role bearer (i.e. `account`)"
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "getRoleAdmin(bytes32)": {
+        "details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}."
+      },
+      "grantRole(bytes32,address)": {
+        "details": "Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleGranted} event."
+      },
+      "hasRole(bytes32,address)": {
+        "details": "Returns `true` if `account` has been granted `role`."
+      },
+      "renounceRole(bytes32,address)": {
+        "details": "Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `callerConfirmation`. May emit a {RoleRevoked} event."
+      },
+      "revokeRole(bytes32,address)": {
+        "details": "Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleRevoked} event."
+      },
+      "supportsInterface(bytes4)": {
+        "details": "See {IERC165-supportsInterface}."
+      }
+    },
+    "title": "OracleAggregator",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "batchUpdatePrices(bytes32[],uint256[],uint256[])": {
+        "notice": "Batch update multiple prices"
+      },
+      "convert(bytes32,uint256,bool)": {
+        "notice": "Convert amount between currencies"
+      },
+      "getRate(bytes32)": {
+        "notice": "Get current rate for a currency pair"
+      },
+      "getRateBySymbols(string,string)": {
+        "notice": "Get rate for base/quote strings"
+      },
+      "updatePrice(bytes32,uint256,uint256)": {
+        "notice": "Update price for a currency pair"
+      }
+    },
+    "notice": "Multi-source FX rate aggregation with TWAP and circuit breakers",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 26,
+        "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+        "label": "_roles",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_bytes32,t_struct(RoleData)21_storage)"
+      },
+      {
+        "astId": 2019,
+        "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+        "label": "_status",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 4818,
+        "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+        "label": "pairs",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_mapping(t_bytes32,t_struct(CurrencyPair)4800_storage)"
+      },
+      {
+        "astId": 4825,
+        "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+        "label": "oraclePrices",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_mapping(t_bytes32,t_mapping(t_address,t_struct(PriceData)4762_storage))"
+      },
+      {
+        "astId": 4830,
+        "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+        "label": "oracleSources",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_mapping(t_address,t_struct(OracleSource)4775_storage)"
+      },
+      {
+        "astId": 4833,
+        "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+        "label": "activePairs",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_array(t_bytes32)dyn_storage"
+      },
+      {
+        "astId": 4836,
+        "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+        "label": "activeOracles",
+        "offset": 0,
+        "slot": "6",
+        "type": "t_array(t_address)dyn_storage"
+      },
+      {
+        "astId": 4839,
+        "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+        "label": "stalenessThreshold",
+        "offset": 0,
+        "slot": "7",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 4842,
+        "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+        "label": "defaultTwapPeriod",
+        "offset": 0,
+        "slot": "8",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 4845,
+        "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+        "label": "defaultMaxDeviation",
+        "offset": 0,
+        "slot": "9",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 4848,
+        "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+        "label": "minOracleCount",
+        "offset": 0,
+        "slot": "10",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 4850,
+        "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+        "label": "totalPriceUpdates",
+        "offset": 0,
+        "slot": "11",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 4852,
+        "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+        "label": "totalQueries",
+        "offset": 0,
+        "slot": "12",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 4854,
+        "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+        "label": "circuitBreakerTriggers",
+        "offset": 0,
+        "slot": "13",
+        "type": "t_uint256"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_address)dyn_storage": {
+        "base": "t_address",
+        "encoding": "dynamic_array",
+        "label": "address[]",
+        "numberOfBytes": "32"
+      },
+      "t_array(t_bytes32)dyn_storage": {
+        "base": "t_bytes32",
+        "encoding": "dynamic_array",
+        "label": "bytes32[]",
+        "numberOfBytes": "32"
+      },
+      "t_array(t_uint256)dyn_storage": {
+        "base": "t_uint256",
+        "encoding": "dynamic_array",
+        "label": "uint256[]",
+        "numberOfBytes": "32"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_bytes32": {
+        "encoding": "inplace",
+        "label": "bytes32",
+        "numberOfBytes": "32"
+      },
+      "t_mapping(t_address,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      },
+      "t_mapping(t_address,t_struct(OracleSource)4775_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct OracleAggregator.OracleSource)",
+        "numberOfBytes": "32",
+        "value": "t_struct(OracleSource)4775_storage"
+      },
+      "t_mapping(t_address,t_struct(PriceData)4762_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct OracleAggregator.PriceData)",
+        "numberOfBytes": "32",
+        "value": "t_struct(PriceData)4762_storage"
+      },
+      "t_mapping(t_bytes32,t_mapping(t_address,t_struct(PriceData)4762_storage))": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => mapping(address => struct OracleAggregator.PriceData))",
+        "numberOfBytes": "32",
+        "value": "t_mapping(t_address,t_struct(PriceData)4762_storage)"
+      },
+      "t_mapping(t_bytes32,t_struct(CurrencyPair)4800_storage)": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => struct OracleAggregator.CurrencyPair)",
+        "numberOfBytes": "32",
+        "value": "t_struct(CurrencyPair)4800_storage"
+      },
+      "t_mapping(t_bytes32,t_struct(RoleData)21_storage)": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => struct AccessControl.RoleData)",
+        "numberOfBytes": "32",
+        "value": "t_struct(RoleData)21_storage"
+      },
+      "t_string_storage": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_struct(CurrencyPair)4800_storage": {
+        "encoding": "inplace",
+        "label": "struct OracleAggregator.CurrencyPair",
+        "members": [
+          {
+            "astId": 4777,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "base",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 4779,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "quote",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 4781,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "pairId",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_bytes32"
+          },
+          {
+            "astId": 4783,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "isActive",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_bool"
+          },
+          {
+            "astId": 4785,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "currentRate",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 4787,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "lastUpdate",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 4790,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "rateHistory",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_array(t_uint256)dyn_storage"
+          },
+          {
+            "astId": 4793,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "timestamps",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_array(t_uint256)dyn_storage"
+          },
+          {
+            "astId": 4795,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "twapPeriod",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 4797,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "maxDeviation",
+            "offset": 0,
+            "slot": "9",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 4799,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "circuitBreakerTripped",
+            "offset": 0,
+            "slot": "10",
+            "type": "t_bool"
+          }
+        ],
+        "numberOfBytes": "352"
+      },
+      "t_struct(OracleSource)4775_storage": {
+        "encoding": "inplace",
+        "label": "struct OracleAggregator.OracleSource",
+        "members": [
+          {
+            "astId": 4764,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "oracle",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address"
+          },
+          {
+            "astId": 4766,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "name",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 4768,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "weight",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 4770,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "isActive",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_bool"
+          },
+          {
+            "astId": 4772,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "lastUpdate",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 4774,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "totalUpdates",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint256"
+          }
+        ],
+        "numberOfBytes": "192"
+      },
+      "t_struct(PriceData)4762_storage": {
+        "encoding": "inplace",
+        "label": "struct OracleAggregator.PriceData",
+        "members": [
+          {
+            "astId": 4755,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "rate",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 4757,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "timestamp",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 4759,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "confidence",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 4761,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "isActive",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_bool"
+          }
+        ],
+        "numberOfBytes": "128"
+      },
+      "t_struct(RoleData)21_storage": {
+        "encoding": "inplace",
+        "label": "struct AccessControl.RoleData",
+        "members": [
+          {
+            "astId": 18,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "hasRole",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_mapping(t_address,t_bool)"
+          },
+          {
+            "astId": 20,
+            "contract": "contracts/OracleAggregator.sol:OracleAggregator",
+            "label": "adminRole",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_bytes32"
+          }
+        ],
+        "numberOfBytes": "64"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

@@ -1,0 +1,1592 @@
+{
+  "address": "0xB7829739a4BceA372f391E3Cc638B7ccFdCBF911",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "AccessControlBadConfirmation",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "neededRole",
+          "type": "bytes32"
+        }
+      ],
+      "name": "AccessControlUnauthorizedAccount",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ReentrancyGuardReentrantCall",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "entity",
+          "type": "address"
+        }
+      ],
+      "name": "EntityCleared",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "entity",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "reason",
+          "type": "string"
+        }
+      ],
+      "name": "EntitySanctioned",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "entity",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum ComplianceEngine.ComplianceTier",
+          "name": "tier",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "verifiedBy",
+          "type": "address"
+        }
+      ],
+      "name": "EntityVerified",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "previousAdminRole",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "newAdminRole",
+          "type": "bytes32"
+        }
+      ],
+      "name": "RoleAdminChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "RoleGranted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        }
+      ],
+      "name": "RoleRevoked",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "entityHash",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "sanctioned",
+          "type": "bool"
+        }
+      ],
+      "name": "SanctionsListUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "bytes32",
+          "name": "paymentId",
+          "type": "bytes32"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "passed",
+          "type": "bool"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "reason",
+          "type": "string"
+        }
+      ],
+      "name": "TransactionChecked",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "COMPLIANCE_OFFICER",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "DEFAULT_ADMIN_ROLE",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "KYC_VERIFIER",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "SANCTIONS_UPDATER",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "jurisdiction",
+          "type": "string"
+        }
+      ],
+      "name": "addRestrictedJurisdiction",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "entityHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "addToSanctionsList",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32[]",
+          "name": "entityHashes",
+          "type": "bytes32[]"
+        }
+      ],
+      "name": "bulkAddToSanctionsList",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "paymentId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "requireSanctionsCheck",
+          "type": "bool"
+        },
+        {
+          "internalType": "enum ComplianceEngine.ComplianceTier",
+          "name": "requiredSenderTier",
+          "type": "uint8"
+        },
+        {
+          "internalType": "enum ComplianceEngine.ComplianceTier",
+          "name": "requiredRecipientTier",
+          "type": "uint8"
+        }
+      ],
+      "name": "checkPaymentCompliance",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "bool",
+              "name": "passed",
+              "type": "bool"
+            },
+            {
+              "internalType": "string",
+              "name": "reason",
+              "type": "string"
+            },
+            {
+              "internalType": "bool",
+              "name": "requiresTravelRule",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "requiresEnhancedDD",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct ComplianceEngine.TransactionCheck",
+          "name": "check",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "entity",
+          "type": "address"
+        }
+      ],
+      "name": "clearEntity",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getComplianceStats",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "verifications",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "checks",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "rejections",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "sanctions",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "entity",
+          "type": "address"
+        }
+      ],
+      "name": "getEntityProfile",
+      "outputs": [
+        {
+          "internalType": "enum ComplianceEngine.ComplianceTier",
+          "name": "tier",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bool",
+          "name": "isVerified",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "sanctioned",
+          "type": "bool"
+        },
+        {
+          "internalType": "string",
+          "name": "jurisdiction",
+          "type": "string"
+        },
+        {
+          "internalType": "uint8",
+          "name": "riskScore",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "dailyRemaining",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "monthlyRemaining",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getRoleAdmin",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "grantRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "hasRole",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "entityHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "isSanctioned",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "profiles",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "entity",
+          "type": "address"
+        },
+        {
+          "internalType": "enum ComplianceEngine.ComplianceTier",
+          "name": "tier",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bool",
+          "name": "isVerified",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "isSanctioned",
+          "type": "bool"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "identityHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "string",
+          "name": "jurisdiction",
+          "type": "string"
+        },
+        {
+          "internalType": "bool",
+          "name": "isPEP",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "dailyLimit",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "monthlyLimit",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "singleTxLimit",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "dailyVolume",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "monthlyVolume",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "lastDayReset",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "lastMonthReset",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "verifiedAt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "expiresAt",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "verifiedBy",
+          "type": "address"
+        },
+        {
+          "internalType": "uint8",
+          "name": "riskScore",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bool",
+          "name": "underReview",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "entityHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "removeFromSanctionsList",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "jurisdiction",
+          "type": "string"
+        }
+      ],
+      "name": "removeRestrictedJurisdiction",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "callerConfirmation",
+          "type": "address"
+        }
+      ],
+      "name": "renounceRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "name": "restrictedJurisdictions",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "role",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "revokeRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "entity",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "reason",
+          "type": "string"
+        }
+      ],
+      "name": "sanctionEntity",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "sanctionsList",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "sanctionsListSize",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "enum ComplianceEngine.ComplianceTier",
+          "name": "tier",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "daily",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "monthly",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "singleTx",
+          "type": "uint256"
+        }
+      ],
+      "name": "setTierLimits",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "threshold",
+          "type": "uint256"
+        }
+      ],
+      "name": "setTravelRuleThreshold",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes4",
+          "name": "interfaceId",
+          "type": "bytes4"
+        }
+      ],
+      "name": "supportsInterface",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "enum ComplianceEngine.ComplianceTier",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "name": "tierDailyLimits",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "enum ComplianceEngine.ComplianceTier",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "name": "tierMonthlyLimits",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "enum ComplianceEngine.ComplianceTier",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "name": "tierSingleTxLimits",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalChecks",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalRejections",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalVerifications",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "travelRuleThreshold",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "entity",
+          "type": "address"
+        },
+        {
+          "internalType": "enum ComplianceEngine.ComplianceTier",
+          "name": "newTier",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "additionalDocs",
+          "type": "bytes32"
+        }
+      ],
+      "name": "upgradeEntity",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "entity",
+          "type": "address"
+        },
+        {
+          "internalType": "enum ComplianceEngine.ComplianceTier",
+          "name": "tier",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "identityHash",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "string",
+          "name": "jurisdiction",
+          "type": "string"
+        },
+        {
+          "internalType": "bool",
+          "name": "isPEP",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint8",
+          "name": "riskScore",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "validityPeriod",
+          "type": "uint256"
+        }
+      ],
+      "name": "verifyEntity",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x39fbcedf4eaa19bd213611896c3ad37e9e867b6e67ea35835e5557704738b7d8",
+  "receipt": {
+    "to": null,
+    "from": "0x74dDa086DefBFE113E387e70f0304631972525E5",
+    "contractAddress": "0xB7829739a4BceA372f391E3Cc638B7ccFdCBF911",
+    "transactionIndex": 24,
+    "gasUsed": "2160620",
+    "logsBloom": "0x00000004000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000004000000000000000000000000000000000100000000080000000020000000000000000000000200000000000000000020000000000080100000800000000000000000000000000000000000000000000000008000000000000000000008000000000000000010000000000000000008000000000000000000000000000000000000040001000000000000000000000000000000000000000000000000000000000000100000000000020000000000000000000000000000000000000000000000080080000000000000000",
+    "blockHash": "0xf7f6d3218c2906b877d5cb2b573082daa7eadcc6f37be508fa9eb45302f8df99",
+    "transactionHash": "0x39fbcedf4eaa19bd213611896c3ad37e9e867b6e67ea35835e5557704738b7d8",
+    "logs": [
+      {
+        "transactionIndex": 24,
+        "blockNumber": 9894041,
+        "transactionHash": "0x39fbcedf4eaa19bd213611896c3ad37e9e867b6e67ea35835e5557704738b7d8",
+        "address": "0xB7829739a4BceA372f391E3Cc638B7ccFdCBF911",
+        "topics": [
+          "0x2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x00000000000000000000000074dda086defbfe113e387e70f0304631972525e5",
+          "0x00000000000000000000000074dda086defbfe113e387e70f0304631972525e5"
+        ],
+        "data": "0x",
+        "logIndex": 30,
+        "blockHash": "0xf7f6d3218c2906b877d5cb2b573082daa7eadcc6f37be508fa9eb45302f8df99"
+      },
+      {
+        "transactionIndex": 24,
+        "blockNumber": 9894041,
+        "transactionHash": "0x39fbcedf4eaa19bd213611896c3ad37e9e867b6e67ea35835e5557704738b7d8",
+        "address": "0xB7829739a4BceA372f391E3Cc638B7ccFdCBF911",
+        "topics": [
+          "0x2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d",
+          "0xb938b4e8be78c5b3d6090a6dcee4f5257472278c0aaffb0b01bee86005dc1fee",
+          "0x00000000000000000000000074dda086defbfe113e387e70f0304631972525e5",
+          "0x00000000000000000000000074dda086defbfe113e387e70f0304631972525e5"
+        ],
+        "data": "0x",
+        "logIndex": 31,
+        "blockHash": "0xf7f6d3218c2906b877d5cb2b573082daa7eadcc6f37be508fa9eb45302f8df99"
+      },
+      {
+        "transactionIndex": 24,
+        "blockNumber": 9894041,
+        "transactionHash": "0x39fbcedf4eaa19bd213611896c3ad37e9e867b6e67ea35835e5557704738b7d8",
+        "address": "0xB7829739a4BceA372f391E3Cc638B7ccFdCBF911",
+        "topics": [
+          "0x2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d",
+          "0x91275d1fcefacfdb2f4c88a451825db6079efbb939a9fedc620b7645456e84f2",
+          "0x00000000000000000000000074dda086defbfe113e387e70f0304631972525e5",
+          "0x00000000000000000000000074dda086defbfe113e387e70f0304631972525e5"
+        ],
+        "data": "0x",
+        "logIndex": 32,
+        "blockHash": "0xf7f6d3218c2906b877d5cb2b573082daa7eadcc6f37be508fa9eb45302f8df99"
+      },
+      {
+        "transactionIndex": 24,
+        "blockNumber": 9894041,
+        "transactionHash": "0x39fbcedf4eaa19bd213611896c3ad37e9e867b6e67ea35835e5557704738b7d8",
+        "address": "0xB7829739a4BceA372f391E3Cc638B7ccFdCBF911",
+        "topics": [
+          "0x2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d",
+          "0x8543a18258c3caa4a95592be8e6241dbfdd96e339d76cf3044673f6185aa6366",
+          "0x00000000000000000000000074dda086defbfe113e387e70f0304631972525e5",
+          "0x00000000000000000000000074dda086defbfe113e387e70f0304631972525e5"
+        ],
+        "data": "0x",
+        "logIndex": 33,
+        "blockHash": "0xf7f6d3218c2906b877d5cb2b573082daa7eadcc6f37be508fa9eb45302f8df99"
+      }
+    ],
+    "blockNumber": 9894041,
+    "cumulativeGasUsed": "5369579",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "c67737e51f0b406cca842b1a124d52ef",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"AccessControlBadConfirmation\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"neededRole\",\"type\":\"bytes32\"}],\"name\":\"AccessControlUnauthorizedAccount\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ReentrancyGuardReentrantCall\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"entity\",\"type\":\"address\"}],\"name\":\"EntityCleared\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"entity\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"reason\",\"type\":\"string\"}],\"name\":\"EntitySanctioned\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"entity\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"enum ComplianceEngine.ComplianceTier\",\"name\":\"tier\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"verifiedBy\",\"type\":\"address\"}],\"name\":\"EntityVerified\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"previousAdminRole\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newAdminRole\",\"type\":\"bytes32\"}],\"name\":\"RoleAdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleGranted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"}],\"name\":\"RoleRevoked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"entityHash\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"sanctioned\",\"type\":\"bool\"}],\"name\":\"SanctionsListUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"paymentId\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"passed\",\"type\":\"bool\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"reason\",\"type\":\"string\"}],\"name\":\"TransactionChecked\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"COMPLIANCE_OFFICER\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"DEFAULT_ADMIN_ROLE\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"KYC_VERIFIER\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"SANCTIONS_UPDATER\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"jurisdiction\",\"type\":\"string\"}],\"name\":\"addRestrictedJurisdiction\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"entityHash\",\"type\":\"bytes32\"}],\"name\":\"addToSanctionsList\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"entityHashes\",\"type\":\"bytes32[]\"}],\"name\":\"bulkAddToSanctionsList\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"paymentId\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"requireSanctionsCheck\",\"type\":\"bool\"},{\"internalType\":\"enum ComplianceEngine.ComplianceTier\",\"name\":\"requiredSenderTier\",\"type\":\"uint8\"},{\"internalType\":\"enum ComplianceEngine.ComplianceTier\",\"name\":\"requiredRecipientTier\",\"type\":\"uint8\"}],\"name\":\"checkPaymentCompliance\",\"outputs\":[{\"components\":[{\"internalType\":\"bool\",\"name\":\"passed\",\"type\":\"bool\"},{\"internalType\":\"string\",\"name\":\"reason\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"requiresTravelRule\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"requiresEnhancedDD\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"internalType\":\"struct ComplianceEngine.TransactionCheck\",\"name\":\"check\",\"type\":\"tuple\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"entity\",\"type\":\"address\"}],\"name\":\"clearEntity\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getComplianceStats\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"verifications\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"checks\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"rejections\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"sanctions\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"entity\",\"type\":\"address\"}],\"name\":\"getEntityProfile\",\"outputs\":[{\"internalType\":\"enum ComplianceEngine.ComplianceTier\",\"name\":\"tier\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"isVerified\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"sanctioned\",\"type\":\"bool\"},{\"internalType\":\"string\",\"name\":\"jurisdiction\",\"type\":\"string\"},{\"internalType\":\"uint8\",\"name\":\"riskScore\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"dailyRemaining\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"monthlyRemaining\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"}],\"name\":\"getRoleAdmin\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"grantRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"hasRole\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"entityHash\",\"type\":\"bytes32\"}],\"name\":\"isSanctioned\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"profiles\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"entity\",\"type\":\"address\"},{\"internalType\":\"enum ComplianceEngine.ComplianceTier\",\"name\":\"tier\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"isVerified\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"isSanctioned\",\"type\":\"bool\"},{\"internalType\":\"bytes32\",\"name\":\"identityHash\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"jurisdiction\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"isPEP\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"dailyLimit\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"monthlyLimit\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"singleTxLimit\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"dailyVolume\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"monthlyVolume\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lastDayReset\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lastMonthReset\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"verifiedAt\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"expiresAt\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"verifiedBy\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"riskScore\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"underReview\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"entityHash\",\"type\":\"bytes32\"}],\"name\":\"removeFromSanctionsList\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"jurisdiction\",\"type\":\"string\"}],\"name\":\"removeRestrictedJurisdiction\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"callerConfirmation\",\"type\":\"address\"}],\"name\":\"renounceRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"restrictedJurisdictions\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"role\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"revokeRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"entity\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"reason\",\"type\":\"string\"}],\"name\":\"sanctionEntity\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"sanctionsList\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"sanctionsListSize\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"enum ComplianceEngine.ComplianceTier\",\"name\":\"tier\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"daily\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"monthly\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"singleTx\",\"type\":\"uint256\"}],\"name\":\"setTierLimits\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"threshold\",\"type\":\"uint256\"}],\"name\":\"setTravelRuleThreshold\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"enum ComplianceEngine.ComplianceTier\",\"name\":\"\",\"type\":\"uint8\"}],\"name\":\"tierDailyLimits\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"enum ComplianceEngine.ComplianceTier\",\"name\":\"\",\"type\":\"uint8\"}],\"name\":\"tierMonthlyLimits\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"enum ComplianceEngine.ComplianceTier\",\"name\":\"\",\"type\":\"uint8\"}],\"name\":\"tierSingleTxLimits\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalChecks\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalRejections\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalVerifications\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"travelRuleThreshold\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"entity\",\"type\":\"address\"},{\"internalType\":\"enum ComplianceEngine.ComplianceTier\",\"name\":\"newTier\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"additionalDocs\",\"type\":\"bytes32\"}],\"name\":\"upgradeEntity\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"entity\",\"type\":\"address\"},{\"internalType\":\"enum ComplianceEngine.ComplianceTier\",\"name\":\"tier\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"identityHash\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"jurisdiction\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"isPEP\",\"type\":\"bool\"},{\"internalType\":\"uint8\",\"name\":\"riskScore\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"validityPeriod\",\"type\":\"uint256\"}],\"name\":\"verifyEntity\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Implements tiered verification with real-time sanctions checking  KEY FEATURES: - Multi-tier KYC levels (None \\u2192 Institutional) - OFAC/EU/UN sanctions list checking - Travel Rule compliance for >$3000 transfers - Jurisdiction-based restrictions - Automated compliance reporting\",\"errors\":{\"AccessControlBadConfirmation()\":[{\"details\":\"The caller of a function is not the expected one. NOTE: Don't confuse with {AccessControlUnauthorizedAccount}.\"}],\"AccessControlUnauthorizedAccount(address,bytes32)\":[{\"details\":\"The `account` is missing a role.\"}],\"ReentrancyGuardReentrantCall()\":[{\"details\":\"Unauthorized reentrant call.\"}]},\"events\":{\"RoleAdminChanged(bytes32,bytes32,bytes32)\":{\"details\":\"Emitted when `newAdminRole` is set as ``role``'s admin role, replacing `previousAdminRole` `DEFAULT_ADMIN_ROLE` is the starting admin for all roles, despite {RoleAdminChanged} not being emitted signaling this.\"},\"RoleGranted(bytes32,address,address)\":{\"details\":\"Emitted when `account` is granted `role`. `sender` is the account that originated the contract call, an admin role bearer except when using {AccessControl-_setupRole}.\"},\"RoleRevoked(bytes32,address,address)\":{\"details\":\"Emitted when `account` is revoked `role`. `sender` is the account that originated the contract call:   - if using `revokeRole`, it is the admin role bearer   - if using `renounceRole`, it is the role bearer (i.e. `account`)\"}},\"kind\":\"dev\",\"methods\":{\"checkPaymentCompliance(bytes32,address,address,uint256,bool,uint8,uint8)\":{\"params\":{\"amount\":\"Payment amount in USD value\",\"paymentId\":\"Unique payment identifier\",\"recipient\":\"Recipient address\",\"requireSanctionsCheck\":\"Whether to check sanctions\",\"requiredRecipientTier\":\"Minimum recipient tier required\",\"requiredSenderTier\":\"Minimum sender tier required\",\"sender\":\"Sender address\"}},\"getRoleAdmin(bytes32)\":{\"details\":\"Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}.\"},\"grantRole(bytes32,address)\":{\"details\":\"Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleGranted} event.\"},\"hasRole(bytes32,address)\":{\"details\":\"Returns `true` if `account` has been granted `role`.\"},\"renounceRole(bytes32,address)\":{\"details\":\"Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `callerConfirmation`. May emit a {RoleRevoked} event.\"},\"revokeRole(bytes32,address)\":{\"details\":\"Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleRevoked} event.\"},\"supportsInterface(bytes4)\":{\"details\":\"See {IERC165-supportsInterface}.\"}},\"title\":\"ComplianceEngine\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"addToSanctionsList(bytes32)\":{\"notice\":\"Add entity hash to sanctions list\"},\"bulkAddToSanctionsList(bytes32[])\":{\"notice\":\"Bulk add to sanctions list\"},\"checkPaymentCompliance(bytes32,address,address,uint256,bool,uint8,uint8)\":{\"notice\":\"Check if a payment is compliant\"},\"clearEntity(address)\":{\"notice\":\"Remove entity from sanctions\"},\"isSanctioned(bytes32)\":{\"notice\":\"Check if entity hash is sanctioned\"},\"removeFromSanctionsList(bytes32)\":{\"notice\":\"Remove from sanctions list\"},\"sanctionEntity(address,string)\":{\"notice\":\"Mark entity as sanctioned\"},\"upgradeEntity(address,uint8,bytes32)\":{\"notice\":\"Upgrade entity to higher tier\"},\"verifyEntity(address,uint8,bytes32,string,bool,uint8,uint256)\":{\"notice\":\"Verify an entity at a specific compliance tier\"}},\"notice\":\"Programmable KYC/AML/Sanctions compliance for institutional payments\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/ComplianceEngine.sol\":\"ComplianceEngine\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":1},\"remappings\":[],\"viaIR\":true},\"sources\":{\"@openzeppelin/contracts/access/AccessControl.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (access/AccessControl.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {IAccessControl} from \\\"./IAccessControl.sol\\\";\\nimport {Context} from \\\"../utils/Context.sol\\\";\\nimport {ERC165} from \\\"../utils/introspection/ERC165.sol\\\";\\n\\n/**\\n * @dev Contract module that allows children to implement role-based access\\n * control mechanisms. This is a lightweight version that doesn't allow enumerating role\\n * members except through off-chain means by accessing the contract event logs. Some\\n * applications may benefit from on-chain enumerability, for those cases see\\n * {AccessControlEnumerable}.\\n *\\n * Roles are referred to by their `bytes32` identifier. These should be exposed\\n * in the external API and be unique. The best way to achieve this is by\\n * using `public constant` hash digests:\\n *\\n * ```solidity\\n * bytes32 public constant MY_ROLE = keccak256(\\\"MY_ROLE\\\");\\n * ```\\n *\\n * Roles can be used to represent a set of permissions. To restrict access to a\\n * function call, use {hasRole}:\\n *\\n * ```solidity\\n * function foo() public {\\n *     require(hasRole(MY_ROLE, msg.sender));\\n *     ...\\n * }\\n * ```\\n *\\n * Roles can be granted and revoked dynamically via the {grantRole} and\\n * {revokeRole} functions. Each role has an associated admin role, and only\\n * accounts that have a role's admin role can call {grantRole} and {revokeRole}.\\n *\\n * By default, the admin role for all roles is `DEFAULT_ADMIN_ROLE`, which means\\n * that only accounts with this role will be able to grant or revoke other\\n * roles. More complex role relationships can be created by using\\n * {_setRoleAdmin}.\\n *\\n * WARNING: The `DEFAULT_ADMIN_ROLE` is also its own admin: it has permission to\\n * grant and revoke this role. Extra precautions should be taken to secure\\n * accounts that have been granted it. We recommend using {AccessControlDefaultAdminRules}\\n * to enforce additional security measures for this role.\\n */\\nabstract contract AccessControl is Context, IAccessControl, ERC165 {\\n    struct RoleData {\\n        mapping(address account => bool) hasRole;\\n        bytes32 adminRole;\\n    }\\n\\n    mapping(bytes32 role => RoleData) private _roles;\\n\\n    bytes32 public constant DEFAULT_ADMIN_ROLE = 0x00;\\n\\n    /**\\n     * @dev Modifier that checks that an account has a specific role. Reverts\\n     * with an {AccessControlUnauthorizedAccount} error including the required role.\\n     */\\n    modifier onlyRole(bytes32 role) {\\n        _checkRole(role);\\n        _;\\n    }\\n\\n    /**\\n     * @dev See {IERC165-supportsInterface}.\\n     */\\n    function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {\\n        return interfaceId == type(IAccessControl).interfaceId || super.supportsInterface(interfaceId);\\n    }\\n\\n    /**\\n     * @dev Returns `true` if `account` has been granted `role`.\\n     */\\n    function hasRole(bytes32 role, address account) public view virtual returns (bool) {\\n        return _roles[role].hasRole[account];\\n    }\\n\\n    /**\\n     * @dev Reverts with an {AccessControlUnauthorizedAccount} error if `_msgSender()`\\n     * is missing `role`. Overriding this function changes the behavior of the {onlyRole} modifier.\\n     */\\n    function _checkRole(bytes32 role) internal view virtual {\\n        _checkRole(role, _msgSender());\\n    }\\n\\n    /**\\n     * @dev Reverts with an {AccessControlUnauthorizedAccount} error if `account`\\n     * is missing `role`.\\n     */\\n    function _checkRole(bytes32 role, address account) internal view virtual {\\n        if (!hasRole(role, account)) {\\n            revert AccessControlUnauthorizedAccount(account, role);\\n        }\\n    }\\n\\n    /**\\n     * @dev Returns the admin role that controls `role`. See {grantRole} and\\n     * {revokeRole}.\\n     *\\n     * To change a role's admin, use {_setRoleAdmin}.\\n     */\\n    function getRoleAdmin(bytes32 role) public view virtual returns (bytes32) {\\n        return _roles[role].adminRole;\\n    }\\n\\n    /**\\n     * @dev Grants `role` to `account`.\\n     *\\n     * If `account` had not been already granted `role`, emits a {RoleGranted}\\n     * event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must have ``role``'s admin role.\\n     *\\n     * May emit a {RoleGranted} event.\\n     */\\n    function grantRole(bytes32 role, address account) public virtual onlyRole(getRoleAdmin(role)) {\\n        _grantRole(role, account);\\n    }\\n\\n    /**\\n     * @dev Revokes `role` from `account`.\\n     *\\n     * If `account` had been granted `role`, emits a {RoleRevoked} event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must have ``role``'s admin role.\\n     *\\n     * May emit a {RoleRevoked} event.\\n     */\\n    function revokeRole(bytes32 role, address account) public virtual onlyRole(getRoleAdmin(role)) {\\n        _revokeRole(role, account);\\n    }\\n\\n    /**\\n     * @dev Revokes `role` from the calling account.\\n     *\\n     * Roles are often managed via {grantRole} and {revokeRole}: this function's\\n     * purpose is to provide a mechanism for accounts to lose their privileges\\n     * if they are compromised (such as when a trusted device is misplaced).\\n     *\\n     * If the calling account had been revoked `role`, emits a {RoleRevoked}\\n     * event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must be `callerConfirmation`.\\n     *\\n     * May emit a {RoleRevoked} event.\\n     */\\n    function renounceRole(bytes32 role, address callerConfirmation) public virtual {\\n        if (callerConfirmation != _msgSender()) {\\n            revert AccessControlBadConfirmation();\\n        }\\n\\n        _revokeRole(role, callerConfirmation);\\n    }\\n\\n    /**\\n     * @dev Sets `adminRole` as ``role``'s admin role.\\n     *\\n     * Emits a {RoleAdminChanged} event.\\n     */\\n    function _setRoleAdmin(bytes32 role, bytes32 adminRole) internal virtual {\\n        bytes32 previousAdminRole = getRoleAdmin(role);\\n        _roles[role].adminRole = adminRole;\\n        emit RoleAdminChanged(role, previousAdminRole, adminRole);\\n    }\\n\\n    /**\\n     * @dev Attempts to grant `role` to `account` and returns a boolean indicating if `role` was granted.\\n     *\\n     * Internal function without access restriction.\\n     *\\n     * May emit a {RoleGranted} event.\\n     */\\n    function _grantRole(bytes32 role, address account) internal virtual returns (bool) {\\n        if (!hasRole(role, account)) {\\n            _roles[role].hasRole[account] = true;\\n            emit RoleGranted(role, account, _msgSender());\\n            return true;\\n        } else {\\n            return false;\\n        }\\n    }\\n\\n    /**\\n     * @dev Attempts to revoke `role` to `account` and returns a boolean indicating if `role` was revoked.\\n     *\\n     * Internal function without access restriction.\\n     *\\n     * May emit a {RoleRevoked} event.\\n     */\\n    function _revokeRole(bytes32 role, address account) internal virtual returns (bool) {\\n        if (hasRole(role, account)) {\\n            _roles[role].hasRole[account] = false;\\n            emit RoleRevoked(role, account, _msgSender());\\n            return true;\\n        } else {\\n            return false;\\n        }\\n    }\\n}\\n\",\"keccak256\":\"0xa0e92d42942f4f57c5be50568dac11e9d00c93efcb458026e18d2d9b9b2e7308\",\"license\":\"MIT\"},\"@openzeppelin/contracts/access/IAccessControl.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (access/IAccessControl.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev External interface of AccessControl declared to support ERC165 detection.\\n */\\ninterface IAccessControl {\\n    /**\\n     * @dev The `account` is missing a role.\\n     */\\n    error AccessControlUnauthorizedAccount(address account, bytes32 neededRole);\\n\\n    /**\\n     * @dev The caller of a function is not the expected one.\\n     *\\n     * NOTE: Don't confuse with {AccessControlUnauthorizedAccount}.\\n     */\\n    error AccessControlBadConfirmation();\\n\\n    /**\\n     * @dev Emitted when `newAdminRole` is set as ``role``'s admin role, replacing `previousAdminRole`\\n     *\\n     * `DEFAULT_ADMIN_ROLE` is the starting admin for all roles, despite\\n     * {RoleAdminChanged} not being emitted signaling this.\\n     */\\n    event RoleAdminChanged(bytes32 indexed role, bytes32 indexed previousAdminRole, bytes32 indexed newAdminRole);\\n\\n    /**\\n     * @dev Emitted when `account` is granted `role`.\\n     *\\n     * `sender` is the account that originated the contract call, an admin role\\n     * bearer except when using {AccessControl-_setupRole}.\\n     */\\n    event RoleGranted(bytes32 indexed role, address indexed account, address indexed sender);\\n\\n    /**\\n     * @dev Emitted when `account` is revoked `role`.\\n     *\\n     * `sender` is the account that originated the contract call:\\n     *   - if using `revokeRole`, it is the admin role bearer\\n     *   - if using `renounceRole`, it is the role bearer (i.e. `account`)\\n     */\\n    event RoleRevoked(bytes32 indexed role, address indexed account, address indexed sender);\\n\\n    /**\\n     * @dev Returns `true` if `account` has been granted `role`.\\n     */\\n    function hasRole(bytes32 role, address account) external view returns (bool);\\n\\n    /**\\n     * @dev Returns the admin role that controls `role`. See {grantRole} and\\n     * {revokeRole}.\\n     *\\n     * To change a role's admin, use {AccessControl-_setRoleAdmin}.\\n     */\\n    function getRoleAdmin(bytes32 role) external view returns (bytes32);\\n\\n    /**\\n     * @dev Grants `role` to `account`.\\n     *\\n     * If `account` had not been already granted `role`, emits a {RoleGranted}\\n     * event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must have ``role``'s admin role.\\n     */\\n    function grantRole(bytes32 role, address account) external;\\n\\n    /**\\n     * @dev Revokes `role` from `account`.\\n     *\\n     * If `account` had been granted `role`, emits a {RoleRevoked} event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must have ``role``'s admin role.\\n     */\\n    function revokeRole(bytes32 role, address account) external;\\n\\n    /**\\n     * @dev Revokes `role` from the calling account.\\n     *\\n     * Roles are often managed via {grantRole} and {revokeRole}: this function's\\n     * purpose is to provide a mechanism for accounts to lose their privileges\\n     * if they are compromised (such as when a trusted device is misplaced).\\n     *\\n     * If the calling account had been granted `role`, emits a {RoleRevoked}\\n     * event.\\n     *\\n     * Requirements:\\n     *\\n     * - the caller must be `callerConfirmation`.\\n     */\\n    function renounceRole(bytes32 role, address callerConfirmation) external;\\n}\\n\",\"keccak256\":\"0xb6b36edd6a2999fd243ff226d6cbf84bd71af2432bbd0dfe19392996a1d9cb41\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Context.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.1) (utils/Context.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Provides information about the current execution context, including the\\n * sender of the transaction and its data. While these are generally available\\n * via msg.sender and msg.data, they should not be accessed in such a direct\\n * manner, since when dealing with meta-transactions the account sending and\\n * paying for execution may not be the actual sender (as far as an application\\n * is concerned).\\n *\\n * This contract is only required for intermediate, library-like contracts.\\n */\\nabstract contract Context {\\n    function _msgSender() internal view virtual returns (address) {\\n        return msg.sender;\\n    }\\n\\n    function _msgData() internal view virtual returns (bytes calldata) {\\n        return msg.data;\\n    }\\n\\n    function _contextSuffixLength() internal view virtual returns (uint256) {\\n        return 0;\\n    }\\n}\\n\",\"keccak256\":\"0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (utils/ReentrancyGuard.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Contract module that helps prevent reentrant calls to a function.\\n *\\n * Inheriting from `ReentrancyGuard` will make the {nonReentrant} modifier\\n * available, which can be applied to functions to make sure there are no nested\\n * (reentrant) calls to them.\\n *\\n * Note that because there is a single `nonReentrant` guard, functions marked as\\n * `nonReentrant` may not call one another. This can be worked around by making\\n * those functions `private`, and then adding `external` `nonReentrant` entry\\n * points to them.\\n *\\n * TIP: If you would like to learn more about reentrancy and alternative ways\\n * to protect against it, check out our blog post\\n * https://blog.openzeppelin.com/reentrancy-after-istanbul/[Reentrancy After Istanbul].\\n */\\nabstract contract ReentrancyGuard {\\n    // Booleans are more expensive than uint256 or any type that takes up a full\\n    // word because each write operation emits an extra SLOAD to first read the\\n    // slot's contents, replace the bits taken up by the boolean, and then write\\n    // back. This is the compiler's defense against contract upgrades and\\n    // pointer aliasing, and it cannot be disabled.\\n\\n    // The values being non-zero value makes deployment a bit more expensive,\\n    // but in exchange the refund on every call to nonReentrant will be lower in\\n    // amount. Since refunds are capped to a percentage of the total\\n    // transaction's gas, it is best to keep them low in cases like this one, to\\n    // increase the likelihood of the full refund coming into effect.\\n    uint256 private constant NOT_ENTERED = 1;\\n    uint256 private constant ENTERED = 2;\\n\\n    uint256 private _status;\\n\\n    /**\\n     * @dev Unauthorized reentrant call.\\n     */\\n    error ReentrancyGuardReentrantCall();\\n\\n    constructor() {\\n        _status = NOT_ENTERED;\\n    }\\n\\n    /**\\n     * @dev Prevents a contract from calling itself, directly or indirectly.\\n     * Calling a `nonReentrant` function from another `nonReentrant`\\n     * function is not supported. It is possible to prevent this from happening\\n     * by making the `nonReentrant` function external, and making it call a\\n     * `private` function that does the actual work.\\n     */\\n    modifier nonReentrant() {\\n        _nonReentrantBefore();\\n        _;\\n        _nonReentrantAfter();\\n    }\\n\\n    function _nonReentrantBefore() private {\\n        // On the first call to nonReentrant, _status will be NOT_ENTERED\\n        if (_status == ENTERED) {\\n            revert ReentrancyGuardReentrantCall();\\n        }\\n\\n        // Any calls to nonReentrant after this point will fail\\n        _status = ENTERED;\\n    }\\n\\n    function _nonReentrantAfter() private {\\n        // By storing the original value once again, a refund is triggered (see\\n        // https://eips.ethereum.org/EIPS/eip-2200)\\n        _status = NOT_ENTERED;\\n    }\\n\\n    /**\\n     * @dev Returns true if the reentrancy guard is currently set to \\\"entered\\\", which indicates there is a\\n     * `nonReentrant` function in the call stack.\\n     */\\n    function _reentrancyGuardEntered() internal view returns (bool) {\\n        return _status == ENTERED;\\n    }\\n}\\n\",\"keccak256\":\"0xf980daa263b661ab8ddee7d4fd833c7da7e7995e2c359ff1f17e67e4112f2236\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/introspection/ERC165.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (utils/introspection/ERC165.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {IERC165} from \\\"./IERC165.sol\\\";\\n\\n/**\\n * @dev Implementation of the {IERC165} interface.\\n *\\n * Contracts that want to implement ERC165 should inherit from this contract and override {supportsInterface} to check\\n * for the additional interface id that will be supported. For example:\\n *\\n * ```solidity\\n * function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {\\n *     return interfaceId == type(MyInterface).interfaceId || super.supportsInterface(interfaceId);\\n * }\\n * ```\\n */\\nabstract contract ERC165 is IERC165 {\\n    /**\\n     * @dev See {IERC165-supportsInterface}.\\n     */\\n    function supportsInterface(bytes4 interfaceId) public view virtual returns (bool) {\\n        return interfaceId == type(IERC165).interfaceId;\\n    }\\n}\\n\",\"keccak256\":\"0x9e8778b14317ba9e256c30a76fd6c32b960af621987f56069e1e819c77c6a133\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/introspection/IERC165.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (utils/introspection/IERC165.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Interface of the ERC165 standard, as defined in the\\n * https://eips.ethereum.org/EIPS/eip-165[EIP].\\n *\\n * Implementers can declare support of contract interfaces, which can then be\\n * queried by others ({ERC165Checker}).\\n *\\n * For an implementation, see {ERC165}.\\n */\\ninterface IERC165 {\\n    /**\\n     * @dev Returns true if this contract implements the interface defined by\\n     * `interfaceId`. See the corresponding\\n     * https://eips.ethereum.org/EIPS/eip-165#how-interfaces-are-identified[EIP section]\\n     * to learn more about how these ids are created.\\n     *\\n     * This function call must use less than 30 000 gas.\\n     */\\n    function supportsInterface(bytes4 interfaceId) external view returns (bool);\\n}\\n\",\"keccak256\":\"0x4296879f55019b23e135000eb36896057e7101fb7fb859c5ef690cf14643757b\",\"license\":\"MIT\"},\"contracts/ComplianceEngine.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.20;\\r\\n\\r\\nimport \\\"@openzeppelin/contracts/access/AccessControl.sol\\\";\\r\\nimport \\\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\\\";\\r\\n\\r\\n/**\\r\\n * @title ComplianceEngine\\r\\n * @notice Programmable KYC/AML/Sanctions compliance for institutional payments\\r\\n * @dev Implements tiered verification with real-time sanctions checking\\r\\n * \\r\\n * KEY FEATURES:\\r\\n * - Multi-tier KYC levels (None \\u2192 Institutional)\\r\\n * - OFAC/EU/UN sanctions list checking\\r\\n * - Travel Rule compliance for >$3000 transfers\\r\\n * - Jurisdiction-based restrictions\\r\\n * - Automated compliance reporting\\r\\n */\\r\\ncontract ComplianceEngine is AccessControl, ReentrancyGuard {\\r\\n    bytes32 public constant COMPLIANCE_OFFICER = keccak256(\\\"COMPLIANCE_OFFICER\\\");\\r\\n    bytes32 public constant KYC_VERIFIER = keccak256(\\\"KYC_VERIFIER\\\");\\r\\n    bytes32 public constant SANCTIONS_UPDATER = keccak256(\\\"SANCTIONS_UPDATER\\\");\\r\\n\\r\\n    // Compliance tiers (matches PayFlowCore)\\r\\n    enum ComplianceTier {\\r\\n        NONE,           // Unverified\\r\\n        BASIC,          // Email + phone verified\\r\\n        STANDARD,       // ID document verified\\r\\n        ENHANCED,       // Enhanced due diligence\\r\\n        INSTITUTIONAL   // Full institutional verification\\r\\n    }\\r\\n\\r\\n    struct EntityProfile {\\r\\n        address entity;\\r\\n        ComplianceTier tier;\\r\\n        bool isVerified;\\r\\n        bool isSanctioned;\\r\\n        \\r\\n        // Identity\\r\\n        bytes32 identityHash;       // Hash of identity documents\\r\\n        string jurisdiction;        // ISO country code\\r\\n        bool isPEP;                 // Politically Exposed Person\\r\\n        \\r\\n        // Limits\\r\\n        uint256 dailyLimit;\\r\\n        uint256 monthlyLimit;\\r\\n        uint256 singleTxLimit;\\r\\n        \\r\\n        // Usage tracking\\r\\n        uint256 dailyVolume;\\r\\n        uint256 monthlyVolume;\\r\\n        uint256 lastDayReset;\\r\\n        uint256 lastMonthReset;\\r\\n        \\r\\n        // Verification\\r\\n        uint256 verifiedAt;\\r\\n        uint256 expiresAt;\\r\\n        address verifiedBy;\\r\\n        \\r\\n        // Risk\\r\\n        uint8 riskScore;            // 0-100\\r\\n        bool underReview;\\r\\n    }\\r\\n\\r\\n    struct TransactionCheck {\\r\\n        bool passed;\\r\\n        string reason;\\r\\n        bool requiresTravelRule;\\r\\n        bool requiresEnhancedDD;\\r\\n        uint256 timestamp;\\r\\n    }\\r\\n\\r\\n    // State\\r\\n    mapping(address => EntityProfile) public profiles;\\r\\n    mapping(bytes32 => bool) public sanctionsList;      // Hash of sanctioned entity\\r\\n    mapping(string => bool) public restrictedJurisdictions;\\r\\n    \\r\\n    // Travel Rule threshold ($3000 equivalent)\\r\\n    uint256 public travelRuleThreshold = 3000 * 1e18;\\r\\n    \\r\\n    // Tier limits in USD value (scaled by 1e18)\\r\\n    mapping(ComplianceTier => uint256) public tierDailyLimits;\\r\\n    mapping(ComplianceTier => uint256) public tierMonthlyLimits;\\r\\n    mapping(ComplianceTier => uint256) public tierSingleTxLimits;\\r\\n\\r\\n    // Statistics\\r\\n    uint256 public totalVerifications;\\r\\n    uint256 public totalChecks;\\r\\n    uint256 public totalRejections;\\r\\n    uint256 public sanctionsListSize;\\r\\n\\r\\n    // Events\\r\\n    event EntityVerified(\\r\\n        address indexed entity,\\r\\n        ComplianceTier tier,\\r\\n        address verifiedBy\\r\\n    );\\r\\n    \\r\\n    event EntitySanctioned(\\r\\n        address indexed entity,\\r\\n        string reason\\r\\n    );\\r\\n    \\r\\n    event EntityCleared(\\r\\n        address indexed entity\\r\\n    );\\r\\n    \\r\\n    event TransactionChecked(\\r\\n        bytes32 indexed paymentId,\\r\\n        address indexed sender,\\r\\n        address indexed recipient,\\r\\n        bool passed,\\r\\n        string reason\\r\\n    );\\r\\n    \\r\\n    event SanctionsListUpdated(\\r\\n        bytes32 indexed entityHash,\\r\\n        bool sanctioned\\r\\n    );\\r\\n\\r\\n    constructor() {\\r\\n        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);\\r\\n        _grantRole(COMPLIANCE_OFFICER, msg.sender);\\r\\n        _grantRole(KYC_VERIFIER, msg.sender);\\r\\n        _grantRole(SANCTIONS_UPDATER, msg.sender);\\r\\n        \\r\\n        // Initialize tier limits\\r\\n        tierDailyLimits[ComplianceTier.NONE] = 1000 * 1e18;\\r\\n        tierDailyLimits[ComplianceTier.BASIC] = 10000 * 1e18;\\r\\n        tierDailyLimits[ComplianceTier.STANDARD] = 50000 * 1e18;\\r\\n        tierDailyLimits[ComplianceTier.ENHANCED] = 500000 * 1e18;\\r\\n        tierDailyLimits[ComplianceTier.INSTITUTIONAL] = type(uint256).max;\\r\\n        \\r\\n        tierMonthlyLimits[ComplianceTier.NONE] = 5000 * 1e18;\\r\\n        tierMonthlyLimits[ComplianceTier.BASIC] = 50000 * 1e18;\\r\\n        tierMonthlyLimits[ComplianceTier.STANDARD] = 250000 * 1e18;\\r\\n        tierMonthlyLimits[ComplianceTier.ENHANCED] = 2500000 * 1e18;\\r\\n        tierMonthlyLimits[ComplianceTier.INSTITUTIONAL] = type(uint256).max;\\r\\n        \\r\\n        tierSingleTxLimits[ComplianceTier.NONE] = 500 * 1e18;\\r\\n        tierSingleTxLimits[ComplianceTier.BASIC] = 5000 * 1e18;\\r\\n        tierSingleTxLimits[ComplianceTier.STANDARD] = 25000 * 1e18;\\r\\n        tierSingleTxLimits[ComplianceTier.ENHANCED] = 100000 * 1e18;\\r\\n        tierSingleTxLimits[ComplianceTier.INSTITUTIONAL] = type(uint256).max;\\r\\n    }\\r\\n\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n    //                         KYC VERIFICATION\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n\\r\\n    /**\\r\\n     * @notice Verify an entity at a specific compliance tier\\r\\n     */\\r\\n    function verifyEntity(\\r\\n        address entity,\\r\\n        ComplianceTier tier,\\r\\n        bytes32 identityHash,\\r\\n        string calldata jurisdiction,\\r\\n        bool isPEP,\\r\\n        uint8 riskScore,\\r\\n        uint256 validityPeriod\\r\\n    ) external onlyRole(KYC_VERIFIER) {\\r\\n        require(entity != address(0), \\\"Invalid entity\\\");\\r\\n        require(!restrictedJurisdictions[jurisdiction], \\\"Restricted jurisdiction\\\");\\r\\n        \\r\\n        EntityProfile storage profile = profiles[entity];\\r\\n        \\r\\n        profile.entity = entity;\\r\\n        profile.tier = tier;\\r\\n        profile.isVerified = true;\\r\\n        profile.identityHash = identityHash;\\r\\n        profile.jurisdiction = jurisdiction;\\r\\n        profile.isPEP = isPEP;\\r\\n        profile.riskScore = riskScore;\\r\\n        profile.verifiedAt = block.timestamp;\\r\\n        profile.expiresAt = block.timestamp + validityPeriod;\\r\\n        profile.verifiedBy = msg.sender;\\r\\n        \\r\\n        // Set limits based on tier\\r\\n        profile.dailyLimit = tierDailyLimits[tier];\\r\\n        profile.monthlyLimit = tierMonthlyLimits[tier];\\r\\n        profile.singleTxLimit = tierSingleTxLimits[tier];\\r\\n        \\r\\n        totalVerifications++;\\r\\n        \\r\\n        emit EntityVerified(entity, tier, msg.sender);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @notice Upgrade entity to higher tier\\r\\n     */\\r\\n    function upgradeEntity(\\r\\n        address entity,\\r\\n        ComplianceTier newTier,\\r\\n        bytes32 additionalDocs\\r\\n    ) external onlyRole(KYC_VERIFIER) {\\r\\n        EntityProfile storage profile = profiles[entity];\\r\\n        require(profile.isVerified, \\\"Not verified\\\");\\r\\n        require(newTier > profile.tier, \\\"Must be higher tier\\\");\\r\\n        \\r\\n        profile.tier = newTier;\\r\\n        profile.dailyLimit = tierDailyLimits[newTier];\\r\\n        profile.monthlyLimit = tierMonthlyLimits[newTier];\\r\\n        profile.singleTxLimit = tierSingleTxLimits[newTier];\\r\\n        \\r\\n        emit EntityVerified(entity, newTier, msg.sender);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @notice Mark entity as sanctioned\\r\\n     */\\r\\n    function sanctionEntity(\\r\\n        address entity,\\r\\n        string calldata reason\\r\\n    ) external onlyRole(COMPLIANCE_OFFICER) {\\r\\n        profiles[entity].isSanctioned = true;\\r\\n        profiles[entity].underReview = true;\\r\\n        \\r\\n        emit EntitySanctioned(entity, reason);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @notice Remove entity from sanctions\\r\\n     */\\r\\n    function clearEntity(address entity) external onlyRole(COMPLIANCE_OFFICER) {\\r\\n        profiles[entity].isSanctioned = false;\\r\\n        profiles[entity].underReview = false;\\r\\n        \\r\\n        emit EntityCleared(entity);\\r\\n    }\\r\\n\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n    //                         TRANSACTION COMPLIANCE\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n\\r\\n    /**\\r\\n     * @notice Check if a payment is compliant\\r\\n     * @param paymentId Unique payment identifier\\r\\n     * @param sender Sender address\\r\\n     * @param recipient Recipient address\\r\\n     * @param amount Payment amount in USD value\\r\\n     * @param requireSanctionsCheck Whether to check sanctions\\r\\n     * @param requiredSenderTier Minimum sender tier required\\r\\n     * @param requiredRecipientTier Minimum recipient tier required\\r\\n     */\\r\\n    function checkPaymentCompliance(\\r\\n        bytes32 paymentId,\\r\\n        address sender,\\r\\n        address recipient,\\r\\n        uint256 amount,\\r\\n        bool requireSanctionsCheck,\\r\\n        ComplianceTier requiredSenderTier,\\r\\n        ComplianceTier requiredRecipientTier\\r\\n    ) external returns (TransactionCheck memory check) {\\r\\n        totalChecks++;\\r\\n        \\r\\n        EntityProfile storage senderProfile = profiles[sender];\\r\\n        EntityProfile storage recipientProfile = profiles[recipient];\\r\\n        \\r\\n        // Sanctions check\\r\\n        if (requireSanctionsCheck) {\\r\\n            if (senderProfile.isSanctioned) {\\r\\n                check = _reject(paymentId, sender, recipient, \\\"Sender is sanctioned\\\");\\r\\n                return check;\\r\\n            }\\r\\n            if (recipientProfile.isSanctioned) {\\r\\n                check = _reject(paymentId, sender, recipient, \\\"Recipient is sanctioned\\\");\\r\\n                return check;\\r\\n            }\\r\\n        }\\r\\n        \\r\\n        // Tier verification\\r\\n        if (senderProfile.tier < requiredSenderTier) {\\r\\n            check = _reject(paymentId, sender, recipient, \\\"Sender tier insufficient\\\");\\r\\n            return check;\\r\\n        }\\r\\n        if (recipientProfile.tier < requiredRecipientTier) {\\r\\n            check = _reject(paymentId, sender, recipient, \\\"Recipient tier insufficient\\\");\\r\\n            return check;\\r\\n        }\\r\\n        \\r\\n        // Verification expiry\\r\\n        if (senderProfile.isVerified && senderProfile.expiresAt < block.timestamp) {\\r\\n            check = _reject(paymentId, sender, recipient, \\\"Sender verification expired\\\");\\r\\n            return check;\\r\\n        }\\r\\n        \\r\\n        // Limit checks\\r\\n        _resetLimitsIfNeeded(senderProfile);\\r\\n        \\r\\n        if (amount > senderProfile.singleTxLimit) {\\r\\n            check = _reject(paymentId, sender, recipient, \\\"Exceeds single transaction limit\\\");\\r\\n            return check;\\r\\n        }\\r\\n        \\r\\n        if (senderProfile.dailyVolume + amount > senderProfile.dailyLimit) {\\r\\n            check = _reject(paymentId, sender, recipient, \\\"Exceeds daily limit\\\");\\r\\n            return check;\\r\\n        }\\r\\n        \\r\\n        if (senderProfile.monthlyVolume + amount > senderProfile.monthlyLimit) {\\r\\n            check = _reject(paymentId, sender, recipient, \\\"Exceeds monthly limit\\\");\\r\\n            return check;\\r\\n        }\\r\\n        \\r\\n        // Update volume tracking\\r\\n        senderProfile.dailyVolume += amount;\\r\\n        senderProfile.monthlyVolume += amount;\\r\\n        \\r\\n        // Travel rule check\\r\\n        bool requiresTravelRule = amount >= travelRuleThreshold;\\r\\n        \\r\\n        // Enhanced due diligence for high risk\\r\\n        bool requiresEnhancedDD = senderProfile.riskScore > 70 || \\r\\n                                  recipientProfile.riskScore > 70 ||\\r\\n                                  senderProfile.isPEP ||\\r\\n                                  recipientProfile.isPEP;\\r\\n        \\r\\n        check = TransactionCheck({\\r\\n            passed: true,\\r\\n            reason: \\\"Compliance check passed\\\",\\r\\n            requiresTravelRule: requiresTravelRule,\\r\\n            requiresEnhancedDD: requiresEnhancedDD,\\r\\n            timestamp: block.timestamp\\r\\n        });\\r\\n        \\r\\n        emit TransactionChecked(paymentId, sender, recipient, true, \\\"Passed\\\");\\r\\n        \\r\\n        return check;\\r\\n    }\\r\\n\\r\\n    function _reject(\\r\\n        bytes32 paymentId,\\r\\n        address sender,\\r\\n        address recipient,\\r\\n        string memory reason\\r\\n    ) internal returns (TransactionCheck memory) {\\r\\n        totalRejections++;\\r\\n        emit TransactionChecked(paymentId, sender, recipient, false, reason);\\r\\n        \\r\\n        return TransactionCheck({\\r\\n            passed: false,\\r\\n            reason: reason,\\r\\n            requiresTravelRule: false,\\r\\n            requiresEnhancedDD: false,\\r\\n            timestamp: block.timestamp\\r\\n        });\\r\\n    }\\r\\n\\r\\n    function _resetLimitsIfNeeded(EntityProfile storage profile) internal {\\r\\n        uint256 currentDay = block.timestamp / 1 days;\\r\\n        uint256 currentMonth = block.timestamp / 30 days;\\r\\n        \\r\\n        if (profile.lastDayReset < currentDay) {\\r\\n            profile.dailyVolume = 0;\\r\\n            profile.lastDayReset = currentDay;\\r\\n        }\\r\\n        \\r\\n        if (profile.lastMonthReset < currentMonth) {\\r\\n            profile.monthlyVolume = 0;\\r\\n            profile.lastMonthReset = currentMonth;\\r\\n        }\\r\\n    }\\r\\n\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n    //                         SANCTIONS LIST\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n\\r\\n    /**\\r\\n     * @notice Add entity hash to sanctions list\\r\\n     */\\r\\n    function addToSanctionsList(bytes32 entityHash) external onlyRole(SANCTIONS_UPDATER) {\\r\\n        if (!sanctionsList[entityHash]) {\\r\\n            sanctionsList[entityHash] = true;\\r\\n            sanctionsListSize++;\\r\\n            emit SanctionsListUpdated(entityHash, true);\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @notice Bulk add to sanctions list\\r\\n     */\\r\\n    function bulkAddToSanctionsList(bytes32[] calldata entityHashes) external onlyRole(SANCTIONS_UPDATER) {\\r\\n        for (uint256 i = 0; i < entityHashes.length; i++) {\\r\\n            if (!sanctionsList[entityHashes[i]]) {\\r\\n                sanctionsList[entityHashes[i]] = true;\\r\\n                sanctionsListSize++;\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @notice Remove from sanctions list\\r\\n     */\\r\\n    function removeFromSanctionsList(bytes32 entityHash) external onlyRole(SANCTIONS_UPDATER) {\\r\\n        if (sanctionsList[entityHash]) {\\r\\n            sanctionsList[entityHash] = false;\\r\\n            sanctionsListSize--;\\r\\n            emit SanctionsListUpdated(entityHash, false);\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @notice Check if entity hash is sanctioned\\r\\n     */\\r\\n    function isSanctioned(bytes32 entityHash) external view returns (bool) {\\r\\n        return sanctionsList[entityHash];\\r\\n    }\\r\\n\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n    //                         JURISDICTION MANAGEMENT\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n\\r\\n    function addRestrictedJurisdiction(string calldata jurisdiction) external onlyRole(COMPLIANCE_OFFICER) {\\r\\n        restrictedJurisdictions[jurisdiction] = true;\\r\\n    }\\r\\n\\r\\n    function removeRestrictedJurisdiction(string calldata jurisdiction) external onlyRole(COMPLIANCE_OFFICER) {\\r\\n        restrictedJurisdictions[jurisdiction] = false;\\r\\n    }\\r\\n\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n    //                         VIEW FUNCTIONS\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n\\r\\n    function getEntityProfile(address entity) external view returns (\\r\\n        ComplianceTier tier,\\r\\n        bool isVerified,\\r\\n        bool sanctioned,\\r\\n        string memory jurisdiction,\\r\\n        uint8 riskScore,\\r\\n        uint256 dailyRemaining,\\r\\n        uint256 monthlyRemaining\\r\\n    ) {\\r\\n        EntityProfile storage p = profiles[entity];\\r\\n        \\r\\n        uint256 dailyUsed = p.lastDayReset == block.timestamp / 1 days ? p.dailyVolume : 0;\\r\\n        uint256 monthlyUsed = p.lastMonthReset == block.timestamp / 30 days ? p.monthlyVolume : 0;\\r\\n        \\r\\n        return (\\r\\n            p.tier,\\r\\n            p.isVerified,\\r\\n            p.isSanctioned,\\r\\n            p.jurisdiction,\\r\\n            p.riskScore,\\r\\n            p.dailyLimit > dailyUsed ? p.dailyLimit - dailyUsed : 0,\\r\\n            p.monthlyLimit > monthlyUsed ? p.monthlyLimit - monthlyUsed : 0\\r\\n        );\\r\\n    }\\r\\n\\r\\n    function getComplianceStats() external view returns (\\r\\n        uint256 verifications,\\r\\n        uint256 checks,\\r\\n        uint256 rejections,\\r\\n        uint256 sanctions\\r\\n    ) {\\r\\n        return (totalVerifications, totalChecks, totalRejections, sanctionsListSize);\\r\\n    }\\r\\n\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n    //                         ADMIN\\r\\n    // \\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\u2550\\r\\n\\r\\n    function setTravelRuleThreshold(uint256 threshold) external onlyRole(COMPLIANCE_OFFICER) {\\r\\n        travelRuleThreshold = threshold;\\r\\n    }\\r\\n\\r\\n    function setTierLimits(\\r\\n        ComplianceTier tier,\\r\\n        uint256 daily,\\r\\n        uint256 monthly,\\r\\n        uint256 singleTx\\r\\n    ) external onlyRole(COMPLIANCE_OFFICER) {\\r\\n        tierDailyLimits[tier] = daily;\\r\\n        tierMonthlyLimits[tier] = monthly;\\r\\n        tierSingleTxLimits[tier] = singleTx;\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0x97bfd1456ec476f7de15e6f2b9effdb6d7edfd18d25d342d9b609f1400232cb3\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x6040608081523462000156576001805568a2a15d09519be0000060055562000027336200015b565b506200003333620001db565b506200003f336200027d565b506200004b336200031a565b5060008080526006602052683635c9adc5dea00000828220556001815269021e19e0c9bab2400000828220556002815281690a968163f0a57b400000918282822055600381526969e10de76676d08000008282205560048152600019928383832055818052600760205269010f0cf064dd592000009081848420556001835283832055600282526934f086f3b33b6840000083832055600382526a0211654585005212800000838320556004825283838320558180526008602052681b1ae4d6e2ef5000008383205560018252828220556002815269054b40b1f852bda00000828220556003815269152d02c7e14af68000008282205560048152205551611d3e9081620003b88239f35b600080fd5b6001600160a01b031660008181527fad3228b676f7d3cd4284a5443f17f1962b36e491b30a40b2405849e597ba5fb5602052604081205490919060ff16620001d757818052816020526040822081835260205260408220600160ff198254161790553391600080516020620020f68339815191528180a4600190565b5090565b6001600160a01b031660008181527fca440bb5b4f276d246650b92ae261b87f0f2224864f13e13edcfda2aaca5310260205260408120549091907fb938b4e8be78c5b3d6090a6dcee4f5257472278c0aaffb0b01bee86005dc1fee9060ff166200027857808352826020526040832082845260205260408320600160ff19825416179055600080516020620020f6833981519152339380a4600190565b505090565b6001600160a01b031660008181527f5d1a55042e354fd0855f85397c8d577a90f38bc0d60906abd2f8026542bc359b60205260408120549091907f91275d1fcefacfdb2f4c88a451825db6079efbb939a9fedc620b7645456e84f29060ff166200027857808352826020526040832082845260205260408320600160ff19825416179055600080516020620020f6833981519152339380a4600190565b6001600160a01b031660008181527f0fa198824562723c3f98eb1659f62d9933d4574249b7a5d050902d8978f049e960205260408120549091907f8543a18258c3caa4a95592be8e6241dbfdd96e339d76cf3044673f6185aa63669060ff166200027857808352826020526040832082845260205260408320600160ff19825416179055600080516020620020f6833981519152339380a460019056fe60808060405260048036101561001457600080fd5b600091823560e01c90816301ffc9a71461118b575080630938fc14146110bf57806314f826bd146110a1578063162e226414611083578063164e1bcd1461105b578063248a9ca3146110305780632f2ff15d14610ff45780633489ee261461092a57806336568abe14610fad5780633d0879a114610f535780633e9ccbf114610f2a5780634bee09d014610f0c5780634d51999414610ee4578063551bece614610e2c5780636600287514610e0b57806370e759cf14610de257806374b14d9a14610db957806377d638ba14610c95578063782c87e514610c3a5780637be9b9c214610af457806389713e8e14610aa657806391d1485414610a5e57806395acb81f146109e7578063a217fddf146109cb578063a2ff542e14610994578063a63b3f2e14610976578063ac90c14014610958578063badb4bb51461092a578063bb7340a114610858578063bbe1562714610707578063c14dd99914610699578063c86ed603146105e4578063cc1ba11514610562578063d547741f14610522578063e7fee78e146104ee5763f756c60b146101ae57600080fd5b346104ea5760e03660031901126104ea576101c761125b565b906024359060058210156104e6576001600160401b03906064358281116104e2576101f59036908301611271565b949092610200611442565b9060a4359260ff841684036104de57610217611503565b6001600160a01b03169687156104a957604051958181883760ff878381018881526020998a9103019020541661046b57888a526002875260408a2080546001600160a01b0319168a1781559661026d8989611666565b600160a81b60ff60a81b19895416178855600191604435838a0155600289019484116104585761029d8554611362565b601f8111610410575b508b8092601f86116001146103925750936103819997959381938293600080516020611c698339815191529d9b999794610387575b50501b916000199060031b1c19161790555b600384019060ff801983541691151516179055600d830190815442600b86015561031960c4354261168a565b600c8601556001600160a81b03191660a09190911b60ff60a01b1617331790556103428361120e565b549082015561035082611227565b5460058201556006610361836111df565b549101556103706009546116ad565b6009556040519182913390836116bc565b0390a280f35b0135925038806102db565b8682528082209495949391601f198616915b8282106103f957505091600080516020611c698339815191529b9997959391856103819c9a989694106103df575b505050811b0190556102ed565b0135600019600384901b60f8161c191690553880806103d2565b8088859782949688013581550196019301906103a4565b858d52828d20601f860160051c81019184871061044e575b601f0160051c019084908e5b838210610443575050506102a6565b81550184908e610434565b9091508190610428565b634e487b7160e01b8c526041885260248cfd5b60405162461bcd60e51b815280870188905260176024820152762932b9ba3934b1ba32b210353ab934b9b234b1ba34b7b760491b6044820152606490fd5b60405162461bcd60e51b8152602081870152600e60248201526d496e76616c696420656e7469747960901b6044820152606490fd5b8880fd5b8580fd5b8380fd5b5080fd5b50346104ea5760203660031901126104ea573590600582101561051f57602061051683611227565b54604051908152f35b80fd5b50346104ea5760403660031901126104ea5761055e9035610541611240565b9080845283602052610559600160408620015461154d565b6115f1565b5080f35b50346104ea5760203660031901126104ea5780359061057f611451565b818352600360205260408320805460ff8116610599578480f35b60ff19169055600c549081156105d1575060001901600c55600080516020611c898339815191526020604051848152a2388080808480f35b634e487b7160e01b845260119052602483fd5b50346104ea5760e03660031901126104ea576105fe611240565b90604435906001600160a01b03821682036104e65761061b611442565b9060a4359260058410156104e25760c435946005861015610695576106459650606435923561170a565b6040518091602082528051151560208301526080610672602083015160a0604086015260c085019061133d565b916040810151151560608501526060810151151582850152015160a08301520390f35b8680fd5b50346104ea5760203660031901126104ea57356106b4611451565b808252600360205260408220805460ff8116156106cf578380f35b60ff19166001179055600c546106e4906116ad565b600c55600080516020611c89833981519152602060405160018152a23880808380f35b50903461051f57602036600319011261051f576001600160a01b0361072a61125b565b168152600260205260409020908154906001830154926002810161074d9061139c565b90600381015460ff1692810154600582015460068301546007840154600885015490600986015492600a87015494600b88015496600c89015498600d0154996040519d8e809e600160a01b6001900381168252602082018160a01c60ff16906107b591611330565b8060a81c60ff161515604083015260b01c60ff1615156060820152608001528c61026060a0819201528d016107e99161133d565b9a151560c08d015260e08c01526101008b01526101208a01526101408901526101608801526101808701526101a08601526101c08501526101e08401526001600160a01b03811661020084015260ff60a082901c811661022085015260a89190911c1615156102408301520390f35b50346104ea5760403660031901126104ea5761087261125b565b90602435906001600160401b0382116104e6576108b56040917f15c73756bf4512e9cd224c0c973f39b2defdd913f76cba0115f8c4b030e4957593369101611271565b9190936108c06114b9565b6001600160a01b031680865260026020908152828720805460ff60b01b1916600160b01b178155600d01805460ff60a81b1916600160a81b17905582518181529081018490529094909283918190838501378181018301879052601f01601f19168101030190a280f35b50346104ea5760203660031901126104ea57604060209260ff92358152600384522054166040519015158152f35b823461051f578060031936011261051f576020600954604051908152f35b823461051f578060031936011261051f576020600554604051908152f35b823461051f578060031936011261051f576080600954600a54600b54600c5491604051938452602084015260408301526060820152f35b823461051f578060031936011261051f57602090604051908152f35b823461051f57602036600319011261051f57610a0161125b565b610a096114b9565b6001600160a01b0316808252600260205260408220805460ff60b01b19168155600d01805460ff60a81b191690557f729f46521751e08db9864853eb25848681fd7d6ade69d6435509c517f7c3e4798280a280f35b50346104ea5760403660031901126104ea57604060209260ff92610a80611240565b903582528185528282206001600160a01b03909116825284522054604051911615158152f35b50346104ea5760803660031901126104ea573560058110156104ea57610aca6114b9565b602435610ad68261120e565b55604435610ae382611227565b55610af0606435916111df565b5580f35b50346104ea5760603660031901126104ea57610b0e61125b565b6024359060058210156104e657610b23611503565b6001600160a01b031680845260026020526040842080549193909160a881901c60ff1615610c075760a01c60ff166005811015610bf457831115610bba579181600080516020611c6983398151915293610b808361038195611666565b610b898361120e565b5490820155610b9782611227565b5460058201556006610ba8836111df565b549101556040519182913390836116bc565b60649060206040519162461bcd60e51b8352820152601360248201527226bab9ba103132903434b3b432b9103a34b2b960691b6044820152fd5b634e487b7160e01b865260218252602486fd5b60405162461bcd60e51b8152602081840152600c60248201526b139bdd081d995c9a599a595960a21b6044820152606490fd5b50346104ea5760203660031901126104ea5780356001600160401b038111610c9157610c6b60209136908401611271565b92610c746114b9565b836040519485938437820190815203019020805460ff1916905580f35b8280fd5b50346104ea5760203660031901126104ea5760ff91906001600160a01b03610cbb61125b565b168252600260205260408220600981015462015180420403610db3576007810154925b600a82015462278d00420403610da45784610d7b610d3d60026008860154945b8654600d88015498880154909980821115610d9b57610d1c91611c3b565b955b600588015481811115610d9357610d359250611c3b565b955b0161139c565b6040519787610d528a83819b60a01c16611330565b818160a81c16151560208a015260b01c161515604088015260e0606088015260e087019061133d565b9360a01c16608085015260a084015260c08301520390f35b505095610d37565b50508095610d1e565b84610d7b610d3d600284610cfe565b82610cde565b823461051f578060031936011261051f576020604051600080516020611c498339815191528152f35b823461051f578060031936011261051f576020604051600080516020611ce98339815191528152f35b50346104ea5760203660031901126104ea57610e256114b9565b3560055580f35b50903461051f57602091826003193601126104ea578035916001600160401b039081841161051f573660238501121561051f5783830135918211610ed15760405191610e81601f8201601f19168701846112ea565b808352858301943660248383010111610c91579260ff95928783610ebc9794602483980187378301015260405194859384925192839161130d565b82019081520301902054166040519015158152f35b634e487b7160e01b815260418352602490fd5b50346104ea5760203660031901126104ea573590600582101561051f5760206105168361120e565b823461051f578060031936011261051f576020600b54604051908152f35b823461051f578060031936011261051f576020604051600080516020611cc98339815191528152f35b50346104ea5760203660031901126104ea5780356001600160401b038111610c9157610f8460209136908401611271565b92610f8d6114b9565b836040519485938437820190815203019020805460ff1916600117905580f35b50903461051f57604036600319011261051f57610fc8611240565b336001600160a01b03821603610fe35761055e9192356115f1565b60405163334bd91960e11b81528390fd5b50346104ea5760403660031901126104ea5761055e9035611013611240565b908084528360205261102b600160408620015461154d565b611573565b50346104ea5760203660031901126104ea576040602092600192358152808452200154604051908152f35b50346104ea5760203660031901126104ea573590600582101561051f576020610516836111df565b823461051f578060031936011261051f576020600a54604051908152f35b823461051f578060031936011261051f576020600c54604051908152f35b50346104ea5760209081600319360112610c91576001600160401b03908035908282116111875736602383011215611187578101359182116104e6576024810190602436918460051b0101116104e657611117611451565b835b828110611124578480f35b8061113361114f928585611c15565b358652600380865260ff60408820541615611154575b506116ad565b611119565b61115f828686611c15565b358752855260408620600160ff19825416179055600c61117f81546116ad565b905538611149565b8480fd5b91905034610c91576020366003190112610c91573563ffffffff60e01b8116809103610c915760209250637965db0b60e01b81149081156111ce575b5015158152f35b6301ffc9a760e01b149050386111c7565b60058110156111f8576000526008602052604060002090565b634e487b7160e01b600052602160045260246000fd5b60058110156111f8576000526006602052604060002090565b60058110156111f8576000526007602052604060002090565b602435906001600160a01b038216820361125657565b600080fd5b600435906001600160a01b038216820361125657565b9181601f84011215611256578235916001600160401b038311611256576020838186019501011161125657565b60a081019081106001600160401b038211176112b957604052565b634e487b7160e01b600052604160045260246000fd5b604081019081106001600160401b038211176112b957604052565b601f909101601f19168101906001600160401b038211908210176112b957604052565b60005b8381106113205750506000910152565b8181015183820152602001611310565b9060058210156111f85752565b906020916113568151809281855285808601910161130d565b601f01601f1916010190565b90600182811c92168015611392575b602083101461137c57565b634e487b7160e01b600052602260045260246000fd5b91607f1691611371565b90604051918260008254926113b084611362565b90818452600194858116908160001461141f57506001146113dc575b50506113da925003836112ea565b565b9093915060005260209081600020936000915b8183106114075750506113da935082010138806113cc565b855488840185015294850194879450918301916113ef565b9150506113da94506020925060ff191682840152151560051b82010138806113cc565b60843590811515820361125657565b3360009081527f0fa198824562723c3f98eb1659f62d9933d4574249b7a5d050902d8978f049e96020526040902054600080516020611ce98339815191529060ff161561149b5750565b6044906040519063e2517d3f60e01b82523360048301526024820152fd5b3360009081527fca440bb5b4f276d246650b92ae261b87f0f2224864f13e13edcfda2aaca531026020526040902054600080516020611c498339815191529060ff161561149b5750565b3360009081527f5d1a55042e354fd0855f85397c8d577a90f38bc0d60906abd2f8026542bc359b6020526040902054600080516020611cc98339815191529060ff161561149b5750565b80600052600060205260406000203360005260205260ff604060002054161561149b5750565b9060009180835282602052604083209160018060a01b03169182845260205260ff604084205416156000146115ec57808352826020526040832082845260205260408320600160ff198254161790557f2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d339380a4600190565b505090565b9060009180835282602052604083209160018060a01b03169182845260205260ff6040842054166000146115ec5780835282602052604083208284526020526040832060ff1981541690557ff6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b339380a4600190565b9060058110156111f857815460ff60a01b191660a09190911b60ff60a01b16179055565b9190820180921161169757565b634e487b7160e01b600052601160045260246000fd5b60001981146116975760010190565b9092916020906116d0836040810196611330565b6001600160a01b0316910152565b604051906116eb8261129e565b6000608083828152606060208201528260408201528260608201520152565b9293959190916117186116de565b50611724600a546116ad565b600a5560018060a01b03908184169560009787895260209560028752604095868b209581169a8b81528781209c611afa575b60ff9586885460a01c169460059586821015611ae65786811015611ae65710611aa157868e5460a01c1685821015611a8d5785811015611a8d5710611a525785875460a81c1680611a45575b6119fe576201518042049062278d0042049160098901818154106119f0575b5050600a880190828254106119e2575b5050506006860154841161199b5760078601906117ef85835461168a565b60048801541061195c57600887019261180986855461168a565b858901541061191757505092600080516020611ca9833981519152979592600695928561183a8460809b985461168a565b905561184783825461168a565b90555411159a604682600d85015460a01c1611928315611902575b83156118f4575b5082156118e6575b505081519961187f8b61129e565b60018b52825161188e816112cf565b601781527610dbdb5c1b1a585b98d94818da1958dac81c185cdcd959604a1b86820152858c0152828b0152151560608a015242848a015280805193600185528401528201526514185cdcd95960d21b6060820152a490565b600301541690503880611871565b600301548216925038611869565b9250604682600d83015460a01c161192611862565b99989b509950505050505050611959955074115e18d959591cc81b5bdb9d1a1b1e481b1a5b5a5d605a1b90519461194d866112cf565b60158652850152611b92565b90565b9950509695985050505050611959955072115e18d959591cc819185a5b1e481b1a5b5a5d606a1b90519461198f866112cf565b60138652850152611b92565b9850969598505050505061195995507f457863656564732073696e676c65207472616e73616374696f6e206c696d69749051946119d7866112cf565b808652850152611b92565b6008890155553880806117d1565b8260078b01555538806117c1565b509850969598505050505061195995507a14d95b99195c881d995c9a599a58d85d1a5bdb88195e1c1a5c9959602a1b905194611a39866112cf565b601b8652850152611b92565b50600c87015442116117a2565b509850969598505050505061195995507a149958da5c1a595b9d081d1a595c881a5b9cdd59999a58da595b9d602a1b905194611a39866112cf565b634e487b7160e01b83526021600452602483fd5b50509850969598505050505061195995507714d95b99195c881d1a595c881a5b9cdd59999a58da595b9d60421b905194611ada866112cf565b60188652850152611b92565b634e487b7160e01b84526021600452602484fd5b60ff875460b01c16611b565760ff8d5460b01c1615611756575098509695985050505050611959955076149958da5c1a595b9d081a5cc81cd85b98dd1a5bdb9959604a1b905194611b4a866112cf565b60178652850152611b92565b509850969598505050505061195995507314d95b99195c881a5cc81cd85b98dd1a5bdb995960621b905194611b8a866112cf565b601486528501525b919091611b9d6116de565b50611ba9600b546116ad565b600b55600080516020611ca983398151915260405192600084526040602085015260018060a01b0380911694169280611be5604082018861133d565b0390a460405190611bf58261129e565b600082526020820152600060408201526000606082015242608082015290565b9190811015611c255760051b0190565b634e487b7160e01b600052603260045260246000fd5b919082039182116116975756feb938b4e8be78c5b3d6090a6dcee4f5257472278c0aaffb0b01bee86005dc1fee2ea0bcca3d7e824207ecbf4153aa16e564afaed6f98b000012bff851aa43f8b14862396808996f3d2197cffb3410a91de688e68e98374172281e8dc6a60c72c1a5331a31d3f6648ef0c8337409bd7df93716839de7015cb3525ce1dcfd88f1ad91275d1fcefacfdb2f4c88a451825db6079efbb939a9fedc620b7645456e84f28543a18258c3caa4a95592be8e6241dbfdd96e339d76cf3044673f6185aa6366a26469706673582212208a461bd939ff5ced566755c3588b1853e7adc4249c59e565ea66f9e338c21ada64736f6c634300081400332f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d",
+  "deployedBytecode": "0x60808060405260048036101561001457600080fd5b600091823560e01c90816301ffc9a71461118b575080630938fc14146110bf57806314f826bd146110a1578063162e226414611083578063164e1bcd1461105b578063248a9ca3146110305780632f2ff15d14610ff45780633489ee261461092a57806336568abe14610fad5780633d0879a114610f535780633e9ccbf114610f2a5780634bee09d014610f0c5780634d51999414610ee4578063551bece614610e2c5780636600287514610e0b57806370e759cf14610de257806374b14d9a14610db957806377d638ba14610c95578063782c87e514610c3a5780637be9b9c214610af457806389713e8e14610aa657806391d1485414610a5e57806395acb81f146109e7578063a217fddf146109cb578063a2ff542e14610994578063a63b3f2e14610976578063ac90c14014610958578063badb4bb51461092a578063bb7340a114610858578063bbe1562714610707578063c14dd99914610699578063c86ed603146105e4578063cc1ba11514610562578063d547741f14610522578063e7fee78e146104ee5763f756c60b146101ae57600080fd5b346104ea5760e03660031901126104ea576101c761125b565b906024359060058210156104e6576001600160401b03906064358281116104e2576101f59036908301611271565b949092610200611442565b9060a4359260ff841684036104de57610217611503565b6001600160a01b03169687156104a957604051958181883760ff878381018881526020998a9103019020541661046b57888a526002875260408a2080546001600160a01b0319168a1781559661026d8989611666565b600160a81b60ff60a81b19895416178855600191604435838a0155600289019484116104585761029d8554611362565b601f8111610410575b508b8092601f86116001146103925750936103819997959381938293600080516020611c698339815191529d9b999794610387575b50501b916000199060031b1c19161790555b600384019060ff801983541691151516179055600d830190815442600b86015561031960c4354261168a565b600c8601556001600160a81b03191660a09190911b60ff60a01b1617331790556103428361120e565b549082015561035082611227565b5460058201556006610361836111df565b549101556103706009546116ad565b6009556040519182913390836116bc565b0390a280f35b0135925038806102db565b8682528082209495949391601f198616915b8282106103f957505091600080516020611c698339815191529b9997959391856103819c9a989694106103df575b505050811b0190556102ed565b0135600019600384901b60f8161c191690553880806103d2565b8088859782949688013581550196019301906103a4565b858d52828d20601f860160051c81019184871061044e575b601f0160051c019084908e5b838210610443575050506102a6565b81550184908e610434565b9091508190610428565b634e487b7160e01b8c526041885260248cfd5b60405162461bcd60e51b815280870188905260176024820152762932b9ba3934b1ba32b210353ab934b9b234b1ba34b7b760491b6044820152606490fd5b60405162461bcd60e51b8152602081870152600e60248201526d496e76616c696420656e7469747960901b6044820152606490fd5b8880fd5b8580fd5b8380fd5b5080fd5b50346104ea5760203660031901126104ea573590600582101561051f57602061051683611227565b54604051908152f35b80fd5b50346104ea5760403660031901126104ea5761055e9035610541611240565b9080845283602052610559600160408620015461154d565b6115f1565b5080f35b50346104ea5760203660031901126104ea5780359061057f611451565b818352600360205260408320805460ff8116610599578480f35b60ff19169055600c549081156105d1575060001901600c55600080516020611c898339815191526020604051848152a2388080808480f35b634e487b7160e01b845260119052602483fd5b50346104ea5760e03660031901126104ea576105fe611240565b90604435906001600160a01b03821682036104e65761061b611442565b9060a4359260058410156104e25760c435946005861015610695576106459650606435923561170a565b6040518091602082528051151560208301526080610672602083015160a0604086015260c085019061133d565b916040810151151560608501526060810151151582850152015160a08301520390f35b8680fd5b50346104ea5760203660031901126104ea57356106b4611451565b808252600360205260408220805460ff8116156106cf578380f35b60ff19166001179055600c546106e4906116ad565b600c55600080516020611c89833981519152602060405160018152a23880808380f35b50903461051f57602036600319011261051f576001600160a01b0361072a61125b565b168152600260205260409020908154906001830154926002810161074d9061139c565b90600381015460ff1692810154600582015460068301546007840154600885015490600986015492600a87015494600b88015496600c89015498600d0154996040519d8e809e600160a01b6001900381168252602082018160a01c60ff16906107b591611330565b8060a81c60ff161515604083015260b01c60ff1615156060820152608001528c61026060a0819201528d016107e99161133d565b9a151560c08d015260e08c01526101008b01526101208a01526101408901526101608801526101808701526101a08601526101c08501526101e08401526001600160a01b03811661020084015260ff60a082901c811661022085015260a89190911c1615156102408301520390f35b50346104ea5760403660031901126104ea5761087261125b565b90602435906001600160401b0382116104e6576108b56040917f15c73756bf4512e9cd224c0c973f39b2defdd913f76cba0115f8c4b030e4957593369101611271565b9190936108c06114b9565b6001600160a01b031680865260026020908152828720805460ff60b01b1916600160b01b178155600d01805460ff60a81b1916600160a81b17905582518181529081018490529094909283918190838501378181018301879052601f01601f19168101030190a280f35b50346104ea5760203660031901126104ea57604060209260ff92358152600384522054166040519015158152f35b823461051f578060031936011261051f576020600954604051908152f35b823461051f578060031936011261051f576020600554604051908152f35b823461051f578060031936011261051f576080600954600a54600b54600c5491604051938452602084015260408301526060820152f35b823461051f578060031936011261051f57602090604051908152f35b823461051f57602036600319011261051f57610a0161125b565b610a096114b9565b6001600160a01b0316808252600260205260408220805460ff60b01b19168155600d01805460ff60a81b191690557f729f46521751e08db9864853eb25848681fd7d6ade69d6435509c517f7c3e4798280a280f35b50346104ea5760403660031901126104ea57604060209260ff92610a80611240565b903582528185528282206001600160a01b03909116825284522054604051911615158152f35b50346104ea5760803660031901126104ea573560058110156104ea57610aca6114b9565b602435610ad68261120e565b55604435610ae382611227565b55610af0606435916111df565b5580f35b50346104ea5760603660031901126104ea57610b0e61125b565b6024359060058210156104e657610b23611503565b6001600160a01b031680845260026020526040842080549193909160a881901c60ff1615610c075760a01c60ff166005811015610bf457831115610bba579181600080516020611c6983398151915293610b808361038195611666565b610b898361120e565b5490820155610b9782611227565b5460058201556006610ba8836111df565b549101556040519182913390836116bc565b60649060206040519162461bcd60e51b8352820152601360248201527226bab9ba103132903434b3b432b9103a34b2b960691b6044820152fd5b634e487b7160e01b865260218252602486fd5b60405162461bcd60e51b8152602081840152600c60248201526b139bdd081d995c9a599a595960a21b6044820152606490fd5b50346104ea5760203660031901126104ea5780356001600160401b038111610c9157610c6b60209136908401611271565b92610c746114b9565b836040519485938437820190815203019020805460ff1916905580f35b8280fd5b50346104ea5760203660031901126104ea5760ff91906001600160a01b03610cbb61125b565b168252600260205260408220600981015462015180420403610db3576007810154925b600a82015462278d00420403610da45784610d7b610d3d60026008860154945b8654600d88015498880154909980821115610d9b57610d1c91611c3b565b955b600588015481811115610d9357610d359250611c3b565b955b0161139c565b6040519787610d528a83819b60a01c16611330565b818160a81c16151560208a015260b01c161515604088015260e0606088015260e087019061133d565b9360a01c16608085015260a084015260c08301520390f35b505095610d37565b50508095610d1e565b84610d7b610d3d600284610cfe565b82610cde565b823461051f578060031936011261051f576020604051600080516020611c498339815191528152f35b823461051f578060031936011261051f576020604051600080516020611ce98339815191528152f35b50346104ea5760203660031901126104ea57610e256114b9565b3560055580f35b50903461051f57602091826003193601126104ea578035916001600160401b039081841161051f573660238501121561051f5783830135918211610ed15760405191610e81601f8201601f19168701846112ea565b808352858301943660248383010111610c91579260ff95928783610ebc9794602483980187378301015260405194859384925192839161130d565b82019081520301902054166040519015158152f35b634e487b7160e01b815260418352602490fd5b50346104ea5760203660031901126104ea573590600582101561051f5760206105168361120e565b823461051f578060031936011261051f576020600b54604051908152f35b823461051f578060031936011261051f576020604051600080516020611cc98339815191528152f35b50346104ea5760203660031901126104ea5780356001600160401b038111610c9157610f8460209136908401611271565b92610f8d6114b9565b836040519485938437820190815203019020805460ff1916600117905580f35b50903461051f57604036600319011261051f57610fc8611240565b336001600160a01b03821603610fe35761055e9192356115f1565b60405163334bd91960e11b81528390fd5b50346104ea5760403660031901126104ea5761055e9035611013611240565b908084528360205261102b600160408620015461154d565b611573565b50346104ea5760203660031901126104ea576040602092600192358152808452200154604051908152f35b50346104ea5760203660031901126104ea573590600582101561051f576020610516836111df565b823461051f578060031936011261051f576020600a54604051908152f35b823461051f578060031936011261051f576020600c54604051908152f35b50346104ea5760209081600319360112610c91576001600160401b03908035908282116111875736602383011215611187578101359182116104e6576024810190602436918460051b0101116104e657611117611451565b835b828110611124578480f35b8061113361114f928585611c15565b358652600380865260ff60408820541615611154575b506116ad565b611119565b61115f828686611c15565b358752855260408620600160ff19825416179055600c61117f81546116ad565b905538611149565b8480fd5b91905034610c91576020366003190112610c91573563ffffffff60e01b8116809103610c915760209250637965db0b60e01b81149081156111ce575b5015158152f35b6301ffc9a760e01b149050386111c7565b60058110156111f8576000526008602052604060002090565b634e487b7160e01b600052602160045260246000fd5b60058110156111f8576000526006602052604060002090565b60058110156111f8576000526007602052604060002090565b602435906001600160a01b038216820361125657565b600080fd5b600435906001600160a01b038216820361125657565b9181601f84011215611256578235916001600160401b038311611256576020838186019501011161125657565b60a081019081106001600160401b038211176112b957604052565b634e487b7160e01b600052604160045260246000fd5b604081019081106001600160401b038211176112b957604052565b601f909101601f19168101906001600160401b038211908210176112b957604052565b60005b8381106113205750506000910152565b8181015183820152602001611310565b9060058210156111f85752565b906020916113568151809281855285808601910161130d565b601f01601f1916010190565b90600182811c92168015611392575b602083101461137c57565b634e487b7160e01b600052602260045260246000fd5b91607f1691611371565b90604051918260008254926113b084611362565b90818452600194858116908160001461141f57506001146113dc575b50506113da925003836112ea565b565b9093915060005260209081600020936000915b8183106114075750506113da935082010138806113cc565b855488840185015294850194879450918301916113ef565b9150506113da94506020925060ff191682840152151560051b82010138806113cc565b60843590811515820361125657565b3360009081527f0fa198824562723c3f98eb1659f62d9933d4574249b7a5d050902d8978f049e96020526040902054600080516020611ce98339815191529060ff161561149b5750565b6044906040519063e2517d3f60e01b82523360048301526024820152fd5b3360009081527fca440bb5b4f276d246650b92ae261b87f0f2224864f13e13edcfda2aaca531026020526040902054600080516020611c498339815191529060ff161561149b5750565b3360009081527f5d1a55042e354fd0855f85397c8d577a90f38bc0d60906abd2f8026542bc359b6020526040902054600080516020611cc98339815191529060ff161561149b5750565b80600052600060205260406000203360005260205260ff604060002054161561149b5750565b9060009180835282602052604083209160018060a01b03169182845260205260ff604084205416156000146115ec57808352826020526040832082845260205260408320600160ff198254161790557f2f8788117e7eff1d82e926ec794901d17c78024a50270940304540a733656f0d339380a4600190565b505090565b9060009180835282602052604083209160018060a01b03169182845260205260ff6040842054166000146115ec5780835282602052604083208284526020526040832060ff1981541690557ff6391f5c32d9c69d2a47ea670b442974b53935d1edc7fd64eb21e047a839171b339380a4600190565b9060058110156111f857815460ff60a01b191660a09190911b60ff60a01b16179055565b9190820180921161169757565b634e487b7160e01b600052601160045260246000fd5b60001981146116975760010190565b9092916020906116d0836040810196611330565b6001600160a01b0316910152565b604051906116eb8261129e565b6000608083828152606060208201528260408201528260608201520152565b9293959190916117186116de565b50611724600a546116ad565b600a5560018060a01b03908184169560009787895260209560028752604095868b209581169a8b81528781209c611afa575b60ff9586885460a01c169460059586821015611ae65786811015611ae65710611aa157868e5460a01c1685821015611a8d5785811015611a8d5710611a525785875460a81c1680611a45575b6119fe576201518042049062278d0042049160098901818154106119f0575b5050600a880190828254106119e2575b5050506006860154841161199b5760078601906117ef85835461168a565b60048801541061195c57600887019261180986855461168a565b858901541061191757505092600080516020611ca9833981519152979592600695928561183a8460809b985461168a565b905561184783825461168a565b90555411159a604682600d85015460a01c1611928315611902575b83156118f4575b5082156118e6575b505081519961187f8b61129e565b60018b52825161188e816112cf565b601781527610dbdb5c1b1a585b98d94818da1958dac81c185cdcd959604a1b86820152858c0152828b0152151560608a015242848a015280805193600185528401528201526514185cdcd95960d21b6060820152a490565b600301541690503880611871565b600301548216925038611869565b9250604682600d83015460a01c161192611862565b99989b509950505050505050611959955074115e18d959591cc81b5bdb9d1a1b1e481b1a5b5a5d605a1b90519461194d866112cf565b60158652850152611b92565b90565b9950509695985050505050611959955072115e18d959591cc819185a5b1e481b1a5b5a5d606a1b90519461198f866112cf565b60138652850152611b92565b9850969598505050505061195995507f457863656564732073696e676c65207472616e73616374696f6e206c696d69749051946119d7866112cf565b808652850152611b92565b6008890155553880806117d1565b8260078b01555538806117c1565b509850969598505050505061195995507a14d95b99195c881d995c9a599a58d85d1a5bdb88195e1c1a5c9959602a1b905194611a39866112cf565b601b8652850152611b92565b50600c87015442116117a2565b509850969598505050505061195995507a149958da5c1a595b9d081d1a595c881a5b9cdd59999a58da595b9d602a1b905194611a39866112cf565b634e487b7160e01b83526021600452602483fd5b50509850969598505050505061195995507714d95b99195c881d1a595c881a5b9cdd59999a58da595b9d60421b905194611ada866112cf565b60188652850152611b92565b634e487b7160e01b84526021600452602484fd5b60ff875460b01c16611b565760ff8d5460b01c1615611756575098509695985050505050611959955076149958da5c1a595b9d081a5cc81cd85b98dd1a5bdb9959604a1b905194611b4a866112cf565b60178652850152611b92565b509850969598505050505061195995507314d95b99195c881a5cc81cd85b98dd1a5bdb995960621b905194611b8a866112cf565b601486528501525b919091611b9d6116de565b50611ba9600b546116ad565b600b55600080516020611ca983398151915260405192600084526040602085015260018060a01b0380911694169280611be5604082018861133d565b0390a460405190611bf58261129e565b600082526020820152600060408201526000606082015242608082015290565b9190811015611c255760051b0190565b634e487b7160e01b600052603260045260246000fd5b919082039182116116975756feb938b4e8be78c5b3d6090a6dcee4f5257472278c0aaffb0b01bee86005dc1fee2ea0bcca3d7e824207ecbf4153aa16e564afaed6f98b000012bff851aa43f8b14862396808996f3d2197cffb3410a91de688e68e98374172281e8dc6a60c72c1a5331a31d3f6648ef0c8337409bd7df93716839de7015cb3525ce1dcfd88f1ad91275d1fcefacfdb2f4c88a451825db6079efbb939a9fedc620b7645456e84f28543a18258c3caa4a95592be8e6241dbfdd96e339d76cf3044673f6185aa6366a26469706673582212208a461bd939ff5ced566755c3588b1853e7adc4249c59e565ea66f9e338c21ada64736f6c63430008140033",
+  "devdoc": {
+    "details": "Implements tiered verification with real-time sanctions checking  KEY FEATURES: - Multi-tier KYC levels (None → Institutional) - OFAC/EU/UN sanctions list checking - Travel Rule compliance for >$3000 transfers - Jurisdiction-based restrictions - Automated compliance reporting",
+    "errors": {
+      "AccessControlBadConfirmation()": [
+        {
+          "details": "The caller of a function is not the expected one. NOTE: Don't confuse with {AccessControlUnauthorizedAccount}."
+        }
+      ],
+      "AccessControlUnauthorizedAccount(address,bytes32)": [
+        {
+          "details": "The `account` is missing a role."
+        }
+      ],
+      "ReentrancyGuardReentrantCall()": [
+        {
+          "details": "Unauthorized reentrant call."
+        }
+      ]
+    },
+    "events": {
+      "RoleAdminChanged(bytes32,bytes32,bytes32)": {
+        "details": "Emitted when `newAdminRole` is set as ``role``'s admin role, replacing `previousAdminRole` `DEFAULT_ADMIN_ROLE` is the starting admin for all roles, despite {RoleAdminChanged} not being emitted signaling this."
+      },
+      "RoleGranted(bytes32,address,address)": {
+        "details": "Emitted when `account` is granted `role`. `sender` is the account that originated the contract call, an admin role bearer except when using {AccessControl-_setupRole}."
+      },
+      "RoleRevoked(bytes32,address,address)": {
+        "details": "Emitted when `account` is revoked `role`. `sender` is the account that originated the contract call:   - if using `revokeRole`, it is the admin role bearer   - if using `renounceRole`, it is the role bearer (i.e. `account`)"
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "checkPaymentCompliance(bytes32,address,address,uint256,bool,uint8,uint8)": {
+        "params": {
+          "amount": "Payment amount in USD value",
+          "paymentId": "Unique payment identifier",
+          "recipient": "Recipient address",
+          "requireSanctionsCheck": "Whether to check sanctions",
+          "requiredRecipientTier": "Minimum recipient tier required",
+          "requiredSenderTier": "Minimum sender tier required",
+          "sender": "Sender address"
+        }
+      },
+      "getRoleAdmin(bytes32)": {
+        "details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}."
+      },
+      "grantRole(bytes32,address)": {
+        "details": "Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleGranted} event."
+      },
+      "hasRole(bytes32,address)": {
+        "details": "Returns `true` if `account` has been granted `role`."
+      },
+      "renounceRole(bytes32,address)": {
+        "details": "Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `callerConfirmation`. May emit a {RoleRevoked} event."
+      },
+      "revokeRole(bytes32,address)": {
+        "details": "Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleRevoked} event."
+      },
+      "supportsInterface(bytes4)": {
+        "details": "See {IERC165-supportsInterface}."
+      }
+    },
+    "title": "ComplianceEngine",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "addToSanctionsList(bytes32)": {
+        "notice": "Add entity hash to sanctions list"
+      },
+      "bulkAddToSanctionsList(bytes32[])": {
+        "notice": "Bulk add to sanctions list"
+      },
+      "checkPaymentCompliance(bytes32,address,address,uint256,bool,uint8,uint8)": {
+        "notice": "Check if a payment is compliant"
+      },
+      "clearEntity(address)": {
+        "notice": "Remove entity from sanctions"
+      },
+      "isSanctioned(bytes32)": {
+        "notice": "Check if entity hash is sanctioned"
+      },
+      "removeFromSanctionsList(bytes32)": {
+        "notice": "Remove from sanctions list"
+      },
+      "sanctionEntity(address,string)": {
+        "notice": "Mark entity as sanctioned"
+      },
+      "upgradeEntity(address,uint8,bytes32)": {
+        "notice": "Upgrade entity to higher tier"
+      },
+      "verifyEntity(address,uint8,bytes32,string,bool,uint8,uint256)": {
+        "notice": "Verify an entity at a specific compliance tier"
+      }
+    },
+    "notice": "Programmable KYC/AML/Sanctions compliance for institutional payments",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 26,
+        "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+        "label": "_roles",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_bytes32,t_struct(RoleData)21_storage)"
+      },
+      {
+        "astId": 2019,
+        "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+        "label": "_status",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 3575,
+        "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+        "label": "profiles",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_mapping(t_address,t_struct(EntityProfile)3559_storage)"
+      },
+      {
+        "astId": 3579,
+        "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+        "label": "sanctionsList",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_mapping(t_bytes32,t_bool)"
+      },
+      {
+        "astId": 3583,
+        "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+        "label": "restrictedJurisdictions",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_mapping(t_string_memory_ptr,t_bool)"
+      },
+      {
+        "astId": 3588,
+        "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+        "label": "travelRuleThreshold",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 3593,
+        "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+        "label": "tierDailyLimits",
+        "offset": 0,
+        "slot": "6",
+        "type": "t_mapping(t_enum(ComplianceTier)3519,t_uint256)"
+      },
+      {
+        "astId": 3598,
+        "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+        "label": "tierMonthlyLimits",
+        "offset": 0,
+        "slot": "7",
+        "type": "t_mapping(t_enum(ComplianceTier)3519,t_uint256)"
+      },
+      {
+        "astId": 3603,
+        "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+        "label": "tierSingleTxLimits",
+        "offset": 0,
+        "slot": "8",
+        "type": "t_mapping(t_enum(ComplianceTier)3519,t_uint256)"
+      },
+      {
+        "astId": 3605,
+        "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+        "label": "totalVerifications",
+        "offset": 0,
+        "slot": "9",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 3607,
+        "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+        "label": "totalChecks",
+        "offset": 0,
+        "slot": "10",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 3609,
+        "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+        "label": "totalRejections",
+        "offset": 0,
+        "slot": "11",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 3611,
+        "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+        "label": "sanctionsListSize",
+        "offset": 0,
+        "slot": "12",
+        "type": "t_uint256"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_bytes32": {
+        "encoding": "inplace",
+        "label": "bytes32",
+        "numberOfBytes": "32"
+      },
+      "t_enum(ComplianceTier)3519": {
+        "encoding": "inplace",
+        "label": "enum ComplianceEngine.ComplianceTier",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_address,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      },
+      "t_mapping(t_address,t_struct(EntityProfile)3559_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct ComplianceEngine.EntityProfile)",
+        "numberOfBytes": "32",
+        "value": "t_struct(EntityProfile)3559_storage"
+      },
+      "t_mapping(t_bytes32,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      },
+      "t_mapping(t_bytes32,t_struct(RoleData)21_storage)": {
+        "encoding": "mapping",
+        "key": "t_bytes32",
+        "label": "mapping(bytes32 => struct AccessControl.RoleData)",
+        "numberOfBytes": "32",
+        "value": "t_struct(RoleData)21_storage"
+      },
+      "t_mapping(t_enum(ComplianceTier)3519,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_enum(ComplianceTier)3519",
+        "label": "mapping(enum ComplianceEngine.ComplianceTier => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_mapping(t_string_memory_ptr,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_string_memory_ptr",
+        "label": "mapping(string => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      },
+      "t_string_memory_ptr": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_string_storage": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_struct(EntityProfile)3559_storage": {
+        "encoding": "inplace",
+        "label": "struct ComplianceEngine.EntityProfile",
+        "members": [
+          {
+            "astId": 3521,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "entity",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address"
+          },
+          {
+            "astId": 3524,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "tier",
+            "offset": 20,
+            "slot": "0",
+            "type": "t_enum(ComplianceTier)3519"
+          },
+          {
+            "astId": 3526,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "isVerified",
+            "offset": 21,
+            "slot": "0",
+            "type": "t_bool"
+          },
+          {
+            "astId": 3528,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "isSanctioned",
+            "offset": 22,
+            "slot": "0",
+            "type": "t_bool"
+          },
+          {
+            "astId": 3530,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "identityHash",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_bytes32"
+          },
+          {
+            "astId": 3532,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "jurisdiction",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 3534,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "isPEP",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_bool"
+          },
+          {
+            "astId": 3536,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "dailyLimit",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 3538,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "monthlyLimit",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 3540,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "singleTxLimit",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 3542,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "dailyVolume",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 3544,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "monthlyVolume",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 3546,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "lastDayReset",
+            "offset": 0,
+            "slot": "9",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 3548,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "lastMonthReset",
+            "offset": 0,
+            "slot": "10",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 3550,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "verifiedAt",
+            "offset": 0,
+            "slot": "11",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 3552,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "expiresAt",
+            "offset": 0,
+            "slot": "12",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 3554,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "verifiedBy",
+            "offset": 0,
+            "slot": "13",
+            "type": "t_address"
+          },
+          {
+            "astId": 3556,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "riskScore",
+            "offset": 20,
+            "slot": "13",
+            "type": "t_uint8"
+          },
+          {
+            "astId": 3558,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "underReview",
+            "offset": 21,
+            "slot": "13",
+            "type": "t_bool"
+          }
+        ],
+        "numberOfBytes": "448"
+      },
+      "t_struct(RoleData)21_storage": {
+        "encoding": "inplace",
+        "label": "struct AccessControl.RoleData",
+        "members": [
+          {
+            "astId": 18,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "hasRole",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_mapping(t_address,t_bool)"
+          },
+          {
+            "astId": 20,
+            "contract": "contracts/ComplianceEngine.sol:ComplianceEngine",
+            "label": "adminRole",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_bytes32"
+          }
+        ],
+        "numberOfBytes": "64"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      },
+      "t_uint8": {
+        "encoding": "inplace",
+        "label": "uint8",
+        "numberOfBytes": "1"
+      }
+    }
+  }
+}
