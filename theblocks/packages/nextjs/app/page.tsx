@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AIRiskPanel } from "~~/components/payflow/AIRiskPanel";
+import { AIRiskPanel } from "~~/components/AIRiskPanel";
 import { TokenPrice } from "~~/services/priceService";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
