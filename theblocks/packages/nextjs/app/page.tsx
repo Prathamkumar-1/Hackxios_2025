@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { AIRiskPanel } from "~~/components/payflow/AIRiskPanel";
+import { TokenPrice } from "~~/services/priceService";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
@@ -29,7 +31,7 @@ export default function Home() {
   const [scrollY, setScrollY] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
-
+  const [isChatOpen, setIsChatOpen] = useState(false);
   // Track mouse for gradient effect
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -79,6 +81,7 @@ export default function Home() {
 
   const demoSteps = [
     { label: "Initiating", status: "pending", icon: "🔄" },
+    { label: "Neural Risk Scan", status: "active", icon: "🧠" },
     { label: "KYC Verified", status: "success", icon: "✓" },
     { label: "AML Cleared", status: "success", icon: "✓" },
     { label: "Sanctions OK", status: "success", icon: "✓" },
@@ -467,7 +470,46 @@ export default function Home() {
           />
         </div>
       </section>
+<section id="ai-intelligence" className="relative py-24 border-y border-white/5 bg-gradient-to-b from-transparent via-violet-500/5 to-transparent">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            
+            {/* Left Side: Text and Logic */}
+            <div className="space-y-6">
+              <NarrativeBadge text="AI-Driven Compliance" />
+              <h2 className="text-4xl font-bold tracking-tight">
+                Real-time <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Risk Orchestration</span>
+              </h2>
+              <p className="text-zinc-400 text-lg">
+                While legacy banks manually review flagged transfers (taking 48-72 hours), our AI 
+                engine performs deep-packet analysis of transaction metadata against global 
+                watchlists in under 200ms.
+              </p>
+              
+              <div className="grid grid-cols-2 gap-4 pt-4">
+                <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+                  <div className="text-cyan-400 font-bold mb-1">0.2s</div>
+                  <div className="text-xs text-zinc-500 uppercase">Analysis Latency</div>
+                </div>
+                <div className="p-4 rounded-xl bg-white/5 border border-white/10">
+                  <div className="text-violet-400 font-bold mb-1">99.9%</div>
+                  <div className="text-xs text-zinc-500 uppercase">Detection Accuracy</div>
+                </div>
+              </div>
+            </div>
 
+            {/* Right Side: The Visual AIRiskPanel */}
+            <div className="relative">
+               {/* Decorative background glow */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-violet-500 to-cyan-500 rounded-2xl blur opacity-20" />
+              <div className="relative bg-[#0a0a0f] rounded-2xl p-2 border border-white/10">
+                <AIRiskPanel /> 
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
       {/* ═══════════════════════════════════════════════════════════════════ */}
       {/* THE VISION - Our Answer */}
       {/* ═══════════════════════════════════════════════════════════════════ */}
@@ -702,6 +744,43 @@ export default function Home() {
           </div>
         </footer>
       </ScrollReveal>
+      <div className="fixed bottom-6 right-6 z-[60]">
+        {isChatOpen && (
+          <div className="absolute bottom-20 right-0 w-80 h-96 bg-[#12121a] border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 duration-300">
+            {/* Header */}
+            <div className="p-4 bg-gradient-to-r from-violet-600 to-cyan-600 font-bold flex justify-between items-center">
+              <div className="flex items-center gap-2">
+                <span className="text-sm">PayFlow AI Assistant</span>
+              </div>
+              <button onClick={() => setIsChatOpen(false)} className="text-white/80 hover:text-white text-xl">×</button>
+            </div>
+            
+            {/* Messages Area */}
+            <div className="flex-1 p-4 text-sm text-zinc-400 overflow-y-auto space-y-4">
+              <div className="bg-white/5 p-3 rounded-lg border border-white/10">
+                Hi! I can help you understand our **Cross-Border Settlement** engine or the **AIRiskPanel** logic. What would you like to know?
+              </div>
+            </div>
+            
+            {/* Input Area */}
+            <div className="p-4 border-t border-white/5 bg-[#0a0a0f]">
+              <input 
+                type="text" 
+                placeholder="Ask about the protocol..." 
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-cyan-500 text-white"
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Toggle Button */}
+        <button 
+          onClick={() => setIsChatOpen(!isChatOpen)}
+          className="w-14 h-14 rounded-full bg-gradient-to-br from-violet-600 to-cyan-600 flex items-center justify-center shadow-[0_0_20px_rgba(139,92,246,0.4)] hover:scale-110 active:scale-95 transition-all duration-300 group"
+        >
+          <span className="text-2xl group-hover:rotate-12 transition-transform">🤖</span>
+        </button>
+      </div>
     </div>
   );
 }
